@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Posts on My New Hugo Site</title>
+    <title>Posts on Out of Distribution</title>
     <link>http://localhost:1313/posts/</link>
-    <description>Recent content in Posts on My New Hugo Site</description>
+    <description>Recent content in Posts on Out of Distribution</description>
     <generator>Hugo -- 0.151.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Nov 2022 01:40:00 +0330</lastBuildDate>
+    <lastBuildDate>Thu, 05 Jan 2023 01:04:06 +0330</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>به نام خدا</title>
-      <link>http://localhost:1313/posts/in-the-name-of-god/</link>
-      <pubDate>Sat, 19 Nov 2022 01:40:00 +0330</pubDate>
-      <guid>http://localhost:1313/posts/in-the-name-of-god/</guid>
+      <title>کتاب جنون شهرت</title>
+      <link>http://localhost:1313/posts/2023/jan/05/</link>
+      <pubDate>Thu, 05 Jan 2023 01:04:06 +0330</pubDate>
+      <guid>http://localhost:1313/posts/2023/jan/05/</guid>
+      <description>&lt;p&gt;چند روز پیش که اعصاب نداشتم، نشستم و کتاب &amp;ldquo;جنون شهرت&amp;rdquo; از برت کار را با ترجمه مهیار علینقی از نشر بینش نو خواندم. کتاب از این کتاب‌های روانکاوانه‌ای بود که سعی داشت با نگاه دید فرویدی پدیده شهرت‌پرستی در انسان‌ها را بررسی کند. در ابتدای کتاب مختصری راجع به فروید صحبت کرده بود و البته نقل قول زیبایی از او خطاب به نامزدش آورده است که نمی‌توانم از آن بگذرم. این نقل قول در هنگامی است که فروید جوان بوده و سایر دوستان پزشکش شهرتی بیشتر از او به هم زده بودند: &amp;ldquo;از حیث شهرت، همه آن‌ها از من پیش‌اند، اما از حیث شادکامی و آرامش خاطر نه، البته تا وقتی که تو از آن من باشی&amp;rdquo; و البته که سال‌ها بعد به همکارش فلیس شکوه کرده بود که به همه آن چیزی که می‌خواسته نرسیده و انتظار شهرت ابدی بسیار زیبا بود.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>حدیث امام صادق</title>
+      <link>http://localhost:1313/posts/2022/dec/29/</link>
+      <pubDate>Thu, 29 Dec 2022 01:04:06 +0330</pubDate>
+      <guid>http://localhost:1313/posts/2022/dec/29/</guid>
+      <description>&lt;p&gt;امام صادق عليه السلام: اين امر (حكومت ما اهل بيت) فرا نرسد، تا اين كه هيچ گروهى از مردم باقى نماند، مگر اين كه بر مردم حكومت كرده باشد، تا كسى نگويد: «اگر ما به حكومت مى رسيديم، به عدل و داد رفتار مى كرديم». پس از آن، قائم عليه السلامقيام مى كند و حقّ و عدالت را برپا مى دارد.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>بسم الله الرحمن الرحیم</title>
+      <link>http://localhost:1313/posts/2022/nov/19/my-first-post/</link>
+      <pubDate>Sat, 19 Nov 2022 01:04:06 +0330</pubDate>
+      <guid>http://localhost:1313/posts/2022/nov/19/my-first-post/</guid>
       <description>&lt;p&gt;بسم الله الرحمن الرحیم&lt;/p&gt;
 &lt;p&gt;امروز، بامداد شنبه ۲۸ آبان این کانال رو ایجاد کردم. قصد دارم در این کانال مطالبی را که مطالعه می‌کنم قرار دهم.&lt;/p&gt;</description>
     </item>
