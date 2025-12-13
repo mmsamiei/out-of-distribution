@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>شهرت on Out of Distribution</title>
+    <link>http://localhost:1313/tags/%D8%B4%D9%87%D8%B1%D8%AA/</link>
+    <description>Recent content in شهرت on Out of Distribution</description>
+    <image>
+      <title>Out of Distribution</title>
+      <url>http://localhost:1313/cover.jpg</url>
+      <link>http://localhost:1313/cover.jpg</link>
+    </image>
+    <generator>Hugo -- 0.151.2</generator>
+    <language>fa</language>
+    <lastBuildDate>Thu, 05 Jan 2023 01:04:06 +0330</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%D8%B4%D9%87%D8%B1%D8%AA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>کتاب جنون شهرت</title>
+      <link>http://localhost:1313/posts/2023/jan/05/</link>
+      <pubDate>Thu, 05 Jan 2023 01:04:06 +0330</pubDate>
+      <guid>http://localhost:1313/posts/2023/jan/05/</guid>
+      <description>نقد و بررسی کتاب &amp;#34;جنون شهرت&amp;#34; از برت کار - نگاهی روانکاوانه به پدیده شهرت‌پرستی</description>
+    </item>
+  </channel>
+</rss>
