@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>ایران on Out of Distribution</title>
-    <link>http://localhost:1313/tags/%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/</link>
-    <description>Recent content in ایران on Out of Distribution</description>
+    <title>جامعه‌شناسی on Out of Distribution</title>
+    <link>http://localhost:1313/categories/%D8%AC%D8%A7%D9%85%D8%B9%D9%87%D8%B4%D9%86%D8%A7%D8%B3%DB%8C/</link>
+    <description>Recent content in جامعه‌شناسی on Out of Distribution</description>
     <generator>Hugo -- 0.151.2</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 13 Dec 2025 01:04:06 +0330</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/%D8%AC%D8%A7%D9%85%D8%B9%D9%87%D8%B4%D9%86%D8%A7%D8%B3%DB%8C/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>کالبدشکافی دولت-ملت: مصاحبه‌ای عمیق با هوش مصنوعی درباره ایران و جهان</title>
       <link>http://localhost:1313/posts/2025/dec/13/</link>
