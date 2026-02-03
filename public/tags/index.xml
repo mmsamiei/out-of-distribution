@@ -6,42 +6,6 @@
     <description>Recent content in Tags on Out of Distribution</description>
     <generator>Hugo -- 0.151.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 Dec 2025 01:04:06 +0330</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>تاریخ</title>
-      <link>http://localhost:1313/tags/%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE/</link>
-      <pubDate>Sat, 13 Dec 2025 01:04:06 +0330</pubDate>
-      <guid>http://localhost:1313/tags/%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>جامعه‌شناسی</title>
-      <link>http://localhost:1313/tags/%D8%AC%D8%A7%D9%85%D8%B9%D9%87%D8%B4%D9%86%D8%A7%D8%B3%DB%8C/</link>
-      <pubDate>Sat, 13 Dec 2025 01:04:06 +0330</pubDate>
-      <guid>http://localhost:1313/tags/%D8%AC%D8%A7%D9%85%D8%B9%D9%87%D8%B4%D9%86%D8%A7%D8%B3%DB%8C/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>دولت-ملت</title>
-      <link>http://localhost:1313/tags/%D8%AF%D9%88%D9%84%D8%AA-%D9%85%D9%84%D8%AA/</link>
-      <pubDate>Sat, 13 Dec 2025 01:04:06 +0330</pubDate>
-      <guid>http://localhost:1313/tags/%D8%AF%D9%88%D9%84%D8%AA-%D9%85%D9%84%D8%AA/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>سیاست</title>
-      <link>http://localhost:1313/tags/%D8%B3%DB%8C%D8%A7%D8%B3%D8%AA/</link>
-      <pubDate>Sat, 13 Dec 2025 01:04:06 +0330</pubDate>
-      <guid>http://localhost:1313/tags/%D8%B3%DB%8C%D8%A7%D8%B3%D8%AA/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>ملت‌سازی</title>
-      <link>http://localhost:1313/tags/%D9%85%D9%84%D8%AA%D8%B3%D8%A7%D8%B2%DB%8C/</link>
-      <pubDate>Sat, 13 Dec 2025 01:04:06 +0330</pubDate>
-      <guid>http://localhost:1313/tags/%D9%85%D9%84%D8%AA%D8%B3%D8%A7%D8%B2%DB%8C/</guid>
-      <description></description>
-    </item>
   </channel>
 </rss>

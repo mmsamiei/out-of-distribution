@@ -1,0 +1,5 @@
+/* Custom font size override */
+body {
+    font-size: 16px;
+    line-height: 1.6;
+}
