@@ -1,5 +1,49 @@
-/* Custom font size override */
+/* Custom styles for better readability */
 body {
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.5;
+    letter-spacing: 0.3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+    margin-bottom: 1.2em;
+}
+
+/* Better heading hierarchy */
+h1 {
+    line-height: 1.3;
+    margin-bottom: 0.8em;
+    margin-top: 1.2em;
+}
+
+h2, h3, h4, h5, h6 {
+    line-height: 1.3;
+    margin-bottom: 0.6em;
+    margin-top: 1em;
+}
+
+/* Better list readability */
+ul, ol {
+    margin-bottom: 1.2em;
+    padding-left: 2em;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+/* Better link readability */
+a {
+    text-decoration: underline;
+}
+
+/* Blockquote styling */
+blockquote {
+    border-left: 3px solid var(--tertiary);
+    padding-left: 1em;
+    margin-left: 0;
+    margin-bottom: 1.2em;
+    font-style: italic;
 }
