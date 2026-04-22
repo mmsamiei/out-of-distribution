@@ -5,3 +5,31 @@ theme: ["PaperMod"]
 caches:
   images:
     dir: :cacheDir/images
+
+params:
+  mainSections:
+    - posts
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+menus:
+  main:
+    - name: Posts
+      url: /posts/
+      weight: 10
+    - name: Archive
+      url: /archives/
+      weight: 20
+    - name: Search
+      url: /search/
+      weight: 30
+    - name: Tags
+      url: /tags/
+      weight: 40
+    - name: FAQ
+      url: /faq/
+      weight: 50
