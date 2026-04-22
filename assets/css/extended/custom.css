@@ -34,9 +34,30 @@ li {
     margin-bottom: 0.5em;
 }
 
-/* Better link readability */
-a {
+/* Link emphasis in body copy only — global `a { underline }` also styled the header menu. */
+.post-content a {
     text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.header a,
+#menu a,
+.lang-switch a,
+footer a,
+.pagination a,
+.breadcrumbs a,
+.post-tags a,
+.toc a {
+    text-decoration: none;
+}
+
+#menu a:hover {
+    color: var(--secondary);
+}
+
+#menu a:hover .active,
+#menu .active {
+    color: var(--primary);
 }
 
 /* Blockquote styling */
