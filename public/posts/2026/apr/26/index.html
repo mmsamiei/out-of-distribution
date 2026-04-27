@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>از دیتا ساینس تا مهندسی نرم‌افزار: کالبدشکافی مدیریت خطا در پایتون | Out of Distribution</title>
+<meta name="keywords" content="">
+<meta name="description" content="از دیتا ساینس تا مهندسی نرم‌افزار: راهنمای جامع دیباگینگ، مدیریت خطا و کالبدشکافی پایتون
+در دنیای برنامه‌نویسی و به خصوص دیتا ساینس، ما معمولاً به ارورها به چشم یک &ldquo;مزاحم&rdquo; نگاه می‌کنیم. ارور می‌گیریم، آن را در گوگل یا ChatGPT جستجو می‌کنیم، یک خط کد برای دور زدن آن می‌نویسیم و می‌رویم سراغ کار بعدی (درمان علائم). انگار از این ستون به آن ستون می‌پریم. اما در مهندسی نرم‌افزار، ما به دنبال تحلیل علت ریشه‌ای (Root Cause Analysis) هستیم.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/2026/apr/26/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.0ab153d44a565d94957f4586d61a671f24808dabe26e9be63b1bd4a148345379.css" integrity="sha256-CrFT1EpWXZSVf0WG1hpnHySAjavibpvmOxvUoUg0U3k=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/2026/apr/26/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Out of Distribution (Alt + H)">Out of Distribution</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/faq/" title="FAQ">
+                    <span>FAQ</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      از دیتا ساینس تا مهندسی نرم‌افزار: کالبدشکافی مدیریت خطا در پایتون
+    </h1>
+    <div class="post-meta"><span title='2026-04-25 11:44:06 +0330 +0330'>April 25, 2026</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="از-دیتا-ساینس-تا-مهندسی-نرمافزار-راهنمای-جامع-دیباگینگ-مدیریت-خطا-و-کالبدشکافی-پایتون">از دیتا ساینس تا مهندسی نرم‌افزار: راهنمای جامع دیباگینگ، مدیریت خطا و کالبدشکافی پایتون<a hidden class="anchor" aria-hidden="true" href="#از-دیتا-ساینس-تا-مهندسی-نرمافزار-راهنمای-جامع-دیباگینگ-مدیریت-خطا-و-کالبدشکافی-پایتون">#</a></h1>
+<p>در دنیای برنامه‌نویسی و به خصوص دیتا ساینس، ما معمولاً به ارورها به چشم یک &ldquo;مزاحم&rdquo; نگاه می‌کنیم. ارور می‌گیریم، آن را در گوگل یا ChatGPT جستجو می‌کنیم، یک خط کد برای دور زدن آن می‌نویسیم و می‌رویم سراغ کار بعدی (درمان علائم). انگار از این ستون به آن ستون می‌پریم. اما در <strong>مهندسی نرم‌افزار</strong>، ما به دنبال <strong>تحلیل علت ریشه‌ای (Root Cause Analysis)</strong> هستیم.</p>
+<p>در این مقاله جامع، تمام مفاهیم مدیریت خطا در پایتون (تکنیک ۵ چرا، Stack Trace, Try-Except, Raise و Logger) را نه به عنوان دستورات ساده، بلکه از دیدگاه یک مهندس نرم‌افزار ارشد بررسی می‌کنیم و در نهایت نگاهی عمیق به زیر کاپوت زبان پایتون (CPython) خواهیم انداخت.</p>
+<hr>
+<h2 id="۱-ذهنیت-مهندسی-تکنیک-۵-چرا-the-5-whys-و-متدولوژی-دیباگ">۱. ذهنیت مهندسی: تکنیک ۵ چرا (The 5 Whys) و متدولوژی دیباگ<a hidden class="anchor" aria-hidden="true" href="#۱-ذهنیت-مهندسی-تکنیک-۵-چرا-the-5-whys-و-متدولوژی-دیباگ">#</a></h2>
+<p>این روش که توسط شرکت تویوتا ابداع شده، می‌گوید وقتی با باگی مواجه می‌شوید، به جای لاپوشانی سریع، ۵ بار بپرسید «چرا؟» تا به هسته اصلی مشکل برسید.</p>
+<p><strong>مثال واقعی (خطای دیتابیس Qdrant):</strong>
+اسکریپت را اجرا می‌کنید و خطای <code>ConnectionTimeoutError: Failed to connect to Qdrant</code> دریافت می‌کنید.</p>
+<ul>
+<li>❌ <strong>روش دیتا ساینتیست (درمان علائم):</strong> ارور را به ChatGPT می‌دهد. پیشنهاد می‌شود <code>timeout=60</code> را اضافه کند. دوباره اجرا می‌کند و بعد از ۶۰ ثانیه دوباره ارور می‌دهد! چرخه باطل آغاز می‌شود.</li>
+<li>✅ <strong>روش مهندس نرم‌افزار (۵ چرا):</strong>
+<ol>
+<li><strong>چرا کرش کرد؟</strong> چون نتوانست به پورت ۶۳۳۳ وصل شود.</li>
+<li><strong>چرا نتوانست وصل شود؟</strong> (تست با <code>docker ps</code>): چون کانتینر Qdrant مدام در حال ری‌استارت است.</li>
+<li><strong>چرا ری‌استارت می‌شود؟</strong> (تست با <code>docker logs</code>): خطای <code>OOM Killed (Out of Memory)</code> داده است.</li>
+<li><strong>چرا رم کم آورد؟</strong> چون دیتای بسیار سنگینی به سمتش رفت.</li>
+<li><strong>چرا دیتای سنگین رفت؟ (ریشه کشف شد!):</strong> چون سعی کردیم ۱۰۰,۰۰۰ چانک متنی را در یک Batch یک‌جا وارد دیتابیس کنیم!</li>
+</ol>
+<ul>
+<li><strong>راه‌حل:</strong> تغییر سایز Batch به دسته‌های ۱۰۰ تایی (Pagination). مشکل برای همیشه حل شد.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="۲-کالبدشکافی-stack-trace-قانون-طلایی-از-پایین-به-بالا">۲. کالبدشکافی Stack Trace: قانون طلایی &ldquo;از پایین به بالا&rdquo;<a hidden class="anchor" aria-hidden="true" href="#۲-کالبدشکافی-stack-trace-قانون-طلایی-از-پایین-به-بالا">#</a></h2>
+<p>کلمه Stack Trace از دو بخش Stack (پشته - مثل دسته‌ای از بشقاب‌ها با ساختار LIFO) و Trace (ردیابی) تشکیل شده است. هر تابعی که در کد صدا می‌زنید، یک بشقاب روی بشقاب‌های قبلی قرار می‌گیرد.
+وقتی در تابعی خطایی رخ می‌دهد، پایتون آن بشقاب را می‌شکند و ارور را مثل یک حباب به سمت بالا (توابع پدر) می‌فرستد. اگر کسی ارور را نگیرد، برنامه Crash می‌کند و پایتون لیست تمام این توابعِ باز را در ترمینال چاپ می‌کند.</p>
+<p><strong>قانون مهندس‌های ارشد: Stack Trace را همیشه از پایین به بالا بخوانید.</strong></p>
+<ol>
+<li><strong>قدم اول (خط آخر):</strong> نوع خطا و پیام اصلی آن را می‌گوید (مثلاً <code>TypeError: 'NoneType' object is not subscriptable</code>). مغز شما اینجا فرضیه می‌سازد.</li>
+<li><strong>قدم دوم (یک خط بالاتر):</strong> دقیقاً خطی که در آن انفجار رخ داده است.</li>
+<li><strong>قدم سوم (ردیابی به عقب):</strong> اسکرول کنید به سمت بالا تا به <strong>اولین فایلی که خودتان نوشته‌اید</strong> برسید. (از کدهای مربوط به کتابخانه‌ها عبور کنید).</li>
+</ol>
+<p><strong>تله‌ی لایبرری‌ها (Library Trap):</strong>
+در ۹۹.۹٪ مواقع، کتابخانه‌های معروف (مثل <code>requests</code>) باگ ندارند. اگر ارور در روده‌های یک کتابخانه رخ داده، به خاطر این است که شما دیتای اشتباهی (مثل <code>None</code> یا فرمت غلط) از فایل خودتان به آن پاس داده‌اید.</p>
+<hr>
+<h2 id="۳-آناتومی-کامل-try-except-کیسه-هوای-سیستم">۳. آناتومی کامل <code>try-except</code>: کیسه هوای سیستم<a hidden class="anchor" aria-hidden="true" href="#۳-آناتومی-کامل-try-except-کیسه-هوای-سیستم">#</a></h2>
+<p>در دیتا ساینس <code>try-except</code> برای لاپوشانی استفاده می‌شود، اما در مهندسی نرم‌افزار این یک ساختار برای <strong>مدیریت جریان کنترل</strong> است و ۴ ستون اصلی دارد:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">connect_to_database</span>(data):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ۱. منطقه خطر (Danger Zone): کمترین خطوط ممکن که احتمال ارور دارند</span>
+</span></span><span style="display:flex;"><span>        db_connection <span style="color:#f92672">=</span> connect(timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> db_connection<span style="color:#f92672">.</span>insert(data)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ConnectionError</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ۲. منطقه نجات (Rescue Zone): گرفتن خطای دقیق و مشخص</span>
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>error(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;دیتابیس در دسترس نیست: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ۳. منطقه موفقیت (Success Zone): فقط اگر هیچ اروری رخ ندهد اجرا می‌شود</span>
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#34;دیتا با موفقیت ذخیره شد.&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">finally</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ۴. منطقه پاکسازی (Cleanup Zone): همیشه اجرا می‌شود (جلوگیری از Memory Leak)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> db_connection:
+</span></span><span style="display:flex;"><span>            db_connection<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result
+</span></span></code></pre></div><h3 id="۳-بوی-بد-code-smell-در-try-except">۳ بوی بد (Code Smell) در Try-Except:<a hidden class="anchor" aria-hidden="true" href="#۳-بوی-بد-code-smell-در-try-except">#</a></h3>
+<ol>
+<li><strong>The God Try Block:</strong> ریختن ۱۰۰ خط کد درون یک <code>try</code>. اگر ارور رخ دهد، نمی‌دانید کدام خط منفجر شده است.</li>
+<li><strong>Catching Base Exception (<code>except Exception:</code>):</strong> این کار حتی خطاهای تایپی و سینتکسی شما را هم مخفی می‌کند. همیشه نوع ارور را دقیق بنویسید.</li>
+<li><strong>شکست خاموش (Silent Failure):</strong> نوشتن <code>pass</code> در بلاک <code>except</code>. سیستم خراب شده اما هیچ صدایی در نمی‌آید. خطرناک‌ترین نوع باگ در Production.</li>
+</ol>
+<hr>
+<h2 id="۴-فلسفه-کلمه-raise-کشیدن-ترمز-اضطراری">۴. فلسفه کلمه <code>raise</code>: کشیدن ترمز اضطراری<a hidden class="anchor" aria-hidden="true" href="#۴-فلسفه-کلمه-raise-کشیدن-ترمز-اضطراری">#</a></h2>
+<p>اگر <code>try-except</code> کیسه هواست، <code>raise</code> <strong>آژیر خطر و ترمز اضطراری قطار</strong> است.
+پایتون (راننده قطار) فقط گاز دادن را بلد است و منطق بیزینس را نمی‌فهمد. ما با <code>raise</code> خودمان دستی برنامه را متوقف می‌کنیم. کاربردهای آن عبارتند از: Fail-Fast (اعتبارسنجی ورودی‌ها) و ساخت Custom Exceptions.</p>
+<h3 id="نکته-فوقحرفهای-تفاوت-حیاتی-در-re-raise-پاس-دادن-توپ-به-بالا">نکته فوق‌حرفه‌ای: تفاوت حیاتی در Re-raise (پاس دادن توپ به بالا)<a hidden class="anchor" aria-hidden="true" href="#نکته-فوقحرفهای-تفاوت-حیاتی-در-re-raise-پاس-دادن-توپ-به-بالا">#</a></h3>
+<p>یکی از رایج‌ترین اشتباهات برنامه‌نویسان، نحوه پرتاب مجدد خطا در بلاک <code>except</code> است. به این دو الگو دقت کنید:</p>
+<p>❌ <strong>الگوی اول (روش غلط - مخدوش کردن Stack Trace):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>    do_something()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ValueError</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;یک ارور رخ داد&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ساختن یک خطای جدید و پرتاب آن</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;ارور جدید&#34;</span>) 
+</span></span></code></pre></div><p><strong>چه اتفاقی می‌افتد؟</strong> شما با این کار، Stack Trace اصلی را که نشان می‌داد ریشه مشکل در کدام خط از تابع <code>do_something</code> بوده، از بین می‌برید! پایتون این را به عنوان یک خطای کاملاً جدید در همین خط می‌بیند (و یک زنجیره خطای گیج‌کننده به نام Chained Exception می‌سازد). توسعه‌دهنده‌ای که فردا بخواهد این کد را دیباگ کند، نقشه راه را از دست داده است.</p>
+<p>✅ <strong>الگوی دوم (روش مهندسی - حفظ تاریخچه):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>    do_something()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ValueError</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;یک ارور رخ داد، ولی لاگش کردم.&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># پرتاب کردن همان خطای اصلی با تمام تاریخچه‌اش</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> 
+</span></span></code></pre></div><p><strong>چه اتفاقی می‌افتد؟</strong> وقتی کلمه <code>raise</code> را <strong>بدون هیچ متغیری</strong> (خالی) می‌نویسید، پایتون متوجه می‌شود که شما قصد لاپوشانی ندارید، فقط می‌خواستید ارور را لاگ کنید یا کار خاصی انجام دهید و حالا می‌خواهید <strong>دقیقاً همان ارور قبلی با همان مسیر طی شده (Stack Trace دست‌نخورده)</strong> به لایه‌های بالاتر برنامه (توابع پدر) پاس داده شود. این کار دیباگ را بی‌نهایت ساده می‌کند.</p>
+<hr>
+<h2 id="۵-رابطه-و-تفاوت-raise-با-logger">۵. رابطه و تفاوت <code>raise</code> با <code>logger</code><a hidden class="anchor" aria-hidden="true" href="#۵-رابطه-و-تفاوت-raise-با-logger">#</a></h2>
+<p>بسیاری از جونیورها فکر می‌کنند دستور <code>logger.error(&quot;پیام&quot;)</code> برنامه را متوقف می‌کند. <strong>این‌طور نیست!</strong></p>
+<ul>
+<li><strong><code>raise</code>:</strong> اجرای کد را متوقف می‌کند و Stack Trace می‌سازد.</li>
+<li><strong><code>logger.warning/error</code>:</strong> فقط حکم <strong>جعبه سیاه قطار</strong> را دارد. اتفاق را در فایل می‌نویسد اما <strong>برنامه خطوط بعدی را اجرا می‌کند!</strong></li>
+</ul>
+<p><strong>بمب اتم مهندسی (<code>logger.exception</code>):</strong>
+اگر در یک حلقه (Loop) پردازشی هستید و نمی‌خواهید قطار با ارور یک آیتم متوقف شود، اما نیاز به Stack Trace کامل برای دیباگ فردا دارید:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> dataset:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        process(item)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># حلقه نمی‌شکند و برنامه کرش نمی‌کند</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># اما کل متون قرمز Stack Trace تمیز و مرتب در فایل لاگ ذخیره می‌شود!</span>
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>exception(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;پردازش آیتم </span><span style="color:#e6db74">{</span>item<span style="color:#f92672">.</span>id<span style="color:#e6db74">}</span><span style="color:#e6db74"> شکست خورد&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">continue</span> 
+</span></span></code></pre></div><hr>
+<h2 id="۶-زیر-کاپوت-cpython-پایتون-چطور-try-except-را-میفهمد">۶. زیر کاپوت CPython: پایتون چطور Try-Except را می‌فهمد؟<a hidden class="anchor" aria-hidden="true" href="#۶-زیر-کاپوت-cpython-پایتون-چطور-try-except-را-میفهمد">#</a></h2>
+<p>پایتون کدهای شما را اول به <strong>Bytecode</strong> تبدیل می‌کند و سپس در ماشین مجازی پایتون (PVM) اجرا می‌کند. هر تابع باز یک Frame (بشقاب در حافظه C) است.</p>
+<p>وقتی شما <code>raise</code> می‌کنید، پایتون در زبان C یک تابع به نام <code>PyErr_SetString</code> را صدا می‌زند. سه متغیر مربوط به خطا (نوع خطا، پیام، و استک تریس) در حافظه مقداردهی می‌شوند و موتور پایتون با دیدن آن‌ها وارد حالت بحرانی (Panic) می‌شود.</p>
+<p><strong>شاهکار مهندسی: Zero-Cost Exceptions (خطایابی بدون هزینه)</strong>
+در پایتون ۳.۱۱ به بعد، وقتی شما یک بلاک <code>try-except</code> می‌نویسید، در حالت عادی <strong>هیچ هزینه پردازشی (CPU) ندارد!</strong>
+پایتون در زمان کامپایل یک <strong>جدول پرش (Jump Table)</strong> می‌سازد. اگر در بلاک <code>try</code> خطایی رخ داد، پایتون به این جدول نگاه می‌کند و اگر آدرسی برای <code>except</code> پیدا کرد، مستقیماً به آن خط پرش می‌کند. اگر پیدا نکرد، Frame فعلی تابع را در حافظه نابود می‌کند (Stack Unwinding) و به لایه بالاتر می‌رود.</p>
+<h3 id="چرا-این-مهم-است-lbyl-در-برابر-eafp">چرا این مهم است؟ (LBYL در برابر EAFP)<a hidden class="anchor" aria-hidden="true" href="#چرا-این-مهم-است-lbyl-در-برابر-eafp">#</a></h3>
+<p>در زبان‌های C++ و جاوا سبک LBYL رایج است (قبل از پریدن نگاه کن = استفاده زیاد از <code>if/else</code>).
+اما در پایتون سبک <strong>EAFP (راحت‌تر است عذرخواهی کنی تا اجازه بگیری)</strong> استاندارد است.
+چون <code>try-except</code> بدون هزینه (Zero-cost) است، یک مهندس پایتون به جای چک کردن مدام شرط‌ها با <code>if</code>، مستقیماً عملیات را داخل <code>try</code> انجام می‌دهد و با <code>except</code> شرایط استثنایی را مدیریت می‌کند. این کار سرعت اجرای برنامه را به شدت بالا می‌برد.</p>
+<hr>
+<p><strong>نتیجه‌گیری:</strong>
+تسلط بر Stack Trace، استفاده هدفمند از کیسه هوای <code>try-except</code>، کشیدن ترمز دستی به موقع با <code>raise</code> و ثبت وقایع با <code>logger</code>، مرز بین یک کدِ شکننده و یک سیستم نرم‌افزاری Enterprise است که حتی اگر قرار است بشکند، با وقار و با دادن اطلاعات کافی به توسعه‌دهندگان می‌شکند.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Out of Distribution</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
