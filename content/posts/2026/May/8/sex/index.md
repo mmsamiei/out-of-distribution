@@ -1,0 +1,170 @@
+---
+date: '2026-05-08T11:50:06+03:30'
+draft: false
+title: 'سکس:‌ هدف یا وسیله؟ از منظر بودریار'
+---
+
+
+## History
+**User**
+کتاب جامعه مصرفی بوردیار رو برام توضیح بده
+
+**Gemini**
+کتاب **«جامعه مصرفی» (The Consumer Society)** نوشته **ژان بودریار** (Jean Baudrillard)، فیلسوف و جامعه‌شناس برجسته فرانسوی، یکی از مهم‌ترین و تأثیرگذارترین کتاب‌ها در زمینه نقد سرمایه‌داری، جامعه‌شناسی فرهنگی و مطالعات رسانه است که در سال ۱۹۷۰ منتشر شد.
+
+بودریار در این کتاب، نگاه سنتی و مارکسیستی به اقتصاد (که بر پایه «تولید» استوار بود) را کنار می‌گذارد و استدلال می‌کند که در دنیای مدرن، این **«مصرف»** است که به نیروی محرکه اصلی جامعه و شکل‌دهنده هویت انسان‌ها تبدیل شده است.
+
+در ادامه، مفاهیم و ایده‌های اصلی این کتاب را به زبانی ساده و دسته‌بندی‌شده برایتان توضیح می‌دهم:
+
+### ۱. مصرف به عنوان یک «زبان» و «نظام نشانه‌ها»
+مهم‌ترین ایده بودریار در این کتاب این است که ما اشیاء را صرفاً برای کاربردشان (ارزش مصرفی) خریداری نمی‌کنیم، بلکه آن‌ها را به خاطر **«ارزش نشانه‌ای» (Sign Value)** آن‌ها مصرف می‌کنیم. 
+* **مثال:** یک ماشین پراید و یک ماشین پورشه، هر دو شما را از نقطه الف به نقطه ب می‌رسانند (کاربرد یکسان). اما کسی که پورشه می‌خرد، در واقع در حال خرید یک **نشانه** برای نشان دادن ثروت، قدرت، و جایگاه اجتماعی (کلاس) خود است.
+بنابراین، مصرف‌گرایی تبدیل به یک زبان شده است که ما از طریق آن با دیگران ارتباط برقرار می‌کنیم و می‌گوییم: «من چه کسی هستم و در کجای هرم جامعه قرار دارم.»
+
+### ۲. اسطوره نیازها و خلق نیازهای کاذب
+دیدگاه سنتی می‌گوید: «انسان‌ها نیازهایی دارند و شرکت‌ها کالا تولید می‌کنند تا آن نیازها را برطرف کنند.»
+اما بودریار می‌گوید این کاملاً برعکس است! در جامعه مصرفی، این **نظام تولید است که نیازها را خلق می‌کند.** نیازهای ما ذاتی نیستند، بلکه توسط تبلیغات، رسانه‌ها و فرهنگ حاکم به ما تزریق می‌شوند. سیستم سرمایه‌داری برای اینکه زنده بماند، باید مدام به ما القا کند که ما ناقص هستیم و برای کامل شدن و خوشبختی، باید کالای جدیدی بخریم.
+
+### ۳. وفور و انباشت کالا (فروشگاه‌های بزرگ)
+بودریار به ظهور پاساژها، سوپرمارکت‌های بزرگ و مال‌ها (Malls) اشاره می‌کند. در این مکان‌ها، کالاها به صورت تکی فروخته نمی‌شوند، بلکه به شکل یک «مجموعه» و در کنار هم قرار دارند. این وفور نعمت خیره‌کننده، به مصرف‌کننده احساسی از خوشبختی کاذب و آزادی انتخاب می‌دهد؛ در حالی که این آزادی، صرفاً آزادی در انتخابِ «چه چیزی بخرم» است، نه آزادی واقعی انسان.
+
+### ۴. بدن به عنوان یک کالای مصرفی
+یکی از جذاب‌ترین بخش‌های کتاب، نگاه بودریار به **بدن انسان** است. او می‌گوید در جامعه مصرفی، بدن به زیباترین و مهم‌ترین شیء مصرفی تبدیل شده است. ما دیگر بدن را فقط به عنوان جسم خود نمی‌بینیم، بلکه آن را سرمایه‌ای می‌دانیم که باید مدام روی آن کار کنیم: رژیم‌های لاغری، جراحی‌های زیبایی، باشگاه‌های تناسب اندام، لوازم آرایشی و بهداشتی. در اینجا، «سلامتی» و «زیبایی» به الزاماتی تبدیل می‌شوند که نظام مصرفی به ما دیکته می‌کند.
+
+### ۵. اوقات فراغت به مثابه کار
+بودریار معتقد است که در جامعه مصرفی، حتی «اوقات فراغت» هم دیگر زمانی برای استراحت واقعی و رهایی روح نیست. بلکه اوقات فراغت، زمانِ اجباری برای مصرف بیشتر است. ما در تعطیلات هم درگیر مصرفیم (سفر با تورهای خاص، رفتن به رستوران‌ها، خرید، تماشای تلویزیون و...). در واقع ما در اوقات فراغت هم در حال خدمت به نظام سرمایه‌داری هستیم.
+
+### ۶. توهم خوشبختی و برابری
+جامعه مصرفی این توهم را ایجاد می‌کند که چون همه افراد (از فقیر تا غنی) می‌توانند کالاهایی مثل تلویزیون یا گوشی موبایل داشته باشند، پس ما به یک برابری دموکراتیک رسیده‌ایم. بودریار این را یک دروغ بزرگ می‌داند. او می‌گوید مصرف نه تنها باعث برابری نمی‌شود، بلکه ابزاری برای ایجاد **تمایز اجتماعی (Social Differentiation)** است. وقتی فقرا به کالاهای دیروز ثروتمندان دست پیدا می‌کنند، ثروتمندان کالاهای جدیدتر و لوکس‌تری خلق می‌کنند تا فاصله خود را حفظ کنند.
+
+### نتیجه‌گیری و اهمیت کتاب برای امروز
+با اینکه کتاب در سال ۱۹۷۰ نوشته شده، اما انگار بودریار در حال توصیف دنیای امروزِ ما با **اینستاگرام، اینفلوئنسرها، و فرهنگ سلبریتی‌ها** است. 
+امروزه ما بیش از هر زمان دیگری در محاصره اشیاء و نشانه‌ها هستیم. در شبکه‌های اجتماعی، ما دائماً در حال نمایشِ «ارزش نشانه‌ای» لباس‌ها، غذاها، خانه‌ها و سفرهایمان هستیم تا هویت خود را تثبیت کنیم. 
+
+کتاب «جامعه مصرفی» یک هشدار تلخ اما بیدارکننده است: **در جامعه مصرفی، این انسان‌ها نیستند که اشیاء را مصرف می‌کنند، بلکه این اشیاء و نظام مصرف‌گرایی است که در حال مصرف کردنِ هویت، عمر و روح انسان‌هاست.**
+
+
+**User**
+درباره سکس چه نظری داشت؟
+
+
+**Gemini**
+{"type":"think","think":"**Beginning the Inquiry**\n\nI'm starting by analyzing the request: understanding Baudrillard's perspective on sex within *The Consumer Society*. My focus is squarely on pinpointing his explicit, and implied, viewpoints on sexuality.\n\n\n**Analyzing Consumerism and Sex**\n\nI'm now integrating Baudrillard's specific views on sex within the consumerist paradigm. I've pinpointed that he sees sex as a consumed sign, a cultural construct, not a natural or liberated phenomenon. The \"Sexual Revolution,\" in his analysis, is co-opted, making sex a commodity and an obligation for modern individuals. Advertising and cultural pressures instrumentalize sexuality, further reinforcing consumerist ideology.\n\n\n**Expanding the Framework**\n\nI'm now expanding my understanding by focusing on the eroticization of all objects in a consumer society. I'm seeing how this spreads beyond just direct sexual acts to encompass everything. I've also identified how the \"fun system\" or \"morale ludique\" plays a role, creating a societal expectation to enjoy sex. Finally, gender roles are considered as constructed consumer signs.\n\n\n**Synthesizing Core Concepts**\n\nI'm now integrating the ideas of eroticized objects and the body as sexual capital. I see how consumer society attaches sexual signs to everything, rendering the body as a commodity. This leads to the erasure of genuine desire and eroticism, highlighting the paradox of hyper-sexualization. Ultimately, sex is fully integrated into the consumer logic, as production and consumption. I've begun drafting in Persian, with an intro, and initial point on sexual liberation, as a step towards further refinement.\n\n\n**Examining Societal Expectations**\n\nI'm now focusing on how consumerism shapes societal expectations regarding sex. The \"fun morality\" concept is central: it demands sexual activity and attractiveness, turning them into a duty. Everything becomes eroticized, from cars to household items, through advertising, imbuing products with sexual value. The body itself is seen as capital that must be managed to maximize sexual value, with sex as a reward. This leads to the loss of authentic desire, as everything is saturated with manufactured sexuality.\n\n\n"}
+
+
+**Gemini**
+ژان بودریار در کتاب **«جامعه مصرفی»** نگاه بسیار رادیکال، متفاوت و انتقادی به مسئله **سکس (Sex)** و **سکسوالیته (تمایلات جنسی)** دارد. 
+
+در دهه‌های ۶۰ و ۷۰ میلادی (همزمان با نگارش کتاب)، جهان غرب درگیر پدیده‌ای به نام «انقلاب جنسی» بود؛ مردم فکر می‌کردند با شکستن تابوهای سنتی مذهبی و صحبتِ بازتر درباره سکس، سرانجام به «آزادی جنسی» رسیده‌اند. اما بودریار معتقد بود **این آزادی، یک توهم بزرگ است.**
+
+از نظر بودریار در جامعه مصرفی، سکس دیگر یک امر طبیعی، غریزی و خصوصی نیست؛ بلکه کاملاً به تسخیر نظام سرمایه‌داری درآمده و به یک **«کالای مصرفی»** و یک **«نشانه»** تبدیل شده است.
+
+در ادامه، دیدگاه‌های اصلی او درباره سکس در این کتاب را در چند محور توضیح می‌دهم:
+
+### ۱. توهم آزادی جنسی (سکس به عنوان سوپاپ اطمینان)
+بودریار می‌گوید نظام سرمایه‌داری متوجه شد که سرکوب جنسی (مانند دوران ویکتوریایی) دیگر کارآمد نیست. بنابراین، استراتژی خود را تغییر داد: به جای سرکوب، سکس را آزاد گذاشت و تشویق کرد! 
+چرا؟ چون وقتی انرژی اعتراضی و انتقادی افراد در مسیر لذت‌جویی‌های سطحی و مصرف‌گرایی جنسی تخلیه شود، آن‌ها دیگر به ساختارهای نابرابر اقتصادی و سیاسی اعتراضی نخواهند کرد. در واقع، آزادی جنسی در جامعه مصرفی، راهی برای کنترل اجتماعی و مطیع کردن آدم‌هاست، نه رهاییِ واقعیِ آن‌ها.
+
+### ۲. سکس به عنوان یک «وظیفه» (اخلاق لذت‌جویی)
+در جوامع سنتی، اخلاق مبتنی بر «کار سخت و ریاضت» بود. اما بودریار می‌گوید جامعه مصرفی اخلاق جدیدی به نام **«اخلاق سرگرمی و لذت» (Fun Morality)** خلق کرده است.
+در این سیستم جدید، داشتنِ رابطۀ جنسی، جذابیتِ جنسی داشتن و لذت بردن، دیگر صرفاً یک انتخاب نیست، بلکه یک **«وظیفه و الزام»** است! اگر کسی از نظر جنسی فعال یا جذاب نباشد، از سوی جامعه طرد می‌شود، احساس گناه می‌کند و برچسب «عقب‌مانده»، «بیمار» یا «افسرده» می‌خورد. جامعه به ما دیکته می‌کند که: «تو باید از نظر جنسی جذاب باشی و بیشترین لذت را ببری، در غیر این صورت زندگی‌ات را باخته‌ای!»
+
+### ۳. اروتیزه شدن (شهوانی شدن) همه‌چیز
+در جامعه مصرفی، سکس از بستر طبیعی خود خارج شده و به تمام اشیاء سرایت کرده است. بودریار به این پدیده «پخشی از اروتیسم» می‌گوید.
+* **مثال در تبلیغات:** برای فروش یک ماشین، یک عطر، یک شامپو یا حتی یک یخچال، از بدن نیمه‌عریان زنان یا مردان و نشانه‌های جنسی استفاده می‌شود. 
+شما در واقع با خرید آن کالا، دارید آن حسِ شهوانی و جنسیِ ضمیمه‌شده به آن را مصرف می‌کنید. سکس تبدیل به یک «روکش» شده است که روی تمام کالاها کشیده می‌شود تا آن‌ها را جذاب‌تر و قابل‌فروش‌تر کند.
+
+### ۴. بدن به عنوان «سرمایه جنسی»
+همان‌طور که در توضیح قبلی اشاره شد، بودریار می‌گوید بدن دیگر متعلق به خود ما نیست، بلکه یک «سرمایه» است. فرد (مخصوصاً در مورد زنان، و امروزه مردان) موظف است این سرمایه را مدیریت کند: با ورزش، جراحی زیبایی، لوازم آرایشی و لباس‌های مد روز. 
+هدف از این مدیریت چیست؟ تولید **«ارزش جنسی» (Sexual Value)**. بدن انسان به یک شیء تبدیل می‌شود که باید مدام به‌روزرسانی شود تا در بازارِ روابط جنسی و اجتماعی، خریدار داشته باشد.
+
+### ۵. مرگِ «میل واقعی» و تولد «سکسِ نمایشی»
+یکی از عمیق‌ترین نقدهای بودریار این است که وقتی همه‌چیز جنسی می‌شود و سکس در همه‌جا (تبلیغات، سینما، مجلات و...) به صورت عریان و بی‌پرده به نمایش درمی‌آید، **«راز» و «میل واقعی» از بین می‌رود.**
+سکس در جامعه مصرفی مکانیکی، نمایشی و وسواس‌گونه است. افراد بیشتر از آنکه به دنبال ارتباط عمیق عاطفی و اروتیک با یکدیگر باشند، به دنبال اجرای یک «نمایش جنسی» هستند که با استانداردهای فیلم‌ها و مجلات (پورنوگرافی نرم) مطابقت داشته باشد.
+
+### خلاصه کلام
+از نظر بودریار، **سکس در جامعه مصرفی آزاد نشده است، بلکه مصادره شده است.** نظام مصرفی، سکس را از یک تجربۀ عمیقِ انسانی تبدیل به مجموعه‌ای از نشانه‌ها، تصاویر، کالاها و وظایف کرده است که هدف نهایی آن، فروشِ بیشترِ محصولات (از لوازم آرایش گرفته تا داروهای تقویت جنسی و لباس زیر) و حفظ چرخۀ اقتصادِ سرمایه‌داری است.
+
+
+**User**
+سکس هدف است یا وسیله؟
+
+
+**Gemini**
+{"type":"think","think":"**Interpreting the Question**\n\nI'm currently dissecting the user's question, which, in essence, probes whether sex is an end in itself or a means to an end, specifically within the context of Baudrillard's ideas. The shift in topic requires careful consideration to develop an appropriate response. The goal now is to establish if the user wants me to relate the question to Baudrillard or not.\n\n\n**Analyzing Baudrillard's Views**\n\nI've homed in on Baudrillard's \"The Consumer Society,\" clarifying the need for a precise response centered on *that* book. Sex isn't an end in itself; it's a tool, but for whom? The capitalist system uses it to sell and control, while individuals wield it for social status and fulfillment of a manufactured need. I plan to start with a clear answer.\n\n\n**Deconstructing the Means**\n\nI'm now outlining *why* sex functions as a means, both from the system's and the individual's perspectives, emphasizing consumption and social control. I'm contrasting this with the illusory perception of it as an end goal – a trick the system perpetrates. My focus is on the profound and somewhat grim conclusion Baudrillard reaches on the topic.\n\n\n**Defining the Function**\n\nI'm now clarifying how sex functions as a \"means\" within the system and for the individual. For the system, it's a selling tool and a means of social control, keeping individuals preoccupied. For individuals, it's a marker of social status and integration, fueled by the \"sign value\" attached to it. The key is recognizing the system manufactures the illusion of sex as an end in itself.\n\n\n"}
+
+
+**Gemini**
+از نگاه ژان بودریار در کتاب «جامعه مصرفی»، سکس به‌هیچ‌وجه یک «هدف» اصیل و غایی برای انسان نیست، بلکه کاملاً یک **«وسیله» (ابزار)** است. 
+
+برای درک بهتر این موضوع، باید ببینیم سکس در جامعه مصرفی **وسیله‌ای برای چه چیزی** و **در دست چه کسی** است. بودریار این مسئله را از دو زاویه بررسی می‌کند:
+
+### ۱. سکس؛ وسیله‌ای در دست نظام سرمایه‌داری (سیستم)
+از نظر سیستم اقتصادی و فرهنگیِ حاکم، سکس یک ابزار بسیار قدرتمند برای رسیدن به اهداف زیر است:
+
+* **وسیله‌ای برای فروش بیشتر (اروتیزه کردن کالاها):** سیستم از سکس به عنوان یک «بسته‌بندی روانی» استفاده می‌کند. وقتی تصویر یک زن یا مردِ جذاب در کنار یک ماشین، شامپو یا گوشی موبایل قرار می‌گیرد، سکس وسیله‌ای می‌شود تا میلِ ناخودآگاه شما تحریک شده و آن کالا را بخرید. در اینجا، سکس هدف نیست، بلکه **موتور محرکِ مصرف** است.
+* **وسیله‌ای برای کنترل اجتماعی و خنثی کردن اعتراضات:** همان‌طور که قبلاً اشاره شد، سیستمی که به افراد اجازه می‌دهد از نظر جنسی آزاد باشند و مدام درگیر سرگرمی‌ها و جذابیت‌های جسمانی شوند، در واقع دارد از سکس به عنوان یک **«داروی بی‌حسی»** استفاده می‌کند. انسانی که تمام دغدغه‌اش رسیدن به استانداردهای زیبایی و جذابیت جنسی است، دیگر وقت و انرژی‌ای برای تفکر انتقادی یا شورش علیه نابرابری‌های اقتصادی نخواهد داشت.
+
+### ۲. سکس؛ وسیله‌ای در دست مصرف‌کننده (فرد)
+شاید فکر کنیم که ما به عنوان انسان، سکس را به عنوان یک «هدف» برای رسیدن به لذت یا عشق دنبال می‌کنیم. اما بودریار می‌گوید در جامعه مصرفی، حتی برای خودِ فرد هم سکس تبدیل به یک وسیله شده است:
+
+* **وسیله‌ای برای کسب هویت و جایگاه اجتماعی (ارزش نشانه‌ای):** در جامعه مصرفی، داشتنِ جذابیت جنسی و روابط متعدد، نشانه‌ای از «موفقیت»، «به‌روز بودن» و «کلاس اجتماعی» است. فرد از سکس و بدنِ جذابِ خود به عنوان یک وسیله استفاده می‌کند تا به دیگران پیام بدهد: «من انسان موفقی هستم، من در بازارِ جامعه خریدار دارم.»
+* **وسیله‌ای برای فرار از اضطرابِ طرد شدن:** چون جامعه مصرفی لذت بردن را به یک **«وظیفه اجباری»** تبدیل کرده است، فرد از سکس به عنوان وسیله‌ای برای اثباتِ نرمال بودنِ خود استفاده می‌کند. او این کار را می‌کند تا برچسبِ «عقب‌مانده» یا «امل» نخورد. در اینجا، سکس دیگر برآمده از یک میلِ درونی اصیل نیست، بلکه ابزاری است برای رفعِ تکلیف اجتماعی.
+
+### توهمِ «هدف بودن»
+جامعه مصرفی با تبلیغات، سینما و رسانه‌ها به ما **القا می‌کند** که سکس، رهاییِ جنسی و رسیدن به اوج لذت جسمانی، «هدفِ نهایی» زندگی است. سیستم به ما می‌گوید: «اگر به این آزادی جنسی برسی، خوشبخت می‌شوی.»
+
+اما بودریار این را یک **دروغ بزرگ** می‌داند. دلیلش این است که اگر سکس واقعاً هدف بود، انسان با رسیدن به آن باید به آرامش می‌رسید. اما در جامعه مصرفی، پرداختن به سکس و زیبایی، نه تنها آرامش نمی‌آورد، بلکه یک **«اضطراب دائمی»** تولید می‌کند:
+* آیا من به اندازه کافی جذابم؟
+* آیا بدنم روی فرم است؟
+* آیا در مقایسه با ستاره‌های سینما یا اینفلوئنسرها، لذت کافی می‌برم؟
+
+### نتیجه‌گیری
+در فلسفه بودریار، **سکس در جامعه مصرفی صددرصد یک «وسیله» است.** 
+سکس، ارزشی ابزاری (Instrumental Value) پیدا کرده است تا چرخ‌دنده‌های اقتصادِ مصرفی را بچرخاند و افراد را در یک رقابت دائمی و پایان‌ناپذیر برای کسب تأیید اجتماعی نگه دارد. در این میان، آن چیزی که قربانی شده، **عشق، میل اصیل انسانی و صمیمیت واقعی** است که جای خود را به نمایشی مکانیکی و تجاری داده‌اند.
+
+
+**User**
+برای خود الیگارش‌ها و کسانی که ما را کنترل می‌کنند چطور؟ آیا سکس هدف است یا وسیله؟ به نظرت هدف نیست؟
+
+
+**Gemini**
+{"type":"think","think":"**Assessing the Oligarchs**\n\nI'm digging into the user's question about the role of sex for the oligarchs and elite. My central question now: is it an end in itself, a desired outcome, or a strategic tool used for other gains? It appears, initially, that it functions as both, a key aspect of their lifestyle. The nuances of power and pleasure are the focus.\n\n\n**Analyzing the Systems**\n\nI am now focusing on the intersection of Baudrillard's ideas on consumption and the specific power dynamics at play. Does the concept of a \"goal\" even apply to the oligarchs and their pursuit of sex? Examining power structures like Foucault's and the Epstein Island comparison, I see that sex serves as both an expression and a mechanism of control, and it's essential to understand the systemic nature of this within a consumer society.\n\n\n**Examining the Power Dynamics**\n\nI'm now integrating the Baudrillardian perspective further, specifically how the \"sign\" functions in elite circles. It seems status and exclusivity are key. I'm exploring the argument that sex is a means of power. The concepts of trophy wives and Epstein-style networks come into play, as do illicit gatherings for networking, bonding, and potential blackmail. I am still considering sex as an end in itself; it appears to provide absolute domination. The power, rather than the act, is the ultimate objective.\n\n\n**Refining the Argument's Structure**\n\nI've refined the structure, now presenting sex as predominantly a tool for the oligarchs, yet its function differs from the masses. The core thesis now is that they seek Power and Domination through it. I'm articulating how, for them, sex is a demonstration of being above the law, a sign of absolute power, when material goods lose their value. The conclusion will position power as the ultimate goal, with sex serving as its instrument.\n\n\n**Exploring the Dynamics**\n\nI'm now integrating the ideas of exclusivity, and focusing more precisely on blackmail as a key element. It seems sex serves to cement relationships through secrets and shared vulnerability. I am now strictly returning to Baudrillard and debating his idea, which is: does the capitalist class control the code, or does the code control them? It seems even they are trapped by the system of signs, trying to consume exclusivity. Finally, I will focus on the elimination of real desire due to the hyper-saturation of stimuli.\n\n\n"}
+
+
+**Gemini**
+سؤال بسیار هوشمندانه و عمیقی پرسیدید. وقتی به الیگارش‌ها، ثروتمندان کلان و کسانی که در رأس هرم قدرت و ثروت هستند نگاه می‌کنیم، به نظر می‌رسد آن‌ها دیگر نیازی ندارند فریبِ تبلیغات را بخورند؛ پس شاید برای آن‌ها، سکس واقعاً یک «هدف» و نهایتِ لذت باشد.
+
+اما اگر این موضوع را از دریچه نگاه **بودریار** و سایر متفکران انتقادی (مثل میشل فوکو) بررسی کنیم، به یک نتیجه شگفت‌انگیز می‌رسیم: **حتی برای الیگارش‌ها هم سکس یک «هدف نهایی» نیست، بلکه پیچیده‌ترین و تاریک‌ترین نوعِ «وسیله» است.**
+
+برای درک این موضوع، باید ببینیم سکس در دنیای نخبگانِ قدرت چه کارکردی دارد. در اینجا، سکس برای الیگارش‌ها ابزاری برای رسیدن به ۴ چیز دیگر است:
+
+### ۱. سکس به عنوان ابزارِ «تجلی قدرت مطلق و سلطه»
+برای کسی که می‌تواند هر چیزی را در جهان بخرد (کاخ، جت شخصی، شرکت‌های چندملیتی)، کالاهای مادی دیگر جذابیت و «ارزش نشانه‌ای» خود را از دست می‌دهند. پس آن‌ها چگونه باید برتری و قدرت مطلق خود را به خودشان ثابت کنند؟ **از طریق تسلط بر بدن انسان‌های دیگر.**
+برای الیگارش‌ها، سکس (به‌ویژه سکس با افراد بسیار زیبا، معروف، یا حتی در اشکال غیرقانونی و تابو) ابزاری است برای ارضای حس **«خدایی بودن»** و **«سلطه»**. 
+* هدف در اینجا لذت بیولوژیک نیست؛ هدف این است که به خودشان بگویند: «من آن‌قدر قدرتمندم که حتی بدن، اراده و روح انسان‌های دیگر هم در مالکیت من است و هیچ قانونی نمی‌تواند مرا محدود کند.» 
+بنابراین، قدرت هدف است و سکس، وسیلهِ اثباتِ آن.
+
+### ۲. سکس به عنوان ابزار «شبکه‌سازی، اعتماد و حق‌السکوت»
+در حلقه‌های بسته و پنهانِ الیگارشی، سکس یک **«پول رایج» (Currency)** است. 
+در دنیای واقعی سیاست و ثروت کلان، الیگارش‌ها برای اینکه به هم اعتماد کنند، باید در جرم‌ها یا تابوهای یکدیگر شریک شوند. مهمانی‌های خاص جنسی و کلوپ‌های خصوصیِ نخبگان (که نمونه‌های افشاشده آن مثل پرونده جفری اپستین در سال‌های اخیر سروصدا کرد)، دقیقاً همین کارکرد را دارند.
+در این سطح، سکس وسیله‌ای است برای:
+* ایجاد پیوندهای مافیایی بین قدرتمندان (ما همه در یک قایق هستیم).
+* جمع‌آوری آتو و حق‌السکوت (Kompromat) از یکدیگر برای کنترل رقبا.
+
+### ۳. تله بودریار: الیگارش‌ها هم برده‌ی «نظام نشانه‌ها» هستند
+بودریار در کتابش نکته ظریفی دارد: او می‌گوید این‌طور نیست که یک گروه از سرمایه‌داران در یک اتاق تاریک نشسته باشند و آگاهانه سیستم را کنترل کنند. **خودِ این الیگارش‌ها هم برده‌ی «نظام اشیاء و نشانه‌ها» هستند.**
+الیگارش‌ها در یک رقابت دائمی با سایر الیگارش‌ها قرار دارند. داشتنِ یک پارتنر بسیار جوان، یک سوپرمدل، یا دسترسی به انحصاری‌ترین خدمات جنسی، برای آن‌ها یک **«کالای لوکس»** است. آن‌ها سکس را مصرف می‌کنند تا در برابر همتایان خود، «کلاس و جایگاه» خود را حفظ کنند. در واقع، آن‌ها هم در حال اجرای یک نمایش برای یکدیگر هستند.
+
+### ۴. مرگِ میل در اثرِ فراوانی (هیپراشری)
+یکی از مفاهیم بودریار این است که وقتی همه‌چیز بیش از حد در دسترس باشد، «معنا» از بین می‌رود. الیگارش‌ها به دلیل دسترسی نامحدود به هر نوع لذتی، دچار یک **بُکرتِگی و بی‌حسیِ روانی** می‌شوند. 
+آن‌ها چون همه‌چیز را تجربه کرده‌اند، دیگر از سکسِ طبیعی لذت نمی‌برند (میل در آن‌ها مرده است). به همین دلیل، مجبورند به عنوان یک وسیله، به سراغِ انحرافات، سکس‌های خشن، عجیب یا تابوهای اجتماعی بروند تا شاید بتوانند فقط برای لحظه‌ای یک «حس» را در خودشان بیدار کنند. در اینجا سکس یک ابزار پزشکی/روانی برای فرار از پوچی و ملالِ ناشی از ثروت بی‌نهایت است.
+
+### نتیجه‌گیری: آیا سکس برای آن‌ها هدف است؟
+خیر. اگر سکس واقعاً هدفِ نهایی و منبعِ آرامشِ آن‌ها بود، باید با داشتن زیباترین پارتنرها به رضایت می‌رسیدند و متوقف می‌شدند. اما می‌بینیم که چرخه رفتارهای جنسی آن‌ها روزبه‌روز افراطی‌تر و سیری‌ناپذیرتر می‌شود. 
+
+خلاصه تفاوت این است:
+* برای **مردم عادی**، سیستم از سکس به عنوان وسیله‌ای برای **«فروش کالا و پرت کردن حواس»** استفاده می‌کند.
+* برای **الیگارش‌ها**، سکس وسیله‌ای است برای **«تثبیت قدرت، اعمال سلطه روانی، شبکه‌سازی کثیف و فرار از ملالِ ثروت مطلق».**
+
+در هر دو حالت، عشق، صمیمیتِ انسانی و میلِ اصیل غایب است. سکس، صرفاً یک ابزار است.
