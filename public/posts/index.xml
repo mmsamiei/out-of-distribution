@@ -6,8 +6,17 @@
     <description>Recent content in Posts on Out of Distribution</description>
     <generator>Hugo -- 0.151.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 08 May 2026 11:50:06 +0330</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2026 11:50:06 +0330</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>کلاس sequence در پایتون</title>
+      <link>http://localhost:1313/posts/2026/may/12/</link>
+      <pubDate>Tue, 12 May 2026 11:50:06 +0330</pubDate>
+      <guid>http://localhost:1313/posts/2026/may/12/</guid>
+      <description>&lt;h1 id=&#34;کلاس-sequence-در-پایتون-از-اجداد-تا-فرزندان&#34;&gt;کلاس Sequence در پایتون: از اجداد تا فرزندان&lt;/h1&gt;
+&lt;h2 id=&#34;مقدمهای-که-باید-بخوانید&#34;&gt;مقدمه‌ای که باید بخوانید&lt;/h2&gt;
+&lt;p&gt;وقتی برای اولین بار پایتون یاد می‌گیرید، سریع با چیزهایی مثل لیست، تاپل و رشته آشنا می‌شوید. این‌ها ابزارهای روزمره‌ی هر برنامه‌نویس پایتونی هستند. اما آیا تا به حال از خودتان پرسیده‌اید که چرا هر سه‌ی این‌ها رفتارهای مشترکی دارند؟ چرا می‌توانید روی هر سه‌ی آن‌ها حلقه بزنید؟ چرا هر سه از اندیس‌گذاری پشتیبانی می‌کنند؟ چرا هر سه تابع &lt;code&gt;len()&lt;/code&gt; را قبول می‌کنند؟&lt;/p&gt;</description>
+    </item>
     <item>
       <title>سکس:‌ هدف یا وسیله؟ از منظر بودریار</title>
       <link>http://localhost:1313/posts/2026/may/8/sex/</link>
