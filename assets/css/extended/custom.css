@@ -68,3 +68,67 @@ blockquote {
     margin-bottom: 1.2em;
     font-style: italic;
 }
+
+/* RTL posts (title uses Arabic script): PaperMod -webkit line-clamp can ignore `dir`; body was still LTR when only the header had `dir`. */
+article.post-entry[dir="rtl"] .entry-header,
+article.post-entry[dir="rtl"] .entry-content,
+article.first-entry[dir="rtl"] .entry-header,
+article.first-entry[dir="rtl"] .entry-content,
+.archive-entry[dir="rtl"] .archive-entry-title,
+.archive-entry[dir="rtl"] .archive-meta {
+    direction: rtl;
+    text-align: start;
+    unicode-bidi: isolate;
+}
+
+article.post-entry[dir="rtl"] .entry-footer,
+article.first-entry[dir="rtl"] .entry-footer {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: start;
+}
+
+article.post-single[dir="rtl"] {
+    direction: rtl;
+    unicode-bidi: isolate;
+}
+
+article.post-single[dir="rtl"] .breadcrumbs,
+article.post-single[dir="rtl"] .post-meta {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: start;
+}
+
+article.post-single[dir="rtl"] .post-content ul,
+article.post-single[dir="rtl"] .post-content ol {
+    padding-left: 0;
+    padding-inline-start: 2em;
+}
+
+article.post-single[dir="rtl"] .post-content blockquote {
+    border-left: none;
+    border-inline-start: 3px solid var(--tertiary);
+    padding-left: 0;
+    padding-inline-start: 1em;
+    margin-inline-start: 0;
+}
+
+/* Global `ul` rule uses physical padding-left; reset tag row in RTL posts */
+article.post-single[dir="rtl"] ul.post-tags {
+    padding-left: 0;
+    padding-inline-start: 0;
+}
+
+article.post-single[dir="rtl"] .post-content .highlight,
+article.post-single[dir="rtl"] .post-content .highlight pre,
+article.post-single[dir="rtl"] .post-content pre {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: start;
+}
+
+#searchResults li.post-entry[dir="rtl"] .entry-header {
+    direction: rtl;
+    text-align: start;
+}

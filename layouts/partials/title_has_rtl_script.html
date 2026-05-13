@@ -1,0 +1,9 @@
+{{- /*
+  True when the title contains Arabic-script characters (Persian, Arabic, etc.).
+  Expects a plain string (e.g. .Title).
+*/ -}}
+{{- $s := . | plainify | htmlUnescape -}}
+{{- /* Arabic / Persian / presentation forms (Word etc.) */ -}}
+{{- $re := `[\x{0600}-\x{06FF}\x{0750}-\x{077F}\x{08A0}-\x{08FF}\x{FB50}-\x{FDFF}\x{FE70}-\x{FEFE}]` -}}
+{{- $match := findRE $re $s 1 -}}
+{{- return (gt (len $match) 0) -}}
