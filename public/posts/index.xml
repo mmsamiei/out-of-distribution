@@ -6,8 +6,40 @@
     <description>Recent content in Posts on Out of Distribution</description>
     <generator>Hugo -- 0.151.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 May 2026 11:50:06 +0330</lastBuildDate>
+    <lastBuildDate>Wed, 13 May 2026 11:50:06 +0330</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>متن تستی</title>
+      <link>http://localhost:1313/posts/2026/may/13/1/</link>
+      <pubDate>Wed, 13 May 2026 11:50:06 +0330</pubDate>
+      <guid>http://localhost:1313/posts/2026/may/13/1/</guid>
+      <description>&lt;p&gt;این یک پست تستی است&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>متن تستی دو</title>
+      <link>http://localhost:1313/posts/2026/may/13/2/</link>
+      <pubDate>Wed, 13 May 2026 11:50:06 +0330</pubDate>
+      <guid>http://localhost:1313/posts/2026/may/13/2/</guid>
+      <description>&lt;p&gt;این یک پست تستی دو است&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>مفهوم نظم جهانی</title>
+      <link>http://localhost:1313/posts/2026/may/15/order/</link>
+      <pubDate>Wed, 13 May 2026 11:50:06 +0330</pubDate>
+      <guid>http://localhost:1313/posts/2026/may/15/order/</guid>
+      <description>&lt;h1 id=&#34;conversation&#34;&gt;Conversation&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;conversationId: 7e499dc5-ba0a-4af4-9099-c4cd1c6e2706&lt;/li&gt;
+&lt;li&gt;endpoint: google&lt;/li&gt;
+&lt;li&gt;title: Global Politics Explained for Teens&lt;/li&gt;
+&lt;li&gt;exportAt: 19:22:48 GMT+0330 (Iran Standard Time)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;مهدی:&lt;/strong&gt;
+این متن را توضیح بده به یک فرد هجده ساله:&lt;/p&gt;
+&lt;p&gt;💡مهم ترین پیام سفر ترامپ به پکن چه بود؟
+✍ مهدی افراز&lt;/p&gt;
+&lt;p&gt;🔹مونت باتن، افسر نیروی دریایی بریتانیا و آخرین نائب السلطنه در هند به ماهتما‌ گاندی می گوید؛ اگر ما همین الان اینجا را ترک کنیم، آشوب همه جا را فراخواهد گرفت و گاندی پاسخ می دهد؛ بله! اما این آشوب مال خودمان خواهد بود.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>کلاس sequence در پایتون</title>
       <link>http://localhost:1313/posts/2026/may/12/</link>
@@ -22,10 +54,10 @@
       <link>http://localhost:1313/posts/2026/may/8/sex/</link>
       <pubDate>Fri, 08 May 2026 11:50:06 +0330</pubDate>
       <guid>http://localhost:1313/posts/2026/may/8/sex/</guid>
-      <description>&lt;h2 id=&#34;history&#34;&gt;History&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;User&lt;/strong&gt;
+      <description>&lt;p&gt;&lt;strong&gt;مهدی:&lt;/strong&gt;
 کتاب جامعه مصرفی بوردیار رو برام توضیح بده&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Gemini&lt;/strong&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;جمینای:&lt;/strong&gt;
 کتاب &lt;strong&gt;«جامعه مصرفی» (The Consumer Society)&lt;/strong&gt; نوشته &lt;strong&gt;ژان بودریار&lt;/strong&gt; (Jean Baudrillard)، فیلسوف و جامعه‌شناس برجسته فرانسوی، یکی از مهم‌ترین و تأثیرگذارترین کتاب‌ها در زمینه نقد سرمایه‌داری، جامعه‌شناسی فرهنگی و مطالعات رسانه است که در سال ۱۹۷۰ منتشر شد.&lt;/p&gt;
 &lt;p&gt;بودریار در این کتاب، نگاه سنتی و مارکسیستی به اقتصاد (که بر پایه «تولید» استوار بود) را کنار می‌گذارد و استدلال می‌کند که در دنیای مدرن، این &lt;strong&gt;«مصرف»&lt;/strong&gt; است که به نیروی محرکه اصلی جامعه و شکل‌دهنده هویت انسان‌ها تبدیل شده است.&lt;/p&gt;</description>
     </item>
@@ -34,10 +66,9 @@
       <link>http://localhost:1313/posts/2026/may/8/kant/</link>
       <pubDate>Fri, 08 May 2026 11:44:06 +0330</pubDate>
       <guid>http://localhost:1313/posts/2026/may/8/kant/</guid>
-      <description>&lt;h2 id=&#34;history&#34;&gt;History&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;User&lt;/strong&gt;
+      <description>&lt;p&gt;&lt;strong&gt;مهدی:&lt;/strong&gt;
 من میخوام کانت یاد بگیرم. از کجا باید شروع کنم؟&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Gemini&lt;/strong&gt;
+&lt;p&gt;&lt;strong&gt;جمینای:&lt;/strong&gt;
 یادگیری فلسفه کانت یکی از بزرگترین و در عین حال دشوارترین لذت‌های فکری است. کانت (Immanuel Kant) فیلسوفی است که مسیر تاریخ فلسفه را تغییر داد و بدون فهم او، درک فلسفه مدرن (از هگل و نیچه گرفته تا پدیدارشناسی و فلسفه تحلیلی) تقریبا غیرممکن است.&lt;/p&gt;
 &lt;p&gt;اما &lt;strong&gt;هشدار اول:&lt;/strong&gt; هرگز مستقیم به سراغ کتاب اصلی او یعنی «نقد عقل محض» نروید! نثر کانت بسیار پیچیده است و اصطلاحات خاص خودش را دارد.&lt;/p&gt;</description>
     </item>
