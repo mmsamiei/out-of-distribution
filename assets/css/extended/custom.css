@@ -69,6 +69,23 @@ blockquote {
     font-style: italic;
 }
 
+/* Persian typography — Vazirmatn on RTL-marked content (see extend_head.html). */
+[dir="rtl"] {
+    font-family: var(--font-persian);
+    letter-spacing: 0;
+}
+
+[dir="rtl"] .post-content {
+    line-height: 1.75;
+}
+
+article.post-single[dir="rtl"] .post-content .highlight,
+article.post-single[dir="rtl"] .post-content .highlight pre,
+article.post-single[dir="rtl"] .post-content pre,
+article.post-single[dir="rtl"] .post-content code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
 /* RTL posts (title uses Arabic script): PaperMod -webkit line-clamp can ignore `dir`; body was still LTR when only the header had `dir`. */
 article.post-entry[dir="rtl"] .entry-header,
 article.post-entry[dir="rtl"] .entry-content,
