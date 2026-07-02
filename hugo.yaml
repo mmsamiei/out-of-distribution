@@ -9,6 +9,20 @@ caches:
 params:
   mainSections:
     - posts
+  comments: true
+  commentsTitle: "نظرات"
+  giscus:
+    repo: mmsamiei/out-of-distribution
+    repoId: "R_kgDOQGhj_Q"
+    category: General
+    categoryId: ""  # enable GitHub Discussions, then paste from https://giscus.app
+    mapping: pathname
+    strict: "0"
+    reactionsEnabled: "1"
+    emitMetadata: "0"
+    inputPosition: top
+    theme: preferred_color_scheme
+    lang: fa
 
 outputs:
   home:

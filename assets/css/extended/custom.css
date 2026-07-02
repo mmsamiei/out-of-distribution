@@ -226,3 +226,26 @@ article.post-single:not([dir="rtl"]) .post-content .dialogue-turn.dialogue-assis
     direction: rtl;
     text-align: start;
 }
+
+/* Giscus comments (see layouts/partials/comments.html). */
+.post-footer + .comments,
+article.post-single > .comments {
+    margin-top: 2em;
+    padding-top: 1.5em;
+    border-top: 1px solid var(--border);
+}
+
+.comments-title {
+    font-size: 1.1em;
+    margin: 0 0 1em;
+}
+
+.comments-setup {
+    color: var(--secondary);
+    font-size: 0.95em;
+}
+
+.giscus,
+.giscus-frame {
+    width: 100%;
+}
