@@ -2,84 +2,84 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:52778/</loc>
+    <loc>http://localhost:53289/</loc>
     <lastmod>2026-06-28T00:00:00+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/</loc>
+    <loc>http://localhost:53289/posts/</loc>
     <lastmod>2026-06-28T00:00:00+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/tags/</loc>
+    <loc>http://localhost:53289/tags/</loc>
     <lastmod>2026-06-28T00:00:00+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/tags/%D8%A8%D8%A7%D8%B3%D8%AA%D8%A7%D9%86/</loc>
+    <loc>http://localhost:53289/tags/%D8%A8%D8%A7%D8%B3%D8%AA%D8%A7%D9%86/</loc>
     <lastmod>2026-06-28T00:00:00+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/tags/%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE/</loc>
+    <loc>http://localhost:53289/tags/%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE/</loc>
     <lastmod>2026-06-28T00:00:00+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/history/3000-2900-bc/</loc>
+    <loc>http://localhost:53289/posts/history/3000-2900-bc/</loc>
     <lastmod>2026-06-28T00:00:00+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2026/may/21/</loc>
+    <loc>http://localhost:53289/posts/2026/may/21/</loc>
     <lastmod>2026-05-21T10:50:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2026/may/15/order/</loc>
+    <loc>http://localhost:53289/posts/2026/may/15/order/</loc>
     <lastmod>2026-05-15T11:50:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2026/may/13/2/</loc>
+    <loc>http://localhost:53289/posts/2026/may/13/2/</loc>
     <lastmod>2026-05-13T11:50:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2026/may/13/1/</loc>
+    <loc>http://localhost:53289/posts/2026/may/13/1/</loc>
     <lastmod>2026-05-13T11:50:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2026/may/12/</loc>
+    <loc>http://localhost:53289/posts/2026/may/12/</loc>
     <lastmod>2026-05-12T11:50:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2026/may/8/sex/</loc>
+    <loc>http://localhost:53289/posts/2026/may/8/sex/</loc>
     <lastmod>2026-05-08T11:50:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2026/may/8/kant/</loc>
+    <loc>http://localhost:53289/posts/2026/may/8/kant/</loc>
     <lastmod>2026-05-08T11:44:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2026/apr/27/modern-physics-philosophy/</loc>
+    <loc>http://localhost:53289/posts/2026/apr/27/modern-physics-philosophy/</loc>
     <lastmod>2026-04-27T11:44:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2026/apr/27/operating-systems-deep-dive/</loc>
+    <loc>http://localhost:53289/posts/2026/apr/27/operating-systems-deep-dive/</loc>
     <lastmod>2026-04-25T11:44:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2026/apr/26/</loc>
+    <loc>http://localhost:53289/posts/2026/apr/26/</loc>
     <lastmod>2026-04-25T11:44:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2026/apr/25/</loc>
+    <loc>http://localhost:53289/posts/2026/apr/25/</loc>
     <lastmod>2026-04-25T11:44:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2025/dec/13/</loc>
+    <loc>http://localhost:53289/posts/2025/dec/13/</loc>
     <lastmod>2025-12-13T01:04:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2025/oct/24/</loc>
+    <loc>http://localhost:53289/posts/2025/oct/24/</loc>
     <lastmod>2025-10-24T01:04:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2023/jan/09/</loc>
+    <loc>http://localhost:53289/posts/2023/jan/09/</loc>
     <lastmod>2023-01-09T01:04:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2023/jan/06/</loc>
+    <loc>http://localhost:53289/posts/2023/jan/06/</loc>
     <lastmod>2023-01-06T01:04:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2023/jan/05/</loc>
+    <loc>http://localhost:53289/posts/2023/jan/05/</loc>
     <lastmod>2023-01-05T01:04:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/tags/meta/</loc>
+    <loc>http://localhost:53289/tags/meta/</loc>
     <lastmod>2022-11-19T01:04:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/posts/2022/nov/19/my-first-post/</loc>
+    <loc>http://localhost:53289/posts/2022/nov/19/my-first-post/</loc>
     <lastmod>2022-11-19T01:04:06+03:30</lastmod>
   </url><url>
-    <loc>http://localhost:52778/archives/</loc>
+    <loc>http://localhost:53289/archives/</loc>
   </url><url>
-    <loc>http://localhost:52778/categories/</loc>
+    <loc>http://localhost:53289/categories/</loc>
   </url><url>
-    <loc>http://localhost:52778/faq/</loc>
+    <loc>http://localhost:53289/faq/</loc>
   </url><url>
-    <loc>http://localhost:52778/search/</loc>
+    <loc>http://localhost:53289/search/</loc>
   </url>
 </urlset>

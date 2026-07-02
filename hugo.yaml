@@ -15,14 +15,14 @@ params:
     repo: mmsamiei/out-of-distribution
     repoId: "R_kgDOQGhj_Q"
     category: General
-    categoryId: ""  # enable GitHub Discussions, then paste from https://giscus.app
+    categoryId: "DIC_kwDOQGhj_c4DAUlJ"
     mapping: pathname
     strict: "0"
     reactionsEnabled: "1"
     emitMetadata: "0"
-    inputPosition: top
+    inputPosition: bottom
     theme: preferred_color_scheme
-    lang: fa
+    lang: en
 
 outputs:
   home:
