@@ -1,13 +1,15 @@
 {{- /*
-  Wrap each **مهدی:** / **جمینای:** turn in a dialogue-turn container so headings,
-  lists, and follow-up paragraphs stay inside the same bubble.
+  Legacy: wrap **مهدی:** / **جمینای:** paragraphs in dialogue-turn containers.
+  New posts should use the {{% dialogue %}} shortcode instead (see layouts/shortcodes/dialogue.html).
 
   Note: literal "</div>" must not appear in this template — Hugo's parser treats it
   as HTML and strips the rest of the partial. Build tags via print instead.
 */ -}}
 {{- $content := . -}}
 {{- $closeDiv := print "<" "/div>" -}}
-{{- if or (in $content "<strong>مهدی:</strong>") (in $content "<strong>جمینای:</strong>") -}}
+{{- $legacyMehdi := "<p><strong>مهدی:</strong>" -}}
+{{- $legacyGemini := "<p><strong>جمینای:</strong>" -}}
+{{- if or (in $content $legacyMehdi) (in $content $legacyGemini) -}}
   {{- $userOpen := printf "%s<div class=\"dialogue-turn dialogue-user\"><p class=\"dialogue-label\"><strong>مهدی:</strong></p><p>" $closeDiv -}}
   {{- $assistantOpen := printf "%s<div class=\"dialogue-turn dialogue-assistant\"><p class=\"dialogue-label\"><strong>جمینای:</strong></p><p>" $closeDiv -}}
   {{- $userOpenSolo := printf "%s<div class=\"dialogue-turn dialogue-user\"><p class=\"dialogue-label\"><strong>مهدی:</strong></p>" $closeDiv -}}

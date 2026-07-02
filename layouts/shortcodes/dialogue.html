@@ -1,0 +1,38 @@
+{{- /*
+  Chat turn for dialogue posts. Prefer this over **مهدی:** / **جمینای:** in new posts.
+
+  Usage:
+    {{< dialogue speaker="mehdi" >}}
+    Your message here. Headings, lists, and multiple paragraphs are fine.
+    {{< /dialogue >}}
+
+    {{< dialogue speaker="gemini" >}}
+    Long reply...
+    ### Section heading
+    More text.
+    {{< /dialogue >}}
+
+  Speakers: mehdi | gemini  (aliases: user | assistant)
+  Optional: label="Mehdi:" to override the default speaker label.
+*/ -}}
+{{- $raw := .Get "speaker" | default (.Get 0) | default "mehdi" -}}
+{{- $speaker := $raw | lower -}}
+{{- $role := "" -}}
+{{- $defaultLabel := "" -}}
+{{- if in (slice "mehdi" "user") $speaker -}}
+  {{- $role = "dialogue-user" -}}
+  {{- $defaultLabel = "مهدی:" -}}
+{{- else if in (slice "gemini" "assistant") $speaker -}}
+  {{- $role = "dialogue-assistant" -}}
+  {{- $defaultLabel = "جمینای:" -}}
+{{- else -}}
+  {{- warnf "dialogue shortcode: unknown speaker %q at %s — using mehdi" $raw .Position -}}
+  {{- $role = "dialogue-user" -}}
+  {{- $defaultLabel = "مهدی:" -}}
+{{- end -}}
+{{- $label := .Get "label" | default $defaultLabel -}}
+{{- $inner := strings.TrimSpace .Inner -}}
+<div class="dialogue-turn {{ $role }}">
+  <p class="dialogue-label"><strong>{{ $label }}</strong></p>
+  {{ $inner | markdownify }}
+</div>

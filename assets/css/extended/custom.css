@@ -145,7 +145,7 @@ article.post-single[dir="rtl"] .post-content pre {
     text-align: start;
 }
 
-/* Chat-style turns for **مهدی:** / **جمینای:** (see dialogue_enhance.html). */
+/* Chat-style turns ({{< dialogue >}} shortcode; legacy **مهدی:** / **جمینای:** via dialogue_enhance.html). */
 .post-content .dialogue-turn {
     max-width: min(100%, 38em);
     padding: 0.75em 1em 0.9em;
