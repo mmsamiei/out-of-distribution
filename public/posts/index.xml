@@ -21,28 +21,29 @@
       <link>https://example.org/posts/2026/may/21/</link>
       <pubDate>Thu, 21 May 2026 10:50:06 +0330</pubDate>
       <guid>https://example.org/posts/2026/may/21/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;مهدی:&lt;/strong&gt;
-به نظرت چرا ارن کروگر به گریشا یگر قبل از تبدیل کردنش به اتک تایتان، گفت که کسی رو دوست داشته باش؟&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;جمینای:&lt;/strong&gt;
-دیالوگ ارن کروگر (جغد) به گریشا یگر، پیش از انتقال قدرت «اتک تایتان»، یکی از عمیق‌ترین، فلسفی‌ترین و کلیدی‌ترین لحظات در کل داستان «حمله به تایتان» (Attack on Titan) است. وقتی کروگر به گریشا می‌گوید: &lt;strong&gt;«همسر بگیر، بچه‌دار شو، توی دیوارها کسی رو دوست داشته باش&amp;hellip; وگرنه همون تاریخ و همون اشتباهات دوباره تکرار می‌شن»&lt;/strong&gt;، چند دلیل بسیار مهم و چندلایه داستانی و تماتیک (مفهومی) پشت این حرف وجود دارد:&lt;/p&gt;</description>
+      <description>&lt;div class=&#34;dialogue-turn dialogue-user&#34;&gt;
+  &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;مهدی:&lt;/strong&gt;&lt;/p&gt;
+  به نظرت چرا ارن کروگر به گریشا یگر قبل از تبدیل کردنش به اتک تایتان، گفت که کسی رو دوست داشته باش؟
+&lt;/div&gt;
+
+&lt;div class=&#34;dialogue-turn dialogue-assistant&#34;&gt;
+  &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;جمینای:&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;دیالوگ ارن کروگر (جغد) به گریشا یگر، پیش از انتقال قدرت «اتک تایتان»، یکی از عمیق‌ترین، فلسفی‌ترین و کلیدی‌ترین لحظات در کل داستان «حمله به تایتان» (Attack on Titan) است. وقتی کروگر به گریشا می‌گوید: &lt;strong&gt;«همسر بگیر، بچه‌دار شو، توی دیوارها کسی رو دوست داشته باش&amp;hellip; وگرنه همون تاریخ و همون اشتباهات دوباره تکرار می‌شن»&lt;/strong&gt;، چند دلیل بسیار مهم و چندلایه داستانی و تماتیک (مفهومی) پشت این حرف وجود دارد:&lt;/p&gt;</description>
     </item>
     <item>
       <title>مفهوم نظم جهانی</title>
       <link>https://example.org/posts/2026/may/15/order/</link>
       <pubDate>Fri, 15 May 2026 11:50:06 +0330</pubDate>
       <guid>https://example.org/posts/2026/may/15/order/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;مهدی:&lt;/strong&gt;
-راجع به این مفهوم نظم دنیا بیشتر توضیح بده. یعنی چی نظم پیشین؟ نظم موجود؟ نظم آینده؟ اصلا نظم یعنی چی&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;جمینای:&lt;/strong&gt;
-سوال بسیار هوشمندانه‌ای پرسیدی. سیاستمداران و تحلیل‌گران مدام از کلماتی مثل «نظم نوین جهانی» یا «نظم موجود» استفاده می‌کنند، اما کمتر کسی توضیح می‌دهد که اصلاً این یعنی چه!&lt;/p&gt;
+      <description>&lt;div class=&#34;dialogue-turn dialogue-user&#34;&gt;
+  &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;مهدی:&lt;/strong&gt;&lt;/p&gt;
+  راجع به این مفهوم نظم دنیا بیشتر توضیح بده. یعنی چی نظم پیشین؟ نظم موجود؟ نظم آینده؟ اصلا نظم یعنی چی
+&lt;/div&gt;
+
+&lt;div class=&#34;dialogue-turn dialogue-assistant&#34;&gt;
+  &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;جمینای:&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;سوال بسیار هوشمندانه‌ای پرسیدی. سیاستمداران و تحلیل‌گران مدام از کلماتی مثل «نظم نوین جهانی» یا «نظم موجود» استفاده می‌کنند، اما کمتر کسی توضیح می‌دهد که اصلاً این یعنی چه!&lt;/p&gt;
 &lt;p&gt;برای اینکه این مفهوم را به ساده‌ترین و جذاب‌ترین شکل متوجه شوی، دنیا را مثل یک &lt;strong&gt;حیاط مدرسه بزرگ&lt;/strong&gt; یا یک &lt;strong&gt;شهر پر از گروه‌های مافیایی&lt;/strong&gt; تصور کن.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>متن تستی</title>
-      <link>https://example.org/posts/2026/may/13/1/</link>
-      <pubDate>Wed, 13 May 2026 11:50:06 +0330</pubDate>
-      <guid>https://example.org/posts/2026/may/13/1/</guid>
-      <description>&lt;p&gt;این یک پست تستی است&lt;/p&gt;</description>
     </item>
     <item>
       <title>متن تستی دو</title>
@@ -50,6 +51,21 @@
       <pubDate>Wed, 13 May 2026 11:50:06 +0330</pubDate>
       <guid>https://example.org/posts/2026/may/13/2/</guid>
       <description>&lt;p&gt;این یک پست تستی دو است&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>نمونهٔ قالب دیالوگ (تست)</title>
+      <link>https://example.org/posts/2026/may/13/1/</link>
+      <pubDate>Wed, 13 May 2026 11:50:06 +0330</pubDate>
+      <guid>https://example.org/posts/2026/may/13/1/</guid>
+      <description>&lt;p&gt;این پست فقط برای نشان دادن قالب جدید نوشته شده. هر نوبت گفت‌وگو داخل یک بلوک &lt;code&gt;dialogue&lt;/code&gt; جدا می‌آید؛ داخل هر بلوک می‌توانی پاراگراف، عنوان، و لیست بگذاری. برای دیدن قالب خام، همین فایل &lt;code&gt;.md&lt;/code&gt; را در مخزن باز کن.&lt;/p&gt;
+&lt;div class=&#34;dialogue-turn dialogue-user&#34;&gt;
+  &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;مهدی:&lt;/strong&gt;&lt;/p&gt;
+  سلام. از این به بعد پست‌های دیالوگی را چطور بنویسم؟
+&lt;/div&gt;
+
+&lt;div class=&#34;dialogue-turn dialogue-assistant&#34;&gt;
+  &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;جمینای:&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;از shortcode استفاده کن. هر بار که نوبت کسی می‌رسد، یک بلوک باز می‌کنی و با &lt;code&gt;speaker&lt;/code&gt; مشخص می‌کنی کی حرف می‌زند:&lt;/p&gt;</description>
     </item>
     <item>
       <title>کلاس sequence در پایتون</title>
@@ -65,11 +81,15 @@
       <link>https://example.org/posts/2026/may/8/sex/</link>
       <pubDate>Fri, 08 May 2026 11:50:06 +0330</pubDate>
       <guid>https://example.org/posts/2026/may/8/sex/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;مهدی:&lt;/strong&gt;
-کتاب جامعه مصرفی بوردیار رو برام توضیح بده&lt;/p&gt;
+      <description>&lt;div class=&#34;dialogue-turn dialogue-user&#34;&gt;
+  &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;مهدی:&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;کتاب جامعه مصرفی بوردیار رو برام توضیح بده&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;جمینای:&lt;/strong&gt;
-کتاب &lt;strong&gt;«جامعه مصرفی» (The Consumer Society)&lt;/strong&gt; نوشته &lt;strong&gt;ژان بودریار&lt;/strong&gt; (Jean Baudrillard)، فیلسوف و جامعه‌شناس برجسته فرانسوی، یکی از مهم‌ترین و تأثیرگذارترین کتاب‌ها در زمینه نقد سرمایه‌داری، جامعه‌شناسی فرهنگی و مطالعات رسانه است که در سال ۱۹۷۰ منتشر شد.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&#34;dialogue-turn dialogue-assistant&#34;&gt;
+  &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;جمینای:&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;کتاب &lt;strong&gt;«جامعه مصرفی» (The Consumer Society)&lt;/strong&gt; نوشته &lt;strong&gt;ژان بودریار&lt;/strong&gt; (Jean Baudrillard)، فیلسوف و جامعه‌شناس برجسته فرانسوی، یکی از مهم‌ترین و تأثیرگذارترین کتاب‌ها در زمینه نقد سرمایه‌داری، جامعه‌شناسی فرهنگی و مطالعات رسانه است که در سال ۱۹۷۰ منتشر شد.&lt;/p&gt;
 &lt;p&gt;بودریار در این کتاب، نگاه سنتی و مارکسیستی به اقتصاد (که بر پایه «تولید» استوار بود) را کنار می‌گذارد و استدلال می‌کند که در دنیای مدرن، این &lt;strong&gt;«مصرف»&lt;/strong&gt; است که به نیروی محرکه اصلی جامعه و شکل‌دهنده هویت انسان‌ها تبدیل شده است.&lt;/p&gt;</description>
     </item>
     <item>
@@ -77,10 +97,14 @@
       <link>https://example.org/posts/2026/may/8/kant/</link>
       <pubDate>Fri, 08 May 2026 11:44:06 +0330</pubDate>
       <guid>https://example.org/posts/2026/may/8/kant/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;مهدی:&lt;/strong&gt;
-من میخوام کانت یاد بگیرم. از کجا باید شروع کنم؟&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;جمینای:&lt;/strong&gt;
-یادگیری فلسفه کانت یکی از بزرگترین و در عین حال دشوارترین لذت‌های فکری است. کانت (Immanuel Kant) فیلسوفی است که مسیر تاریخ فلسفه را تغییر داد و بدون فهم او، درک فلسفه مدرن (از هگل و نیچه گرفته تا پدیدارشناسی و فلسفه تحلیلی) تقریبا غیرممکن است.&lt;/p&gt;
+      <description>&lt;div class=&#34;dialogue-turn dialogue-user&#34;&gt;
+  &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;مهدی:&lt;/strong&gt;&lt;/p&gt;
+  من میخوام کانت یاد بگیرم. از کجا باید شروع کنم؟
+&lt;/div&gt;
+
+&lt;div class=&#34;dialogue-turn dialogue-assistant&#34;&gt;
+  &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;جمینای:&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;یادگیری فلسفه کانت یکی از بزرگترین و در عین حال دشوارترین لذت‌های فکری است. کانت (Immanuel Kant) فیلسوفی است که مسیر تاریخ فلسفه را تغییر داد و بدون فهم او، درک فلسفه مدرن (از هگل و نیچه گرفته تا پدیدارشناسی و فلسفه تحلیلی) تقریبا غیرممکن است.&lt;/p&gt;
 &lt;p&gt;اما &lt;strong&gt;هشدار اول:&lt;/strong&gt; هرگز مستقیم به سراغ کتاب اصلی او یعنی «نقد عقل محض» نروید! نثر کانت بسیار پیچیده است و اصطلاحات خاص خودش را دارد.&lt;/p&gt;</description>
     </item>
     <item>
