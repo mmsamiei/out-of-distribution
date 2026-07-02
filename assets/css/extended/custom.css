@@ -145,6 +145,83 @@ article.post-single[dir="rtl"] .post-content pre {
     text-align: start;
 }
 
+/* Chat-style turns for **مهدی:** / **جمینای:** (see dialogue_enhance.html). */
+.post-content .dialogue-turn {
+    max-width: min(100%, 38em);
+    padding: 0.75em 1em 0.9em;
+    margin-bottom: 0.85em;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.post-content .dialogue-turn .dialogue-label {
+    margin: 0 0 0.45em;
+    font-size: 0.78em;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--secondary);
+}
+
+.post-content .dialogue-turn > p:first-of-type {
+    margin-top: 0;
+}
+
+.post-content .dialogue-turn > :last-child {
+    margin-bottom: 0;
+}
+
+.post-content .dialogue-turn.dialogue-user {
+    background: var(--dialogue-user-bg);
+    border-inline-start: 3px solid var(--dialogue-user-accent);
+}
+
+.post-content .dialogue-turn.dialogue-user .dialogue-label {
+    color: var(--dialogue-user-accent);
+}
+
+.post-content .dialogue-turn.dialogue-assistant {
+    background: var(--dialogue-assistant-bg);
+    border-inline-start: 3px solid var(--dialogue-assistant-accent);
+}
+
+.post-content .dialogue-turn.dialogue-assistant .dialogue-label {
+    color: var(--dialogue-assistant-accent);
+}
+
+.post-content .dialogue-turn h3,
+.post-content .dialogue-turn h4 {
+    margin-top: 1em;
+    font-size: 1.05em;
+}
+
+.post-content .dialogue-turn hr {
+    margin: 1em 0;
+    border: none;
+    border-top: 1px solid var(--border);
+}
+
+/* RTL chat alignment: user on the right, assistant on the left. */
+article.post-single[dir="rtl"] .post-content .dialogue-turn.dialogue-user {
+    margin-inline-start: auto;
+    margin-inline-end: 0;
+}
+
+article.post-single[dir="rtl"] .post-content .dialogue-turn.dialogue-assistant {
+    margin-inline-start: 0;
+    margin-inline-end: auto;
+}
+
+/* LTR fallback if dialogue appears in English posts later. */
+article.post-single:not([dir="rtl"]) .post-content .dialogue-turn.dialogue-user {
+    margin-inline-start: auto;
+    margin-inline-end: 0;
+}
+
+article.post-single:not([dir="rtl"]) .post-content .dialogue-turn.dialogue-assistant {
+    margin-inline-start: 0;
+    margin-inline-end: auto;
+}
+
 #searchResults li.post-entry[dir="rtl"] .entry-header {
     direction: rtl;
     text-align: start;

@@ -1,0 +1,22 @@
+{{- /*
+  Wrap each **مهدی:** / **جمینای:** turn in a dialogue-turn container so headings,
+  lists, and follow-up paragraphs stay inside the same bubble.
+
+  Note: literal "</div>" must not appear in this template — Hugo's parser treats it
+  as HTML and strips the rest of the partial. Build tags via print instead.
+*/ -}}
+{{- $content := . -}}
+{{- $closeDiv := print "<" "/div>" -}}
+{{- if or (in $content "<strong>مهدی:</strong>") (in $content "<strong>جمینای:</strong>") -}}
+  {{- $userOpen := printf "%s<div class=\"dialogue-turn dialogue-user\"><p class=\"dialogue-label\"><strong>مهدی:</strong></p><p>" $closeDiv -}}
+  {{- $assistantOpen := printf "%s<div class=\"dialogue-turn dialogue-assistant\"><p class=\"dialogue-label\"><strong>جمینای:</strong></p><p>" $closeDiv -}}
+  {{- $userOpenSolo := printf "%s<div class=\"dialogue-turn dialogue-user\"><p class=\"dialogue-label\"><strong>مهدی:</strong></p>" $closeDiv -}}
+  {{- $assistantOpenSolo := printf "%s<div class=\"dialogue-turn dialogue-assistant\"><p class=\"dialogue-label\"><strong>جمینای:</strong></p>" $closeDiv -}}
+  {{- $content = replaceRE `<p><strong>مهدی:</strong></p>` $userOpenSolo $content -}}
+  {{- $content = replaceRE `<p><strong>جمینای:</strong></p>` $assistantOpenSolo $content -}}
+  {{- $content = replaceRE `<p><strong>مهدی:</strong>` $userOpen $content -}}
+  {{- $content = replaceRE `<p><strong>جمینای:</strong>` $assistantOpen $content -}}
+  {{- $content = replaceRE (printf "^%s" $closeDiv) "" $content -}}
+  {{- $content = printf "%s%s" $content $closeDiv -}}
+{{- end -}}
+{{- return $content -}}

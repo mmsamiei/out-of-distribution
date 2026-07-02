@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Out of Distribution</title>
-    <link>http://localhost:50266/tags/</link>
+    <link>http://localhost:51309/tags/</link>
     <description>Recent content in Tags on Out of Distribution</description>
     <generator>Hugo -- 0.151.2</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 28 Jun 2026 00:00:00 +0330</lastBuildDate>
-    <atom:link href="http://localhost:50266/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:51309/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>باستان</title>
-      <link>http://localhost:50266/tags/%D8%A8%D8%A7%D8%B3%D8%AA%D8%A7%D9%86/</link>
+      <link>http://localhost:51309/tags/%D8%A8%D8%A7%D8%B3%D8%AA%D8%A7%D9%86/</link>
       <pubDate>Sun, 28 Jun 2026 00:00:00 +0330</pubDate>
-      <guid>http://localhost:50266/tags/%D8%A8%D8%A7%D8%B3%D8%AA%D8%A7%D9%86/</guid>
+      <guid>http://localhost:51309/tags/%D8%A8%D8%A7%D8%B3%D8%AA%D8%A7%D9%86/</guid>
       <description></description>
     </item>
     <item>
       <title>تاریخ</title>
-      <link>http://localhost:50266/tags/%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE/</link>
+      <link>http://localhost:51309/tags/%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE/</link>
       <pubDate>Sun, 28 Jun 2026 00:00:00 +0330</pubDate>
-      <guid>http://localhost:50266/tags/%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE/</guid>
+      <guid>http://localhost:51309/tags/%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE/</guid>
       <description></description>
     </item>
     <item>
       <title>Meta</title>
-      <link>http://localhost:50266/tags/meta/</link>
+      <link>http://localhost:51309/tags/meta/</link>
       <pubDate>Sat, 19 Nov 2022 01:04:06 +0330</pubDate>
-      <guid>http://localhost:50266/tags/meta/</guid>
+      <guid>http://localhost:51309/tags/meta/</guid>
       <description></description>
     </item>
   </channel>

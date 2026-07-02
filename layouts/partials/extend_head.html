@@ -4,5 +4,16 @@
 <style>
   :root {
     --font-persian: "Vazirmatn", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --dialogue-user-accent: #3b82f6;
+    --dialogue-assistant-accent: #8b5cf6;
+    --dialogue-user-bg: color-mix(in srgb, var(--entry) 88%, var(--dialogue-user-accent));
+    --dialogue-assistant-bg: color-mix(in srgb, var(--entry) 92%, var(--dialogue-assistant-accent));
+  }
+
+  .dark {
+    --dialogue-user-accent: #60a5fa;
+    --dialogue-assistant-accent: #a78bfa;
+    --dialogue-user-bg: color-mix(in srgb, var(--entry) 80%, var(--dialogue-user-accent));
+    --dialogue-assistant-bg: color-mix(in srgb, var(--entry) 85%, var(--dialogue-assistant-accent));
   }
 </style>
