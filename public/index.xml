@@ -6,8 +6,24 @@
     <description>Recent content on Out of Distribution</description>
     <generator>Hugo -- 0.151.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jul 2026 19:36:00 +0330</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jul 2026 19:59:00 +0330</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>تایم‌اوت و Deadline در gRPC و پایتون</title>
+      <link>http://localhost:1313/posts/2026/jul/8/2/</link>
+      <pubDate>Wed, 08 Jul 2026 19:59:00 +0330</pubDate>
+      <guid>http://localhost:1313/posts/2026/jul/8/2/</guid>
+      <description>&lt;div class=&#34;dialogue-turn dialogue-user&#34;&gt;
+  &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;مهدی:&lt;/strong&gt;&lt;/p&gt;
+  سلام. من یک مهندس نرم افزار جونیور هستم. من نمی‌دانم تایم اوت چطوری هندل میشه.
+من روی پایتون کد می‌زنم و شرکتمون هم grpc هست.
+لطفا پرکتیس‌ها و پترن‌های استفاده از تایم اوت رو بهم یاد بده.
+&lt;/div&gt;
+
+&lt;div class=&#34;dialogue-turn dialogue-assistant&#34;&gt;
+  &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;جمینای:&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;سلام! به دنیای جذاب (و گاهی چالش‌برانگیز) میکروسرویس‌ها و gRPC خوش آمدی. پرسیدن این سوال نشانه بسیار خوبی است، چون خیلی از برنامه‌نویس‌ها تازه زمانی به فکر Timeout می‌افتند که کل سیستمشان در پروداکشن دچار اختلال (Cascading Failure) شده است!&lt;/p&gt;</description>
+    </item>
     <item>
       <title>از Error و Exception تا معماری نرم‌افزار در پایتون</title>
       <link>http://localhost:1313/posts/2026/jul/8/</link>

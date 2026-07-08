@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>از دیتا ساینس تا مهندسی نرم‌افزار: کالبدشکافی مدیریت خطا در پایتون | Out of Distribution</title>
 <meta name="keywords" content="">
 <meta name="description" content="از دیتا ساینس تا مهندسی نرم‌افزار: راهنمای جامع دیباگینگ، مدیریت خطا و کالبدشکافی پایتون
 در دنیای برنامه‌نویسی و به خصوص دیتا ساینس، ما معمولاً به ارورها به چشم یک &ldquo;مزاحم&rdquo; نگاه می‌کنیم. ارور می‌گیریم، آن را در گوگل یا ChatGPT جستجو می‌کنیم، یک خط کد برای دور زدن آن می‌نویسیم و می‌رویم سراغ کار بعدی (درمان علائم). انگار از این ستون به آن ستون می‌پریم. اما در مهندسی نرم‌افزار، ما به دنبال تحلیل علت ریشه‌ای (Root Cause Analysis) هستیم.">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/posts/2026/apr/26/">
+<link rel="canonical" href="https://example.org/posts/2026/apr/26/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.dc4d5738b9970473e97d6e804f2dc5f949e9c5d0db36def849b21255230e49c8.css" integrity="sha256-3E1XOLmXBHPpfW6ATy3F&#43;UnpxdDbNt74SbISVSMOScg=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/2026/apr/26/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/2026/apr/26/">
 <noscript>
     <style>
         #theme-toggle,
@@ -75,7 +75,70 @@
     --dialogue-assistant-bg: color-mix(in srgb, var(--entry) 85%, var(--dialogue-assistant-accent));
   }
 </style>
+<meta property="og:url" content="https://example.org/posts/2026/apr/26/">
+  <meta property="og:site_name" content="Out of Distribution">
+  <meta property="og:title" content="از دیتا ساینس تا مهندسی نرم‌افزار: کالبدشکافی مدیریت خطا در پایتون">
+  <meta property="og:description" content="از دیتا ساینس تا مهندسی نرم‌افزار: راهنمای جامع دیباگینگ، مدیریت خطا و کالبدشکافی پایتون در دنیای برنامه‌نویسی و به خصوص دیتا ساینس، ما معمولاً به ارورها به چشم یک “مزاحم” نگاه می‌کنیم. ارور می‌گیریم، آن را در گوگل یا ChatGPT جستجو می‌کنیم، یک خط کد برای دور زدن آن می‌نویسیم و می‌رویم سراغ کار بعدی (درمان علائم). انگار از این ستون به آن ستون می‌پریم. اما در مهندسی نرم‌افزار، ما به دنبال تحلیل علت ریشه‌ای (Root Cause Analysis) هستیم.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-04-25T11:44:06+03:30">
+    <meta property="article:modified_time" content="2026-04-25T11:44:06+03:30">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="از دیتا ساینس تا مهندسی نرم‌افزار: کالبدشکافی مدیریت خطا در پایتون">
+<meta name="twitter:description" content="از دیتا ساینس تا مهندسی نرم‌افزار: راهنمای جامع دیباگینگ، مدیریت خطا و کالبدشکافی پایتون
+در دنیای برنامه‌نویسی و به خصوص دیتا ساینس، ما معمولاً به ارورها به چشم یک &ldquo;مزاحم&rdquo; نگاه می‌کنیم. ارور می‌گیریم، آن را در گوگل یا ChatGPT جستجو می‌کنیم، یک خط کد برای دور زدن آن می‌نویسیم و می‌رویم سراغ کار بعدی (درمان علائم). انگار از این ستون به آن ستون می‌پریم. اما در مهندسی نرم‌افزار، ما به دنبال تحلیل علت ریشه‌ای (Root Cause Analysis) هستیم.">
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "از دیتا ساینس تا مهندسی نرم‌افزار: کالبدشکافی مدیریت خطا در پایتون",
+      "item": "https://example.org/posts/2026/apr/26/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "از دیتا ساینس تا مهندسی نرم‌افزار: کالبدشکافی مدیریت خطا در پایتون",
+  "name": "از دیتا ساینس تا مهندسی نرم‌افزار: کالبدشکافی مدیریت خطا در پایتون",
+  "description": "از دیتا ساینس تا مهندسی نرم‌افزار: راهنمای جامع دیباگینگ، مدیریت خطا و کالبدشکافی پایتون در دنیای برنامه‌نویسی و به خصوص دیتا ساینس، ما معمولاً به ارورها به چشم یک \u0026ldquo;مزاحم\u0026rdquo; نگاه می‌کنیم. ارور می‌گیریم، آن را در گوگل یا ChatGPT جستجو می‌کنیم، یک خط کد برای دور زدن آن می‌نویسیم و می‌رویم سراغ کار بعدی (درمان علائم). انگار از این ستون به آن ستون می‌پریم. اما در مهندسی نرم‌افزار، ما به دنبال تحلیل علت ریشه‌ای (Root Cause Analysis) هستیم.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "از دیتا ساینس تا مهندسی نرم‌افزار: راهنمای جامع دیباگینگ، مدیریت خطا و کالبدشکافی پایتون در دنیای برنامه‌نویسی و به خصوص دیتا ساینس، ما معمولاً به ارورها به چشم یک “مزاحم” نگاه می‌کنیم. ارور می‌گیریم، آن را در گوگل یا ChatGPT جستجو می‌کنیم، یک خط کد برای دور زدن آن می‌نویسیم و می‌رویم سراغ کار بعدی (درمان علائم). انگار از این ستون به آن ستون می‌پریم. اما در مهندسی نرم‌افزار، ما به دنبال تحلیل علت ریشه‌ای (Root Cause Analysis) هستیم.\nدر این مقاله جامع، تمام مفاهیم مدیریت خطا در پایتون (تکنیک ۵ چرا، Stack Trace, Try-Except, Raise و Logger) را نه به عنوان دستورات ساده، بلکه از دیدگاه یک مهندس نرم‌افزار ارشد بررسی می‌کنیم و در نهایت نگاهی عمیق به زیر کاپوت زبان پایتون (CPython) خواهیم انداخت.\n۱. ذهنیت مهندسی: تکنیک ۵ چرا (The 5 Whys) و متدولوژی دیباگ این روش که توسط شرکت تویوتا ابداع شده، می‌گوید وقتی با باگی مواجه می‌شوید، به جای لاپوشانی سریع، ۵ بار بپرسید «چرا؟» تا به هسته اصلی مشکل برسید.\nمثال واقعی (خطای دیتابیس Qdrant): اسکریپت را اجرا می‌کنید و خطای ConnectionTimeoutError: Failed to connect to Qdrant دریافت می‌کنید.\n❌ روش دیتا ساینتیست (درمان علائم): ارور را به ChatGPT می‌دهد. پیشنهاد می‌شود timeout=60 را اضافه کند. دوباره اجرا می‌کند و بعد از ۶۰ ثانیه دوباره ارور می‌دهد! چرخه باطل آغاز می‌شود. ✅ روش مهندس نرم‌افزار (۵ چرا): چرا کرش کرد؟ چون نتوانست به پورت ۶۳۳۳ وصل شود. چرا نتوانست وصل شود؟ (تست با docker ps): چون کانتینر Qdrant مدام در حال ری‌استارت است. چرا ری‌استارت می‌شود؟ (تست با docker logs): خطای OOM Killed (Out of Memory) داده است. چرا رم کم آورد؟ چون دیتای بسیار سنگینی به سمتش رفت. چرا دیتای سنگین رفت؟ (ریشه کشف شد!): چون سعی کردیم ۱۰۰,۰۰۰ چانک متنی را در یک Batch یک‌جا وارد دیتابیس کنیم! راه‌حل: تغییر سایز Batch به دسته‌های ۱۰۰ تایی (Pagination). مشکل برای همیشه حل شد. ۲. کالبدشکافی Stack Trace: قانون طلایی “از پایین به بالا” کلمه Stack Trace از دو بخش Stack (پشته - مثل دسته‌ای از بشقاب‌ها با ساختار LIFO) و Trace (ردیابی) تشکیل شده است. هر تابعی که در کد صدا می‌زنید، یک بشقاب روی بشقاب‌های قبلی قرار می‌گیرد. وقتی در تابعی خطایی رخ می‌دهد، پایتون آن بشقاب را می‌شکند و ارور را مثل یک حباب به سمت بالا (توابع پدر) می‌فرستد. اگر کسی ارور را نگیرد، برنامه Crash می‌کند و پایتون لیست تمام این توابعِ باز را در ترمینال چاپ می‌کند.\nقانون مهندس‌های ارشد: Stack Trace را همیشه از پایین به بالا بخوانید.\nقدم اول (خط آخر): نوع خطا و پیام اصلی آن را می‌گوید (مثلاً TypeError: 'NoneType' object is not subscriptable). مغز شما اینجا فرضیه می‌سازد. قدم دوم (یک خط بالاتر): دقیقاً خطی که در آن انفجار رخ داده است. قدم سوم (ردیابی به عقب): اسکرول کنید به سمت بالا تا به اولین فایلی که خودتان نوشته‌اید برسید. (از کدهای مربوط به کتابخانه‌ها عبور کنید). تله‌ی لایبرری‌ها (Library Trap): در ۹۹.۹٪ مواقع، کتابخانه‌های معروف (مثل requests) باگ ندارند. اگر ارور در روده‌های یک کتابخانه رخ داده، به خاطر این است که شما دیتای اشتباهی (مثل None یا فرمت غلط) از فایل خودتان به آن پاس داده‌اید.\n۳. آناتومی کامل try-except: کیسه هوای سیستم در دیتا ساینس try-except برای لاپوشانی استفاده می‌شود، اما در مهندسی نرم‌افزار این یک ساختار برای مدیریت جریان کنترل است و ۴ ستون اصلی دارد:\ndef connect_to_database(data): try: # ۱. منطقه خطر (Danger Zone): کمترین خطوط ممکن که احتمال ارور دارند db_connection = connect(timeout=3) result = db_connection.insert(data) except ConnectionError as e: # ۲. منطقه نجات (Rescue Zone): گرفتن خطای دقیق و مشخص logger.error(f\"دیتابیس در دسترس نیست: {e}\") result = None else: # ۳. منطقه موفقیت (Success Zone): فقط اگر هیچ اروری رخ ندهد اجرا می‌شود logger.info(\"دیتا با موفقیت ذخیره شد.\") finally: # ۴. منطقه پاکسازی (Cleanup Zone): همیشه اجرا می‌شود (جلوگیری از Memory Leak) if db_connection: db_connection.close() return result ۳ بوی بد (Code Smell) در Try-Except: The God Try Block: ریختن ۱۰۰ خط کد درون یک try. اگر ارور رخ دهد، نمی‌دانید کدام خط منفجر شده است. Catching Base Exception (except Exception:): این کار حتی خطاهای تایپی و سینتکسی شما را هم مخفی می‌کند. همیشه نوع ارور را دقیق بنویسید. شکست خاموش (Silent Failure): نوشتن pass در بلاک except. سیستم خراب شده اما هیچ صدایی در نمی‌آید. خطرناک‌ترین نوع باگ در Production. ۴. فلسفه کلمه raise: کشیدن ترمز اضطراری اگر try-except کیسه هواست، raise آژیر خطر و ترمز اضطراری قطار است. پایتون (راننده قطار) فقط گاز دادن را بلد است و منطق بیزینس را نمی‌فهمد. ما با raise خودمان دستی برنامه را متوقف می‌کنیم. کاربردهای آن عبارتند از: Fail-Fast (اعتبارسنجی ورودی‌ها) و ساخت Custom Exceptions.\nنکته فوق‌حرفه‌ای: تفاوت حیاتی در Re-raise (پاس دادن توپ به بالا) یکی از رایج‌ترین اشتباهات برنامه‌نویسان، نحوه پرتاب مجدد خطا در بلاک except است. به این دو الگو دقت کنید:\n❌ الگوی اول (روش غلط - مخدوش کردن Stack Trace):\ntry: do_something() except ValueError as e: print(\"یک ارور رخ داد\") # ساختن یک خطای جدید و پرتاب آن raise ValueError(\"ارور جدید\") چه اتفاقی می‌افتد؟ شما با این کار، Stack Trace اصلی را که نشان می‌داد ریشه مشکل در کدام خط از تابع do_something بوده، از بین می‌برید! پایتون این را به عنوان یک خطای کاملاً جدید در همین خط می‌بیند (و یک زنجیره خطای گیج‌کننده به نام Chained Exception می‌سازد). توسعه‌دهنده‌ای که فردا بخواهد این کد را دیباگ کند، نقشه راه را از دست داده است.\n✅ الگوی دوم (روش مهندسی - حفظ تاریخچه):\ntry: do_something() except ValueError as e: print(\"یک ارور رخ داد، ولی لاگش کردم.\") # پرتاب کردن همان خطای اصلی با تمام تاریخچه‌اش raise چه اتفاقی می‌افتد؟ وقتی کلمه raise را بدون هیچ متغیری (خالی) می‌نویسید، پایتون متوجه می‌شود که شما قصد لاپوشانی ندارید، فقط می‌خواستید ارور را لاگ کنید یا کار خاصی انجام دهید و حالا می‌خواهید دقیقاً همان ارور قبلی با همان مسیر طی شده (Stack Trace دست‌نخورده) به لایه‌های بالاتر برنامه (توابع پدر) پاس داده شود. این کار دیباگ را بی‌نهایت ساده می‌کند.\n۵. رابطه و تفاوت raise با logger بسیاری از جونیورها فکر می‌کنند دستور logger.error(\"پیام\") برنامه را متوقف می‌کند. این‌طور نیست!\nraise: اجرای کد را متوقف می‌کند و Stack Trace می‌سازد. logger.warning/error: فقط حکم جعبه سیاه قطار را دارد. اتفاق را در فایل می‌نویسد اما برنامه خطوط بعدی را اجرا می‌کند! بمب اتم مهندسی (logger.exception): اگر در یک حلقه (Loop) پردازشی هستید و نمی‌خواهید قطار با ارور یک آیتم متوقف شود، اما نیاز به Stack Trace کامل برای دیباگ فردا دارید:\nfor item in dataset: try: process(item) except Exception: # حلقه نمی‌شکند و برنامه کرش نمی‌کند # اما کل متون قرمز Stack Trace تمیز و مرتب در فایل لاگ ذخیره می‌شود! logger.exception(f\"پردازش آیتم {item.id} شکست خورد\") continue ۶. زیر کاپوت CPython: پایتون چطور Try-Except را می‌فهمد؟ پایتون کدهای شما را اول به Bytecode تبدیل می‌کند و سپس در ماشین مجازی پایتون (PVM) اجرا می‌کند. هر تابع باز یک Frame (بشقاب در حافظه C) است.\nوقتی شما raise می‌کنید، پایتون در زبان C یک تابع به نام PyErr_SetString را صدا می‌زند. سه متغیر مربوط به خطا (نوع خطا، پیام، و استک تریس) در حافظه مقداردهی می‌شوند و موتور پایتون با دیدن آن‌ها وارد حالت بحرانی (Panic) می‌شود.\nشاهکار مهندسی: Zero-Cost Exceptions (خطایابی بدون هزینه) در پایتون ۳.۱۱ به بعد، وقتی شما یک بلاک try-except می‌نویسید، در حالت عادی هیچ هزینه پردازشی (CPU) ندارد! پایتون در زمان کامپایل یک جدول پرش (Jump Table) می‌سازد. اگر در بلاک try خطایی رخ داد، پایتون به این جدول نگاه می‌کند و اگر آدرسی برای except پیدا کرد، مستقیماً به آن خط پرش می‌کند. اگر پیدا نکرد، Frame فعلی تابع را در حافظه نابود می‌کند (Stack Unwinding) و به لایه بالاتر می‌رود.\nچرا این مهم است؟ (LBYL در برابر EAFP) در زبان‌های C++ و جاوا سبک LBYL رایج است (قبل از پریدن نگاه کن = استفاده زیاد از if/else). اما در پایتون سبک EAFP (راحت‌تر است عذرخواهی کنی تا اجازه بگیری) استاندارد است. چون try-except بدون هزینه (Zero-cost) است، یک مهندس پایتون به جای چک کردن مدام شرط‌ها با if، مستقیماً عملیات را داخل try انجام می‌دهد و با except شرایط استثنایی را مدیریت می‌کند. این کار سرعت اجرای برنامه را به شدت بالا می‌برد.\nنتیجه‌گیری: تسلط بر Stack Trace، استفاده هدفمند از کیسه هوای try-except، کشیدن ترمز دستی به موقع با raise و ثبت وقایع با logger، مرز بین یک کدِ شکننده و یک سیستم نرم‌افزاری Enterprise است که حتی اگر قرار است بشکند، با وقار و با دادن اطلاعات کافی به توسعه‌دهندگان می‌شکند.\n",
+  "wordCount" : "1384",
+  "inLanguage": "en",
+  "datePublished": "2026-04-25T11:44:06+03:30",
+  "dateModified": "2026-04-25T11:44:06+03:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/2026/apr/26/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Out of Distribution",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -93,7 +156,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Out of Distribution (Alt + H)">Out of Distribution</a>
+            <a href="https://example.org/" accesskey="h" title="Out of Distribution (Alt + H)">Out of Distribution</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -119,27 +182,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/posts/" title="Posts">
+                <a href="https://example.org/posts/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="Archive">
+                <a href="https://example.org/archives/" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://example.org/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://example.org/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/faq/" title="FAQ">
+                <a href="https://example.org/faq/" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -311,7 +374,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2026 <a href="http://localhost:1313/">Out of Distribution</a></span> · 
+        <span>&copy; 2026 <a href="https://example.org/">Out of Distribution</a></span> · 
 
     <span>
         Powered by

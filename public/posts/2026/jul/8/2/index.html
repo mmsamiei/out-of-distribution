@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>تایم‌اوت و Deadline در gRPC و پایتون | Out of Distribution</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+  مهدی:
+  سلام. من یک مهندس نرم افزار جونیور هستم. من نمی‌دانم تایم اوت چطوری هندل میشه.
+من روی پایتون کد می‌زنم و شرکتمون هم grpc هست.
+لطفا پرکتیس‌ها و پترن‌های استفاده از تایم اوت رو بهم یاد بده.
+
+
+
+  جمینای:
+  سلام! به دنیای جذاب (و گاهی چالش‌برانگیز) میکروسرویس‌ها و gRPC خوش آمدی. پرسیدن این سوال نشانه بسیار خوبی است، چون خیلی از برنامه‌نویس‌ها تازه زمانی به فکر Timeout می‌افتند که کل سیستمشان در پروداکشن دچار اختلال (Cascading Failure) شده است!">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/2026/jul/8/2/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.dc4d5738b9970473e97d6e804f2dc5f949e9c5d0db36def849b21255230e49c8.css" integrity="sha256-3E1XOLmXBHPpfW6ATy3F&#43;UnpxdDbNt74SbISVSMOScg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/2026/jul/8/2/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font-persian: "Vazirmatn", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --dialogue-user-accent: #3b82f6;
+    --dialogue-assistant-accent: #8b5cf6;
+    --dialogue-user-bg: color-mix(in srgb, var(--entry) 88%, var(--dialogue-user-accent));
+    --dialogue-assistant-bg: color-mix(in srgb, var(--entry) 92%, var(--dialogue-assistant-accent));
+  }
+
+  .dark {
+    --dialogue-user-accent: #60a5fa;
+    --dialogue-assistant-accent: #a78bfa;
+    --dialogue-user-bg: color-mix(in srgb, var(--entry) 80%, var(--dialogue-user-accent));
+    --dialogue-assistant-bg: color-mix(in srgb, var(--entry) 85%, var(--dialogue-assistant-accent));
+  }
+</style>
+
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Out of Distribution (Alt + H)">Out of Distribution</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/faq/" title="FAQ">
+                    <span>FAQ</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single" dir="rtl">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      تایم‌اوت و Deadline در gRPC و پایتون
+    </h1>
+    <div class="post-meta"><span title='2026-07-08 19:59:00 +0330 +0330'>July 8, 2026</span>
+
+</div>
+  </header> 
+  <div class="post-content"><div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  سلام. من یک مهندس نرم افزار جونیور هستم. من نمی‌دانم تایم اوت چطوری هندل میشه.
+من روی پایتون کد می‌زنم و شرکتمون هم grpc هست.
+لطفا پرکتیس‌ها و پترن‌های استفاده از تایم اوت رو بهم یاد بده.
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>سلام! به دنیای جذاب (و گاهی چالش‌برانگیز) میکروسرویس‌ها و gRPC خوش آمدی. پرسیدن این سوال نشانه بسیار خوبی است، چون خیلی از برنامه‌نویس‌ها تازه زمانی به فکر Timeout می‌افتند که کل سیستمشان در پروداکشن دچار اختلال (Cascading Failure) شده است!</p>
+<p>در gRPC، مفهومی که با آن سر و کار داریم بیشتر به نام <strong>Deadline (مهلت زمانی)</strong> شناخته می‌شود. Timeout می‌گوید &ldquo;۵ ثانیه صبر کن&rdquo;، اما Deadline می‌گوید &ldquo;تا ساعت ۱۰:۰۵:۰۰ کار را تمام کن&rdquo;. gRPC به صورت خودکار Timeout ها را به Deadline تبدیل می‌کند.</p>
+<p>در ادامه، نحوه پیاده‌سازی و سپس بهترین الگوها (Patterns) را با زبان پایتون برایت توضیح می‌دهم.</p>
+<hr>
+<h3 id="۱-نحوه-پیادهسازی-پایه-در-پایتون-grpc">۱. نحوه پیاده‌سازی پایه در پایتون (gRPC)<a hidden class="anchor" aria-hidden="true" href="#۱-نحوه-پیادهسازی-پایه-در-پایتون-grpc">#</a></h3>
+<h4 id="سمت-کلاینت-client-side">سمت کلاینت (Client-Side)<a hidden class="anchor" aria-hidden="true" href="#سمت-کلاینت-client-side">#</a></h4>
+<p>وقتی درخواستی می‌فرستی، باید تعیین کنی چقدر حاضری منتظر بمانی. اگر زمان تمام شود، gRPC یک خطای <code>DEADLINE_EXCEEDED</code> برمی‌گرداند.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> grpc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">call_server</span>(stub):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># تنظیم تایم‌اوت روی ۲.۵ ثانیه</span>
+</span></span><span style="display:flex;"><span>        response <span style="color:#f92672">=</span> stub<span style="color:#f92672">.</span>MyMethod(request, timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">2.5</span>)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Response received:&#34;</span>, response)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> grpc<span style="color:#f92672">.</span>RpcError <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># هندل کردن ارورهای gRPC</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>code() <span style="color:#f92672">==</span> grpc<span style="color:#f92672">.</span>StatusCode<span style="color:#f92672">.</span>DEADLINE_EXCEEDED:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#34;خطا: زمان درخواست تمام شد (Timeout/Deadline Exceeded)&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;یک خطای دیگر رخ داد: </span><span style="color:#e6db74">{</span>e<span style="color:#f92672">.</span>code()<span style="color:#e6db74">}</span><span style="color:#e6db74"> - </span><span style="color:#e6db74">{</span>e<span style="color:#f92672">.</span>details()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h4 id="سمت-سرور-server-side">سمت سرور (Server-Side)<a hidden class="anchor" aria-hidden="true" href="#سمت-سرور-server-side">#</a></h4>
+<p>این قسمت معمولاً توسط جونیورها فراموش می‌شود! وقتی کلاینت بعد از ۲ ثانیه بی‌خیال درخواست می‌شود، سرور شما نباید ۱۰ ثانیه درگیر پردازش آن بماند. سرور باید چک کند که آیا کلاینت هنوز منتظر است یا نه.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> grpc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyServiceServicer</span>(MyService_pb2_grpc<span style="color:#f92672">.</span>MyServiceServicer):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">MyMethod</span>(self, request, context):
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># کار طولانی ۱...</span>
+</span></span><span style="display:flex;"><span>        time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">1</span>) 
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># الگوی Fail-Fast: چک می‌کنیم آیا زمان تمام شده یا کلاینت درخواست را کنسل کرده؟</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> context<span style="color:#f92672">.</span>is_active():
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#34;کلاینت بی‌خیال شده، منم پردازش رو متوقف می‌کنم.&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> MyService_pb2<span style="color:#f92672">.</span>MyResponse()
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># چک کردن زمان باقیمانده (اختیاری ولی مفید برای لاگینگ یا پاس دادن به دیتابیس)</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;زمان باقیمانده: </span><span style="color:#e6db74">{</span>context<span style="color:#f92672">.</span>time_remaining()<span style="color:#e6db74">}</span><span style="color:#e6db74"> ثانیه&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># کار طولانی ۲...</span>
+</span></span><span style="display:flex;"><span>        time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> MyService_pb2<span style="color:#f92672">.</span>MyResponse(result<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Success&#34;</span>)
+</span></span></code></pre></div><hr>
+<h3 id="۲-پترنها-و-پرکتیسهای-best-practices-مدیریت-timeout">۲. پترن‌ها و پرکتیس‌های (Best Practices) مدیریت Timeout<a hidden class="anchor" aria-hidden="true" href="#۲-پترنها-و-پرکتیسهای-best-practices-مدیریت-timeout">#</a></h3>
+<p>حالا که کد بیسیک را دیدیم، بیایید معماری و پترن‌ها را بررسی کنیم:</p>
+<h4 id="الگو-۱-انتقال-مهلت-زمانی-deadline-propagation">الگو ۱: انتقال مهلت زمانی (Deadline Propagation)<a hidden class="anchor" aria-hidden="true" href="#الگو-۱-انتقال-مهلت-زمانی-deadline-propagation">#</a></h4>
+<p>فرض کن سرویس A به سرویس B درخواست می‌دهد (با تایم‌اوت ۵ ثانیه). سرویس B برای جواب دادن باید به سرویس C درخواست بدهد.
+<strong>اشتباه رایج:</strong> سرویس B به سرویس C یک تایم‌اوت جدید مثلاً ۱۰ ثانیه‌ای بدهد!
+<strong>کار درست:</strong> سرویس B باید بررسی کند چقدر از آن ۵ ثانیه باقی مانده (مثلاً ۳ ثانیه) و همان زمان باقیمانده را به عنوان تایم‌اوت به C پاس بدهد.</p>
+<p><em>در پایتون gRPC این کار معمولا از طریق گرفتن <code>context.time_remaining()</code> در سرور B و پاس دادن آن به عنوان <code>timeout</code> در کلاینت C انجام می‌شود.</em></p>
+<h4 id="الگو-۲-تلاش-مجدد-با-تاخیر-نمایی-retry-with-exponential-backoff">الگو ۲: تلاش مجدد با تاخیر نمایی (Retry with Exponential Backoff)<a hidden class="anchor" aria-hidden="true" href="#الگو-۲-تلاش-مجدد-با-تاخیر-نمایی-retry-with-exponential-backoff">#</a></h4>
+<p>گاهی اوقات تایم‌اوت به خاطر یک مشکل لحظه‌ای در شبکه است. اگر بلافاصله یک ارور به کاربر نشان دهیم، تجربه کاربری بدی است. باید از پترن Retry استفاده کنیم. اما نه اینکه پشت سر هم رگبار درخواست بفرستیم!
+باید بین تلاش‌ها فاصله بیندازیم (مثلا تلاش اول ۱ ثانیه بعد، تلاش دوم ۲ ثانیه بعد، تلاش سوم ۴ ثانیه بعد).
+در پایتون می‌توانید از کتابخانه‌هایی مثل <strong><code>tenacity</code></strong> برای این کار استفاده کنید:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> tenacity <span style="color:#f92672">import</span> retry, stop_after_attempt, wait_exponential, retry_if_exception_type
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> grpc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">is_deadline_exceeded</span>(exception):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> isinstance(exception, grpc<span style="color:#f92672">.</span>RpcError) <span style="color:#f92672">and</span> exception<span style="color:#f92672">.</span>code() <span style="color:#f92672">==</span> grpc<span style="color:#f92672">.</span>StatusCode<span style="color:#f92672">.</span>DEADLINE_EXCEEDED
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># نهایتا ۳ بار تلاش کن، با تاخیر ۲، ۴ و ۸ ثانیه (فقط برای خطای تایم‌اوت)</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@retry</span>(stop<span style="color:#f92672">=</span>stop_after_attempt(<span style="color:#ae81ff">3</span>), 
+</span></span><span style="display:flex;"><span>       wait<span style="color:#f92672">=</span>wait_exponential(multiplier<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, min<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, max<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>),
+</span></span><span style="display:flex;"><span>       retry<span style="color:#f92672">=</span>retry_if_exception_type(grpc<span style="color:#f92672">.</span>RpcError))
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">robust_call</span>(stub, request):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> stub<span style="color:#f92672">.</span>MyMethod(request, timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">2.0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> grpc<span style="color:#f92672">.</span>RpcError <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>code() <span style="color:#f92672">==</span> grpc<span style="color:#f92672">.</span>StatusCode<span style="color:#f92672">.</span>DEADLINE_EXCEEDED:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">raise</span> e <span style="color:#75715e"># بالا میندازیم تا tenacity دوباره تلاش کنه</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#75715e"># بقیه خطاها رو مستقیما برگردون و ری‌ترای نکن</span>
+</span></span></code></pre></div><h4 id="الگو-۳-مقدار-جایگزین-fallback--graceful-degradation">الگو ۳: مقدار جایگزین (Fallback / Graceful Degradation)<a hidden class="anchor" aria-hidden="true" href="#الگو-۳-مقدار-جایگزین-fallback--graceful-degradation">#</a></h4>
+<p>گاهی اوقات دیتا حیاتی نیست. مثلاً در یک فروشگاه اینترنتی، سرویس &ldquo;محصولات پیشنهادی&rdquo; تایم‌اوت می‌دهد. آیا باید کل صفحه محصول لود نشود؟ خیر!
+<strong>پترن:</strong> اگر تایم‌اوت رخ داد، یک دیتای پیش‌فرض (Default Value)، دیتای کش شده (Cached) یا یک لیست خالی برگردانید و اجازه دهید بقیه سیستم کارش را بکند.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>    recommendations <span style="color:#f92672">=</span> stub<span style="color:#f92672">.</span>GetRecommendations(request, timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> grpc<span style="color:#f92672">.</span>RpcError <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>code() <span style="color:#f92672">==</span> grpc<span style="color:#f92672">.</span>StatusCode<span style="color:#f92672">.</span>DEADLINE_EXCEEDED:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Fallback: برگرداندن لیست خالی یا محصولات پرفروش به صورت دیفالت</span>
+</span></span><span style="display:flex;"><span>        recommendations <span style="color:#f92672">=</span> get_cached_or_default_recommendations()
+</span></span></code></pre></div><h4 id="الگو-۴-مدار-شکن-circuit-breaker">الگو ۴: مدار شکن (Circuit Breaker)<a hidden class="anchor" aria-hidden="true" href="#الگو-۴-مدار-شکن-circuit-breaker">#</a></h4>
+<p>اگر سرویس B کلاً خراب شده باشد، هر درخواستی که به آن بفرستید بعد از مثلاً ۵ ثانیه تایم‌اوت می‌شود. اگر ۱۰۰۰ کاربر داشته باشید، سیستم شما ۵۰۰۰ ثانیه منابع را هدر می‌دهد تا منتظر یک سرویس خراب بماند!
+پترن Circuit Breaker (مدارشکن) می‌گوید: &ldquo;اگر دیدی سرویس B تو ۵ درخواست اخیر همش تایم‌اوت داد، مدار رو قطع کن (باز کن). از این به بعد تا ۱ دقیقه اصلاً به سرویس B درخواست نفرست و بلافاصله خطای Fallback بده. بعد از ۱ دقیقه یک درخواست تستی بفرست ببین درست شده یا نه&rdquo;.
+<em>(برای پیاده‌سازی این پترن در پایتون پکیج‌هایی مثل <code>pybreaker</code> وجود دارند).</em></p>
+<h3 id="خلاصه-کارهایی-که-باید-به-عنوان-یک-جونیور-در-شرکتتان-انجام-دهی">خلاصه کارهایی که باید به عنوان یک جونیور در شرکتتان انجام دهی:<a hidden class="anchor" aria-hidden="true" href="#خلاصه-کارهایی-که-باید-به-عنوان-یک-جونیور-در-شرکتتان-انجام-دهی">#</a></h3>
+<p>۱. در سمت کلاینت <strong>همیشه</strong> پارامتر <code>timeout</code> را ست کن. هیچ‌وقت درخواست بدون تایم‌اوت در پروداکشن نزن.
+۲. خطای <code>DEADLINE_EXCEEDED</code> را <code>try/except</code> کن و برایش تصمیم بگیر (ری‌ترای کنم؟ ارور بدم؟ مقدار دیفالت بدم؟).
+۳. در سمت سرور اگر حلقه (Loop) سنگین داری یا می‌خواهی کوئری سنگین دیتابیس بزنی، قبلش <code>context.is_active()</code> را چک کن که الکی منابع سرور را هدر ندهی.</p>
+<p>موفق باشی! اگر بخشی از این مفاهیم نیاز به توضیح بیشتر داشت حتماً بپرس.</p>
+
+</div>
+
+<div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  در مورد تایم اوت وسیع‌ترم کن
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>اینکه می‌خواهی دیدت را وسیع‌تر کنی، دقیقاً همان نقطه‌ای است که یک برنامه‌نویس Junior را به سمت Mid-level و Senior هل می‌دهد. در مهندسی نرم‌افزار، Timeout فقط یک پارامتر <code>timeout=5</code> نیست؛ بلکه یک <strong>استراتژی دفاعی برای زنده نگه داشتن کل سیستم</strong> است.</p>
+<p>برای اینکه دیدگاهت نسبت به تایم‌اوت وسیع و معماری‌محور (Architectural) شود، این ۶ مفهوم کلیدی را باید عمیقاً درک کنی:</p>
+<hr>
+<h3 id="۱-تفاوت-connection-timeout-و-readwrite-timeout">۱. تفاوت Connection Timeout و Read/Write Timeout<a hidden class="anchor" aria-hidden="true" href="#۱-تفاوت-connection-timeout-و-readwrite-timeout">#</a></h3>
+<p>بسیاری از برنامه‌نویس‌ها فکر می‌کنند تایم‌اوت فقط یک زمان واحد است، در حالی که در شبکه‌ها (چه HTTP، چه gRPC و چه دیتابیس) ما معمولاً دو نوع تایم‌اوت داریم:</p>
+<ul>
+<li><strong>Connection Timeout (تایم‌اوت اتصال):</strong> چقدر حاضریم صبر کنیم تا اصلاً به سرور وصل شویم (مرحله Handshake و TCP). این زمان معمولاً باید خیلی کوتاه باشد (مثلاً ۱ تا ۳ ثانیه). اگر سروری در ۳ ثانیه اجازه اتصال ندهد، احتمالاً کلاً قطع است.</li>
+<li><strong>Read Timeout (تایم‌اوت خواندن/پردازش):</strong> حالا که وصل شدیم و درخواست را فرستادیم، چقدر حاضریم برای دریافت جواب صبر کنیم؟ این زمان به منطق بیزینس (Business Logic) بستگی دارد. مثلاً پردازش تصویر شاید ۱۰ ثانیه زمان بخواهد.</li>
+</ul>
+<p><em>(نکته عملی: در کتابخانه <code>requests</code> پایتون، حرفه‌ای‌ها تایم‌اوت را به صورت Tuple می‌دهند: <code>timeout=(3, 10)</code> یعنی ۳ ثانیه برای اتصال، ۱۰ ثانیه برای خواندن جواب).</em></p>
+<hr>
+<h3 id="۲-مفهوم-idempotency-آیدمپوتنسی-و-خطر-مرگبار-retry">۲. مفهوم Idempotency (آیدم‌پوتِنسی) و خطر مرگبار Retry<a hidden class="anchor" aria-hidden="true" href="#۲-مفهوم-idempotency-آیدمپوتنسی-و-خطر-مرگبار-retry">#</a></h3>
+<p>فرض کن سرویس A به سرویس B (سیستم پرداخت) می‌گوید: &ldquo;۵۰ هزار تومان از حساب کاربر ۱۲۳ کم کن&rdquo;.
+بعد از ۵ ثانیه <strong>تایم‌اوت</strong> می‌شود. حالا سرویس A چه می‌داند؟
+آیا درخواست اصلاً به B نرسید؟ یا به B رسید، پول کم شد، اما در مسیرِ برگشتِ جواب، شبکه قطع شد (تایم‌اوت)؟</p>
+<p>اگر از الگوهایی که قبلاً گفتم (Retry) استفاده کنی و دوباره درخواست بفرستی، ممکن است ۱۰۰ هزار تومان از کاربر کم شود! فاجعه!
+<strong>راه حل معماری:</strong> سرویس‌ها باید Idempotent باشند. یعنی هر درخواست باید یک شناسه یکتا (Idempotency Key) داشته باشد. اگر سرویس B درخواستی با همان شناسه را دوباره دریافت کرد، نباید دوباره پول کم کند، بلکه فقط باید جواب موفقیت‌آمیز قبلی را برگرداند.
+<strong>قانون طلایی:</strong> <em>فقط زمانی مجاز به استفاده از Retry در خطاهای تایم‌اوت هستی که بدانی متد مقصد Idempotent است.</em></p>
+<hr>
+<h3 id="۳-خرابی-آبشاری-cascading-failures-و-فاجعه-کمبود-منابع">۳. خرابی آبشاری (Cascading Failures) و فاجعه کمبود منابع<a hidden class="anchor" aria-hidden="true" href="#۳-خرابی-آبشاری-cascading-failures-و-فاجعه-کمبود-منابع">#</a></h3>
+<p>تایم‌اوت برای جلوگیری از &ldquo;خرابی آبشاری&rdquo; است. تصور کن ۳ میکروسرویس داریم: A -&gt; B -&gt; C</p>
+<ol>
+<li>سرویس C به مشکل می‌خورد و جواب نمی‌دهد.</li>
+<li>اگر سرویس B تایم‌اوت نداشته باشد، تمام درخواست‌هایی که به C می‌فرستد در وضعیت &ldquo;انتظار&rdquo; باقی می‌مانند (Hang می‌کنند).</li>
+<li>وقتی درخواست‌ها در انتظار بمانند، Thread ها (یا Worker ها) و Memory سرویس B پر می‌شود.</li>
+<li>حالا سرویس B کلاً از کار می‌افتد (Resource Exhaustion).</li>
+<li>حالا سرویس A که به B متصل بود هم Worker هایش پر می‌شود و از کار می‌افتد.</li>
+<li><strong>کل سیستم سقوط می‌کند!</strong></li>
+</ol>
+<p>تایم‌اوت در واقع <strong>&ldquo;شیر اطمینان&rdquo;</strong> است. می‌گوید: قبل از اینکه منابع من پر شود، بی‌خیال این درخواست می‌شوم تا بتوانم به بقیه مشتری‌ها سرویس بدهم.</p>
+<hr>
+<h3 id="۴-تایماوتها-کجا-پنهان-شدهاند-نشت-تایماوت-در-لایههای-مختلف">۴. تایم‌اوت‌ها کجا پنهان شده‌اند؟ (نشت تایم‌اوت در لایه‌های مختلف)<a hidden class="anchor" aria-hidden="true" href="#۴-تایماوتها-کجا-پنهان-شدهاند-نشت-تایماوت-در-لایههای-مختلف">#</a></h3>
+<p>یک سیستم فقط کد gRPC شما نیست. یک درخواست از لایه‌های مختلفی رد می‌شود و <strong>هر لایه تایم‌اوت خودش را دارد</strong>. اگر این‌ها با هم تنظیم نباشند، دیباگ کردنش کابوس است:</p>
+<ul>
+<li><strong>Load Balancer ها (مثل Nginx, HAProxy, Envoy):</strong> اگر Nginx روی ۶۰ ثانیه تایم‌اوت تنظیم شده باشد ولی gRPC شما روی ۱۲۰ ثانیه، کاربر بعد از ۶۰ ثانیه خطای Nginx (504 Gateway Timeout) می‌گیرد در حالی که سرور gRPC شما هنوز دارد در پس‌زمینه کار می‌کند!</li>
+<li><strong>Database (Connection Pool):</strong> آیا در پایتون (مثلاً SQLAlchemy یا موتور دیتابیس) تنظیم کرده‌ای که کوئری حداکثر چقدر طول بکشد؟ (Statement Timeout).</li>
+<li><strong>DNS Lookup:</strong> گاهی تایم‌اوت به خاطر این است که سرور نمی‌تواند آدرس IP مقصد را پیدا کند.</li>
+</ul>
+<hr>
+<h3 id="۵-چطور-مقدار-تایماوت-را-تعیین-کنیم-slisla-و-percentiles">۵. چطور مقدار تایم‌اوت را تعیین کنیم؟ (SLI/SLA و Percentiles)<a hidden class="anchor" aria-hidden="true" href="#۵-چطور-مقدار-تایماوت-را-تعیین-کنیم-slisla-و-percentiles">#</a></h3>
+<p>برنامه‌نویس‌های تازه‌کار عدد تایم‌اوت را حسی انتخاب می‌کنند (مثلاً می‌گویند &ldquo;خب ۵ ثانیه خوبه دیگه!&rdquo;).
+در سطح بالاتر، ما از متریک‌ها (Metrics) استفاده می‌کنیم:
+شما باید به داشبورد مانیتورینگ (مثل Grafana/Prometheus) نگاه کنید. معیاری داریم به نام <strong>P99</strong> (صدک ۹۹). یعنی ۹۹ درصد درخواست‌های سیستم من در چه زمانی پردازش می‌شوند؟
+اگر P99 شما ۲۰۰ میلی‌ثانیه است، یعنی تقریباً همه در ۲۰۰ms کارشان تمام می‌شود. پس گذاشتن تایم‌اوتِ ۱۰ ثانیه احمقانه است! تایم‌اوت در این حالت باید مثلاً ۵۰۰ میلی‌ثانیه یا ۱ ثانیه باشد. هرچه تایم‌اوت کوتاه‌تر باشد، سیستم سریع‌تر متوجه خرابی می‌شود و منابع آزاد می‌شوند.</p>
+<hr>
+<h3 id="۶-مشکل-ردیابی-توزیع-شده-distributed-tracing">۶. مشکل ردیابی توزیع شده (Distributed Tracing)<a hidden class="anchor" aria-hidden="true" href="#۶-مشکل-ردیابی-توزیع-شده-distributed-tracing">#</a></h3>
+<p>وقتی یک معماری میکروسرویس بزرگ دارید (مثلا ۲۰ سرویس که به هم وصلند)، کاربر نهایی خطای Timeout می‌گیرد. شما از کجا می‌فهمید کدام سرویس در این زنجیره مقصر بوده است؟
+اینجا مفهومی به نام <strong>Trace ID</strong> وارد می‌شود. در بدو ورود درخواست به سیستم، یک ID یکتا ساخته می‌شود (توسط ابزارهایی مثل Jaeger, Zipkin یا OpenTelemetry). این ID از طریق Metadata در gRPC به تمام سرویس‌ها پاس داده می‌شود. اگر تایم‌اوتی رخ دهد، شما در لاگ‌ها آن Trace ID را سرچ می‌کنید و دقیقاً می‌بینید گلوگاه (Bottleneck) در کدام میکروسرویس و حتی کدام کوئری دیتابیس بوده است.</p>
+<hr>
+<h3 id="خلاصه-دیدگاه-وسیع-big-picture">خلاصه دیدگاه وسیع (Big Picture):<a hidden class="anchor" aria-hidden="true" href="#خلاصه-دیدگاه-وسیع-big-picture">#</a></h3>
+<p>به عنوان یک مهندس نرم‌افزار، از این به بعد وقتی کلمه Timeout را می‌شنوی، نباید فقط یاد کد <code>try/except</code> بیفتی. باید از خودت بپرسی:</p>
+<ol>
+<li>&ldquo;اگر اینجا تایم‌اوت شود، آیا سیستم می‌تواند خودش را جمع‌وجور کند؟&rdquo;</li>
+<li>&ldquo;آیا تکرار این کار بعد از تایم‌اوت، دیتابیس ما را کثیف (Inconsistent) نمی‌کند؟&rdquo;</li>
+<li>&ldquo;آیا تایم‌اوتی که ست کرده‌ام، با منطق بیزینس و تایم‌اوت بقیه سیستم همخوانی دارد؟&rdquo;</li>
+</ol>
+<p>اگر این سوالات را در جلسات طراحی سیستم شرکت بپرسی، مطمئن باش روی تو به عنوان یک مهندس پخته و آینده‌دار حساب خواهند کرد!</p>
+
+</div>
+
+<div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  من اسم OpenTelemetry رو زیاد شنیدم ولی نمی‌دونم چیه و وظیفه‌اش چیه. بهم یاد بده
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>بسیار عالی! رسیدیم به یکی از مهم‌ترین و مدرن‌ترین مفاهیم مهندسی نرم‌افزار. برای درک OpenTelemetry (یا به اختصار <strong>OTel</strong>)، بیایید ابتدا مشکلی که این ابزار حل می‌کند را با یک مثال روزمره بررسی کنیم.</p>
+<h3 id="مشکل-چیست-معمای-قتل-در-میکروسرویسها">مشکل چیست؟ (معمای قتل در میکروسرویس‌ها!)<a hidden class="anchor" aria-hidden="true" href="#مشکل-چیست-معمای-قتل-در-میکروسرویسها">#</a></h3>
+<p>تصور کن در یک سیستم یکپارچه (Monolith) برنامه‌نویسی می‌کنی. یک ارور رخ می‌دهد، لاگ‌ها را باز می‌کنی، شماره خط کد را می‌بینی و مشکل را حل می‌کنی. ساده است!</p>
+<p>حالا سیستم شرکت شما میکروسرویس و gRPC است. کاربر روی دکمه &ldquo;ثبت سفارش&rdquo; کلیک می‌کند. درخواست او این مسیر را طی می‌کند:
+<code>گیت‌وی (Gateway)</code> -&gt; <code>سرویس سفارش (A)</code> -&gt; <code>سرویس انبار (B)</code> -&gt; <code>سرویس پرداخت (C)</code></p>
+<p>ناگهان کاربر خطای <strong>Timeout</strong> می‌گیرد! (همان مبحث قبلی خودمان).
+حالا شما به عنوان برنامه‌نویس باید بفهمی مشکل از کجا بوده. آیا سرویس B کُند شده؟ آیا دیتابیسِ سرویس C قفل شده؟ آیا شبکه بین A و B قطع شده؟
+بدون ابزار مناسب، پیدا کردن مقصر مثل حل کردن یک معمای قتل است! باید به سرورهای مختلف وصل شوی و هزاران خط لاگ متنی را بالا و پایین کنی به این امید که سرنخی پیدا کنی.</p>
+<hr>
+<h3 id="opentelemetry-چیست">OpenTelemetry چیست؟<a hidden class="anchor" aria-hidden="true" href="#opentelemetry-چیست">#</a></h3>
+<p>اوپن‌تله‌متری (OpenTelemetry) یک <strong>استاندارد و مجموعه‌ای از ابزارها (SDK)</strong> است که به ما کمک می‌کند بفهمیم &ldquo;درون سیستم ما چه می‌گذرد&rdquo;. به این قابلیت در مهندسی نرم‌افزار <strong>Observability (رصدپذیری)</strong> می‌گویند.</p>
+<p>⚠️ <strong>یک اشتباه بسیار رایج:</strong> خیلی‌ها فکر می‌کنند OTel یک دیتابیس یا داشبورد گرافیکی (مثل Grafana یا Kibana) است. <strong>خیر!</strong>
+OpenTelemetry فقط وظیفه <strong>تولید، جمع‌آوری و ارسال</strong> داده‌ها را بر عهده دارد. اینکه این داده‌ها کجا ذخیره شوند و چطور نمایش داده شوند، به عهده ابزارهای دیگر (مثل Jaeger, Prometheus, Datadog) است. OTel به شما می‌گوید: <em>&ldquo;داده‌ها را استاندارد کن و به هر نرم‌افزاری که دوست داری بفرست.&rdquo;</em></p>
+<hr>
+<h3 id="opentelemetry-دقیقا-چه-چیزی-را-جمعآوری-میکند">OpenTelemetry دقیقاً چه چیزی را جمع‌آوری می‌کند؟<a hidden class="anchor" aria-hidden="true" href="#opentelemetry-دقیقا-چه-چیزی-را-جمعآوری-میکند">#</a></h3>
+<p>OTel بر پایه سه ستون اصلی رصدپذیری (Three Pillars of Observability) بنا شده است:</p>
+<h4 id="۱-traces-ردیابیها---مهمترین-بخش-برای-میکروسرویسها">۱. Traces (ردیابی‌ها - مهم‌ترین بخش برای میکروسرویس‌ها)<a hidden class="anchor" aria-hidden="true" href="#۱-traces-ردیابیها---مهمترین-بخش-برای-میکروسرویسها">#</a></h4>
+<p>تِریس (Trace) مثل کد رهگیریِ بسته‌های پستی است. وقتی درخواست کاربر وارد سیستم می‌شود، OTel یک <strong>Trace ID</strong> یکتا (مثلاً <code>id: 8f92a</code>) به آن اختصاص می‌دهد.
+این ID در هدرهای gRPC قرار می‌گیرد و به تمام سرویس‌ها (A به B به C) پاس داده می‌شود.
+در هر سرویس، یک <strong>Span</strong> (بازه زمانی) ایجاد می‌شود. مثلاً:</p>
+<ul>
+<li><strong>Span 1:</strong> سرویس A درخواست را گرفت (زمان کل: ۵ ثانیه)</li>
+<li><strong>Span 2:</strong> سرویس A به سرویس B درخواست داد (زمان: ۱ ثانیه)</li>
+<li><strong>Span 3:</strong> سرویس A به سرویس C درخواست داد (زمان: ۳.۹ ثانیه) -&gt; <em>آها! فهمیدیم کندی از سرویس C بوده است!</em></li>
+</ul>
+<h4 id="۲-metrics-متریکها--معیارها">۲. Metrics (متریک‌ها / معیارها)<a hidden class="anchor" aria-hidden="true" href="#۲-metrics-متریکها--معیارها">#</a></h4>
+<p>متریک‌ها اعداد و ارقام کلی هستند که وضعیت سلامت سیستم را نشان می‌دهند. (همان P99 که در بحث تایم‌اوت گفتم).
+مثلاً:</p>
+<ul>
+<li>چند درصد پردازنده (CPU) درگیر است؟</li>
+<li>در یک دقیقه گذشته چند خطای تایم‌اوت داشتیم؟</li>
+<li>میانگین زمان پاسخگویی سرویس پرداخت چقدر است؟</li>
+</ul>
+<h4 id="۳-logs-لاگها">۳. Logs (لاگ‌ها)<a hidden class="anchor" aria-hidden="true" href="#۳-logs-لاگها">#</a></h4>
+<p>همان متون ساده‌ای که با <code>print</code> یا <code>logger.info</code> در پایتون چاپ می‌کنید.
+<strong>هنر OTel این است:</strong> لاگ‌ها را به Trace ID متصل می‌کند. یعنی شما می‌گویید &ldquo;لاگ‌های مربوط به درخواست <code>8f92a</code> را در تمام میکروسرویس‌ها به من نشان بده&rdquo;. اینطوری فقط لاگ‌های همان یک کاربر خاص را در کل سیستم می‌بینید!</p>
+<hr>
+<h3 id="معماری-کار-با-opentelemetry-چگونه-است">معماری کار با OpenTelemetry چگونه است؟<a hidden class="anchor" aria-hidden="true" href="#معماری-کار-با-opentelemetry-چگونه-است">#</a></h3>
+<p>روند کار به این شکل است:</p>
+<ol>
+<li><strong>کد شما (مثلا Python + gRPC):</strong> شما کتابخانه OTel را در پایتون نصب می‌کنید.</li>
+<li><strong>Instrument کردن (تجهیز کردن):</strong> OTel به صورت خودکار (Auto-instrumentation) می‌فهمد که شما دارید از gRPC استفاده می‌کنید. بدون اینکه شما هزار خط کد بنویسید، خودش Trace ID ها را می‌سازد و به درخواست‌های gRPC می‌چسباند.</li>
+<li><strong>Collector (جمع‌آوری کننده):</strong> کدهای شما داده‌ها را به یک برنامه جانبی به نام OTel Collector می‌فرستند. این برنامه داده‌ها را فیلتر، تمیز و فشرده می‌کند.</li>
+<li><strong>Backend (مقصد نهایی):</strong> حالا Collector داده‌ها را می‌فرستد به داشبوردهای شرکت شما. مثلا Traceها را به Jaeger می‌فرستد تا شما به صورت گرافیکی (نمودارهای درختی) ببینید هر درخواست چقدر طول کشیده است.</li>
+</ol>
+<hr>
+<h3 id="چرا-otel-برای-شما-در-پایتون-و-grpc-یک-نعمت-است">چرا OTel برای شما (در پایتون و gRPC) یک نعمت است؟<a hidden class="anchor" aria-hidden="true" href="#چرا-otel-برای-شما-در-پایتون-و-grpc-یک-نعمت-است">#</a></h3>
+<p>اگر OTel نبود، شما برای پاس دادن Trace ID بین میکروسرویس‌ها باید در تک تک متدهای gRPC کدهای زیر را دستی می‌نوشتید:</p>
+<ul>
+<li>&ldquo;آی‌دی را از Context بخوان.&rdquo;</li>
+<li>&ldquo;زمان شروع را ثبت کن.&rdquo;</li>
+<li>&ldquo;آی‌دی را در Context درخواستِ جدید قرار بده.&rdquo;</li>
+<li>&ldquo;زمان پایان را ثبت کن.&rdquo;</li>
+<li>&ldquo;اختلاف زمان را حساب کن و بفرست.&rdquo;</li>
+</ul>
+<p>اما در پایتون، با استفاده از قابلیت‌های OTel و <strong>Interceptors</strong> در gRPC، شما فقط با اضافه کردن چند خط کد در زمان اجرای سرور و کلاینت، تمام این اتفاقات را به صورت اتوماتیک رقم می‌زنید (به این کار Auto-Instrumentation می‌گویند).</p>
+<h3 id="خلاصه">خلاصه<a hidden class="anchor" aria-hidden="true" href="#خلاصه">#</a></h3>
+<p>OpenTelemetry یک زبان مشترک است تا کدهای پایتون، گو (Go)، جاوا و&hellip; در سیستم شما بتوانند اطلاعاتِ &ldquo;مدت زمان اجرا&rdquo;، &ldquo;خطاها&rdquo; و &ldquo;آمار سیستم&rdquo; را با یک فرمت استاندارد تولید کنند. به کمک OTel، وقتی دفعه بعد سیستم تایم‌اوت داد، به جای حدس زدن، داشبورد را باز می‌کنی و دقیقاً می‌بینی کدام میکروسرویس و حتی کدام کوئری دیتابیس باعث این تاخیر شده است.</p>
+
+</div>
+
+<div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  در مورد Interceptors بهم توضیح بده
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>رسیدیم به یکی از جذاب‌ترین و کاربردی‌ترین ابزارهای gRPC! در واقع، <strong>Interceptor</strong> (اینتِرسِپتور - به معنی رهگیر یا متوقف‌کننده) همان قطعه گمشده‌ای است که باعث می‌شود OpenTelemetry به صورت جادویی کار کند و نیازی نباشد شما کدهای تکراری بنویسید.</p>
+<p>برای درک Interceptor، بیایید اول مشکلی که حل می‌کند را بررسی کنیم.</p>
+<h3 id="مشکل-تکرار-کدهای-خستهکننده-نقض-قانون-dry">مشکل: تکرار کدهای خسته‌کننده (نقض قانون DRY)<a hidden class="anchor" aria-hidden="true" href="#مشکل-تکرار-کدهای-خستهکننده-نقض-قانون-dry">#</a></h3>
+<p>فرض کن در سرور gRPC خود ۱۰ تا متد (Service) مختلف داری. مدیرت از تو می‌خواهد که:
+۱. قبل از اجرای هر متد، توکن اعتبارسنجی (JWT) کاربر چک شود.
+۲. زمان شروع و پایان هر متد در کنسول لاگ (Log) شود.
+۳. اگر خطایی رخ داد، لاگ شود.</p>
+<p><strong>راه حل جونیورها:</strong> رفتن به داخل تک‌تک این ۱۰ متد و نوشتن کدهای <code>if token_is_valid</code> و <code>start_time = time.time()</code>.
+<strong>نتیجه:</strong> کدهایت به شدت شلوغ می‌شود و اگر فردا یک متد یا شرط جدید اضافه شود، باید همه جا را تغییر دهی!</p>
+<h3 id="راه-حل-interceptor-چیست">راه حل: Interceptor چیست؟<a hidden class="anchor" aria-hidden="true" href="#راه-حل-interceptor-چیست">#</a></h3>
+<p>در دنیای وب (مثل فریم‌ورک‌های Django یا FastAPI) به این مفهوم <strong>Middleware</strong> می‌گویند. در gRPC به آن <strong>Interceptor</strong> می‌گویند.</p>
+<p><strong>مثال دنیای واقعی:</strong> Interceptor مثل <strong>گیت بازرسی فرودگاه</strong> است. شما به جای اینکه درِ ورودی هر هواپیما یک مامور بگذارید که مسافران را بگردد، یک گیت اصلی می‌گذارید. هر درخواستی که می‌خواهد به متدهای شما (هواپیماها) برسد، <strong>باید</strong> اول از این گیت (Interceptor) رد شود.</p>
+<p>Interceptor به شما اجازه می‌دهد کدی را بنویسید که <strong>&ldquo;قبل&rdquo;</strong> و <strong>&ldquo;بعد&rdquo;</strong> از متد اصلی شما اجرا شود، بدون اینکه کد اصلی دست بخورد.</p>
+<hr>
+<h3 id="کاربردهای-اصلی-interceptors">کاربردهای اصلی Interceptors<a hidden class="anchor" aria-hidden="true" href="#کاربردهای-اصلی-interceptors">#</a></h3>
+<ol>
+<li><strong>احراز هویت (Authentication &amp; Authorization):</strong> چک کردن اینکه آیا کلاینت اجازه دسترسی دارد یا نه. اگر نداشت، Interceptor در همان گیت فرودگاه درخواست را ریجکت می‌کند (خطای <code>UNAUTHENTICATED</code> می‌دهد) و اصلاً درخواست به متد شما نمی‌رسد!</li>
+<li><strong>لاگینگ و مانیتورینگ (مثل OpenTelemetry):</strong> زمان ورود درخواست را ثبت می‌کند، متد اجرا می‌شود، زمان خروج را ثبت می‌کند و اختلاف این دو را به عنوان زمان پردازش به داشبورد می‌فرستد.</li>
+<li><strong>مدیریت تایم‌اوت و Retry:</strong> (ارتباط با سوالات قبلی‌ات!) می‌توانی Interceptor ای در سمت کلاینت بنویسی که بگوید: <em>&ldquo;اگر برنامه‌نویس یادش رفت تایم‌اوت بگذارد، به صورت خودکار روی تمام درخواست‌ها تایم‌اوت ۵ ثانیه‌ای اعمال کن.&rdquo;</em></li>
+<li><strong>هندل کردن ارورهای گلوبال:</strong> تبدیل خطاهای دیتابیس به خطاهای استاندارد gRPC قبل از ارسال به کاربر.</li>
+</ol>
+<hr>
+<h3 id="پیادهسازی-interceptor-در-پایتون">پیاده‌سازی Interceptor در پایتون<a hidden class="anchor" aria-hidden="true" href="#پیادهسازی-interceptor-در-پایتون">#</a></h3>
+<p>در gRPC ما دو نوع Interceptor داریم: <strong>سمت سرور</strong> (درخواست‌های ورودی را رهگیری می‌کند) و <strong>سمت کلاینت</strong> (درخواست‌های خروجی را رهگیری می‌کند).</p>
+<p>بیایید یک مثال واقعی از <strong>Interceptor سمت سرور</strong> برای لاگ کردن زمان اجرای متدها بنویسیم:</p>
+<h4 id="۱-نوشتن-کلاس-interceptor">۱. نوشتن کلاس Interceptor<a hidden class="anchor" aria-hidden="true" href="#۱-نوشتن-کلاس-interceptor">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> grpc
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># باید از این کلاس ارث‌بری کنیم</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LoggingInterceptor</span>(grpc<span style="color:#f92672">.</span>ServerInterceptor):
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">intercept_service</span>(self, continuation, handler_call_details):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ----------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># بخش ۱: کارهایی که &#34;قبل&#34; از رسیدن به متد اصلی انجام میدهیم</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ----------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>        method_name <span style="color:#f92672">=</span> handler_call_details<span style="color:#f92672">.</span>method
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;[Interceptor] درخواست دریافت شد برای متد: </span><span style="color:#e6db74">{</span>method_name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        start_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ----------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># بخش ۲: پاس دادن درخواست به مرحله بعد (یا همون متد اصلی شما)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ----------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># کلمه continuation یعنی &#34;ادامه بده&#34;. اینجا متد اصلی شما اجرا میشه</span>
+</span></span><span style="display:flex;"><span>        response_or_iterator <span style="color:#f92672">=</span> continuation(handler_call_details)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ----------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># بخش ۳: کارهایی که &#34;بعد&#34; از اتمام متد اصلی انجام میدهیم</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ----------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>        duration <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> start_time
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;[Interceptor] پردازش متد </span><span style="color:#e6db74">{</span>method_name<span style="color:#e6db74">}</span><span style="color:#e6db74"> در </span><span style="color:#e6db74">{</span>duration<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> ثانیه تمام شد.&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># جواب را برمی‌گردانیم تا به دست کلاینت برسد</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> response_or_iterator
+</span></span></code></pre></div><h4 id="۲-اضافه-کردن-interceptor-به-سرور">۲. اضافه کردن Interceptor به سرور<a hidden class="anchor" aria-hidden="true" href="#۲-اضافه-کردن-interceptor-به-سرور">#</a></h4>
+<p>حالا فقط کافیست وقتی سرور gRPC را استارت می‌کنی، این گیت بازرسی را به آن معرفی کنی:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> concurrent <span style="color:#f92672">import</span> futures
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> grpc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">serve</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># اینترسپتور را نمونه‌سازی می‌کنیم</span>
+</span></span><span style="display:flex;"><span>    my_interceptor <span style="color:#f92672">=</span> LoggingInterceptor()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># موقع ساخت سرور، آن را پاس می‌دهیم</span>
+</span></span><span style="display:flex;"><span>    server <span style="color:#f92672">=</span> grpc<span style="color:#f92672">.</span>server(
+</span></span><span style="display:flex;"><span>        futures<span style="color:#f92672">.</span>ThreadPoolExecutor(max_workers<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>),
+</span></span><span style="display:flex;"><span>        interceptors<span style="color:#f92672">=</span>(my_interceptor,)  <span style="color:#75715e"># &lt;-- جادوی کار اینجاست!</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># بقیه کدهای روتین سرور...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># MyService_pb2_grpc.add_MyServiceServicer_to_server(MyService(), server)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># server.add_insecure_port(&#39;[::]:50051&#39;)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># server.start()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># server.wait_for_termination()</span>
+</span></span></code></pre></div><hr>
+<h3 id="ارتباط-interceptor-با-opentelemetry">ارتباط Interceptor با OpenTelemetry<a hidden class="anchor" aria-hidden="true" href="#ارتباط-interceptor-با-opentelemetry">#</a></h3>
+<p>حالا که فهمیدی Interceptor چیست، درک کار OpenTelemetry برایت مثل آب خوردن می‌شود!</p>
+<p>وقتی شما کتابخانه OTel را در پایتون نصب می‌کنید، در واقع نیازی نیست خودتان دستی کدی بنویسید. تیم سازنده OTel قبلاً یک کلاس Interceptor (مثل <code>OpenTelemetryClientInterceptor</code> و <code>OpenTelemetryServerInterceptor</code>) نوشته‌اند.</p>
+<p>این Interceptor در پس‌زمینه کارهای زیر را می‌کند:</p>
+<ul>
+<li><strong>در سمت کلاینت:</strong> قبل از ارسال درخواست، <code>Trace ID</code> را می‌سازد و به Metadata (معادل Header در HTTP) اضافه می‌کند.</li>
+<li><strong>در سمت سرور:</strong> Metadata را می‌خواند، <code>Trace ID</code> را استخراج می‌کند (تا بفهمد این درخواست ادامه کدام درخواست قبلی است)، زمان شروع و پایان را ثبت می‌کند و به صورت خودکار برای سیستم جمع‌آوری داده می‌فرستد.</li>
+</ul>
+<h3 id="یک-نکته-حرفهای-pro-tip-برای-جونیورها">یک نکته حرفه‌ای (Pro Tip) برای جونیورها:<a hidden class="anchor" aria-hidden="true" href="#یک-نکته-حرفهای-pro-tip-برای-جونیورها">#</a></h3>
+<p>در gRPC، متدها می‌توانند Unary (یک درخواست، یک جواب) یا Streaming (جریان داده) باشند. در پایتون، نوشتن Interceptor برای متدهای Streaming کمی پیچیده‌تر است. پکیجی به نام <strong><code>grpc-interceptor</code></strong> در پایتون وجود دارد که توسط کامیونیتی ساخته شده و نوشتن Interceptorها (مخصوصا برای مدیریت ارورها) را به شدت تمیزتر و راحت‌تر می‌کند. پیشنهاد می‌کنم در پروژه‌های واقعی شرکتتان، نگاهی به این پکیج هم بیندازی.</p>
+
+</div>
+
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer><section class="comments giscus" dir="auto">
+  <h2 class="comments-title">نظرات</h2>
+  <script
+    src="https://giscus.app/client.js"
+    data-repo="mmsamiei/out-of-distribution"
+    data-repo-id="R_kgDOQGhj_Q"
+    data-category="General"
+    data-category-id="DIC_kwDOQGhj_c4DAUlJ"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+<noscript>
+  <p>برای گذاشتن نظر، JavaScript را فعال کنید.</p>
+</noscript>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Out of Distribution</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
