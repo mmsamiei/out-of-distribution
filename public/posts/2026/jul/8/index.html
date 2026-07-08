@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>از Error و Exception تا معماری نرم‌افزار در پایتون | Out of Distribution</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+  مهدی:
+  سلام. من یک مهندس نرم افزار جونیور هستم و دوست دارم در مفاهیم عمیق بشم.
+میخواستم راجع به مفهوم error و exception و raise کردن و stack trace و اینها ازت بپرسم.
+اگر هم بعدش توضیح بدی اینها چطور در پایتون هندل می‌شن ممنون می‌شم.
+با رویکرد تاریخی توضیح بده بهم
+
+
+
+  جمینای:
+  سلام همکار عزیز! خیلی خوشحالم که به عنوان یک مهندس جونیور، به جای حفظ کردن سینتکس، دنبال درک عمیق و چراییِ مفاهیم هستی. این دقیقا همون چیزیه که تو را تبدیل به یک مهندس نرم‌افزار سنیور و معمار سیستم می‌کند.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/2026/jul/8/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.dc4d5738b9970473e97d6e804f2dc5f949e9c5d0db36def849b21255230e49c8.css" integrity="sha256-3E1XOLmXBHPpfW6ATy3F&#43;UnpxdDbNt74SbISVSMOScg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/2026/jul/8/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font-persian: "Vazirmatn", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --dialogue-user-accent: #3b82f6;
+    --dialogue-assistant-accent: #8b5cf6;
+    --dialogue-user-bg: color-mix(in srgb, var(--entry) 88%, var(--dialogue-user-accent));
+    --dialogue-assistant-bg: color-mix(in srgb, var(--entry) 92%, var(--dialogue-assistant-accent));
+  }
+
+  .dark {
+    --dialogue-user-accent: #60a5fa;
+    --dialogue-assistant-accent: #a78bfa;
+    --dialogue-user-bg: color-mix(in srgb, var(--entry) 80%, var(--dialogue-user-accent));
+    --dialogue-assistant-bg: color-mix(in srgb, var(--entry) 85%, var(--dialogue-assistant-accent));
+  }
+</style>
+
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Out of Distribution (Alt + H)">Out of Distribution</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/faq/" title="FAQ">
+                    <span>FAQ</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single" dir="rtl">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      از Error و Exception تا معماری نرم‌افزار در پایتون
+    </h1>
+    <div class="post-meta"><span title='2026-07-08 19:36:00 +0330 +0330'>July 8, 2026</span>
+
+</div>
+  </header> 
+  <div class="post-content"><div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  سلام. من یک مهندس نرم افزار جونیور هستم و دوست دارم در مفاهیم عمیق بشم.
+میخواستم راجع به مفهوم error و exception و raise کردن و stack trace و اینها ازت بپرسم.
+اگر هم بعدش توضیح بدی اینها چطور در پایتون هندل می‌شن ممنون می‌شم.
+با رویکرد تاریخی توضیح بده بهم
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>سلام همکار عزیز! خیلی خوشحالم که به عنوان یک مهندس جونیور، به جای حفظ کردن سینتکس، دنبال درک عمیق و چراییِ مفاهیم هستی. این دقیقا همون چیزیه که تو را تبدیل به یک مهندس نرم‌افزار سنیور و معمار سیستم می‌کند.</p>
+<p>برای درک مفاهیم Error، Exception، Raise و Stack Trace، بهترین راه این است که سوار ماشین زمان شویم و ببینیم اصلا چرا این مفاهیم به وجود آمدند.</p>
+<hr>
+<h3 id="پرده-اول-دوران-تاریک-مدیریت-خطا-در-زبانهایی-مثل-c">پرده اول: دوران تاریک (مدیریت خطا در زبان‌هایی مثل C)<a hidden class="anchor" aria-hidden="true" href="#پرده-اول-دوران-تاریک-مدیریت-خطا-در-زبانهایی-مثل-c">#</a></h3>
+<p>در گذشته‌های دور (و البته هنوز هم در زبان‌هایی مثل C یا Go)، چیزی به اسم Exception وجود نداشت. وقتی تابعی را صدا می‌زدی، دو حالت داشت: یا کارش را درست انجام می‌داد، یا به مشکل می‌خورد.
+برنامه‌نویس‌ها برای فهمیدن مشکل، از <strong>Return Codes (کدهای بازگشتی)</strong> استفاده می‌کردند. مثلاً تابع به جای داده‌ی اصلی، عدد <code>-1</code> یا <code>NULL</code> برمی‌گرداند تا بگوید «خطایی رخ داد». در کنار آن، یک متغیر سراسری (مثل <code>errno</code> در لینوکس/C) وجود داشت که کد خطا در آن ذخیره می‌شد.</p>
+<p><strong>مشکلات این روش چه بود؟</strong></p>
+<ol>
+<li><strong>کد کثیف می‌شد:</strong> لاجیک (منطق) اصلی برنامه در میان انبوهی از <code>if (result == -1)</code> گم می‌شد.</li>
+<li><strong>فراموشی برنامه‌نویس:</strong> اگر برنامه‌نویس یادش می‌رفت خروجی تابع را چک کند، برنامه با یک دیتای غلط به کارش ادامه می‌داد و چند صد خط جلوتر به شکل فاجعه‌باری کرش می‌کرد!</li>
+<li><strong>پاس‌کاری خطا:</strong> اگر تابع A تابع B را صدا می‌زد و B تابع C را&hellip; اگر C خطا می‌داد، باید خطا دستی به B و بعد به A پاس داده می‌شد. این کار به شدت خسته‌کننده بود.</li>
+</ol>
+<hr>
+<h3 id="پرده-دوم-تولد-exceptionها-یک-مسیر-ارتباطی-اورژانسی">پرده دوم: تولد Exceptionها (یک مسیر ارتباطیِ اورژانسی)<a hidden class="anchor" aria-hidden="true" href="#پرده-دوم-تولد-exceptionها-یک-مسیر-ارتباطی-اورژانسی">#</a></h3>
+<p>برای حل مشکلات بالا، طراحان زبان‌های برنامه‌نویسی (از زمان LISP و بعدتر C++ و Java) مفهومی به نام <strong>Exception (استثنا)</strong> را اختراع کردند.</p>
+<p>ایده این بود: <strong>بیایید مسیر دیتای سالم را از مسیر خطاها جدا کنیم.</strong></p>
+<ul>
+<li><strong>مفهوم Error (خطا):</strong> به طور کلی به هر چیزی که باعث شود برنامه نتواند به مسیر عادی خود ادامه دهد می‌گویند. Errorها معمولا مشکلات بنیادی‌تری هستند (مثل کمبود حافظه <code>OutOfMemoryError</code> یا خطای سینتکس <code>SyntaxError</code>) که اغلب نمی‌توان یا نباید برنامه را بعد از آن‌ها نجات داد.</li>
+<li><strong>مفهوم Exception (استثنا):</strong> یک رویداد ناخواسته در زمان اجرای برنامه (Runtime) است که روال عادی را به هم می‌زند، اما <strong>قابل پیش‌بینی و قابل مدیریت (Handle)</strong> است. (مثل پیدا نشدن یک فایل، یا قطع شدن اینترنت).</li>
+</ul>
+<p><em>نکته: در بسیاری از زبان‌ها مثل پایتون، مرز این دو خیلی باریک است و تقریبا همه خطاها به شکل یک کلاس Exception پیاده‌سازی شده‌اند.</em></p>
+<h4 id="raise--throw-به-صدا-درآوردن-آژیر-خطر">Raise / Throw (به صدا درآوردن آژیر خطر)<a hidden class="anchor" aria-hidden="true" href="#raise--throw-به-صدا-درآوردن-آژیر-خطر">#</a></h4>
+<p>کلمه <code>raise</code> (در پایتون) یا <code>throw</code> (در زبان‌های C-like) دقیقا یعنی به صدا درآوردن آژیر. وقتی یک تابع به وضعیتی می‌رسد که نمی‌تواند کارش را انجام دهد، یک شیء (Object) از نوع Exception می‌سازد و آن را Raise می‌کند.
+به محض اینکه Exception پرتاب (Raise) می‌شود، <strong>اجرای عادی برنامه در آن نقطه متوقف می‌شود</strong> و برنامه وارد حالت اورژانسی می‌شود تا کسی پیدا شود و این خطا را مدیریت (Handle) کند.</p>
+<h4 id="call-stack-و-stack-trace-ردپای-جنایت">Call Stack و Stack Trace (ردپای جنایت)<a hidden class="anchor" aria-hidden="true" href="#call-stack-و-stack-trace-ردپای-جنایت">#</a></h4>
+<p>برای درک این قسمت، باید <strong>Stack (پشته)</strong> را بشناسی. وقتی تابع A تابع B را صدا می‌زند، اطلاعات تابع A در یک پشته (مثل پشته‌ای از بشقاب‌ها) ذخیره می‌شود تا وقتی کار B تمام شد، برنامه بداند باید به کجا برگردد. اگر B هم C را صدا بزند، بشقاب C روی بشقاب B قرار می‌گیرد.</p>
+<p>حالا فرض کن در تابع C یک Exception رخ دهد (Raise شود):</p>
+<ol>
+<li>زبان برنامه‌نویسی می‌گوید: &ldquo;خب، در تابع C آیا کدی برای مدیریت این خطا (مثلا <code>try/except</code>) داریم؟&rdquo; اگر نه، بشقاب C را می‌شکند و می‌اندازد دور!</li>
+<li>حالا به تابع B برمی‌گردد: &ldquo;آیا در B کسی منتظر گرفتن این خطا هست؟&rdquo; اگر نه، بشقاب B هم شکسته می‌شود.</li>
+<li>این عقب‌گرد تا تابع اصلی (مثلا <code>main</code>) ادامه پیدا می‌کند.</li>
+<li>اگر هیچ‌کس در کل این پشته (Stack) خطا را نگیرد (Catch نکند)، برنامه کرش می‌کند (میمیرد).</li>
+</ol>
+<p>در لحظه مرگ، زبان برنامه‌نویسی یک وصیت‌نامه چاپ می‌کند که به آن <strong>Stack Trace (یا Traceback)</strong> می‌گویند. استک تریس لیستی از تمام آن بشقاب‌هاست. به تو می‌گوید: &ldquo;خطا از خط ۵۰ در تابع C شروع شد، که توسط خط ۲۰ در تابع B صدا زده شده بود، که توسط خط ۵ در تابع A صدا زده شده بود.&rdquo; این بهترین دوستِ یک برنامه‌نویس برای دیباگ کردن است.</p>
+<hr>
+<h3 id="پرده-سوم-پایتون-و-فلسفه-eafp">پرده سوم: پایتون و فلسفه EAFP<a hidden class="anchor" aria-hidden="true" href="#پرده-سوم-پایتون-و-فلسفه-eafp">#</a></h3>
+<p>حالا که مفاهیم را شناختی، بیاییم سراغ پایتون. پایتون رویکرد بسیار جالبی به Exceptionها دارد.</p>
+<p>در زبان‌های قدیمی‌تر، می‌گفتند: <strong>LBYL</strong> (Look Before You Leap - قبل از پریدن نگاه کن). یعنی اول با <code>if</code> چک کن فایل هست، دسترسی داری، بعد بازش کن.
+پایتون می‌گوید: <strong>EAFP</strong> (Easier to Ask for Forgiveness than Permission - عذرخواهی کردن راحت‌تر از اجازه گرفتن است!). پایتون می‌گوید تو کارِت را بکن (مثلا فایل را باز کن)، اگر فایلی نبود، پایتون یک Exception پرتاب می‌کند و تو آنجا معذرت‌خواهی (هندل) می‌کنی. این باعث می‌شود کد بسیار تمیزتر و سریع‌تر (در حالت عادی) اجرا شود.</p>
+<p>در پایتون، Exceptionها به قدری عادی هستند که حتی برای کارهای روزمره استفاده می‌شوند. مثلا وقتی یک حلقه <code>for</code> روی یک لیست می‌زنی، وقتی لیست تمام می‌شود پایتون یک خطای <code>StopIteration</code> ریز (Raise) می‌کند و خود حلقه <code>for</code> آن را هندل می‌کند تا حلقه تمام شود! (این یعنی در پایتون، اکسپشن‌ها فقط برای فاجعه‌ها نیستند، برای کنترل جریان برنامه هم هستند).</p>
+<h4 id="سینتکس-هندل-کردن-در-پایتون">سینتکس هندل کردن در پایتون:<a hidden class="anchor" aria-hidden="true" href="#سینتکس-هندل-کردن-در-پایتون">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">divide</span>(a, b):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> b <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># اینجا ما آژیر خطر را به صدا در می‌آوریم</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;بخش بر صفر امکان‌پذیر نیست دوست من!&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">/</span> b
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># کد خطرناک اینجا قرار می‌گیرد</span>
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> divide(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;نتیجه:&#34;</span>, result)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ValueError</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># اگر در بلوک بالا ValueError پرتاب شد، اجرای بلوک بالا متوقف شده و به اینجا می‌پرد</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;خطایی رخ داد: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># اینجا می‌توانیم لاگ بیندازیم، یا یک مقدار پیش‌فرض بدهیم</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># این یک تور نجات کلی است برای هر خطای ناشناخته‌ی دیگر</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;یک خطای پیش‌بینی نشده:&#34;</span>, e)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># این بلوک فقط و فقط زمانی اجرا می‌شود که هیچ خطایی در try رخ نداده باشد</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># (یک ویژگی خیلی جذاب در پایتون)</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;عملیات با موفقیت انجام شد!&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">finally</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># چه خطا رخ بدهد چه ندهد، این بلوک در آخر حتما اجرا می‌شود.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># بسیار مناسب برای بستن فایل‌ها، دیتابیس‌ها و آزادسازی منابع</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;من در هر صورت اجرا می‌شوم!&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>main()
+</span></span></code></pre></div><h4 id="یک-نگاه-زیر-کاپوت-deep-dive">یک نگاه زیر کاپوت (Deep Dive)<a hidden class="anchor" aria-hidden="true" href="#یک-نگاه-زیر-کاپوت-deep-dive">#</a></h4>
+<p>در پایتون، تمام Exceptionها کلاس‌هایی هستند که از کلاس پایه‌ی <code>BaseException</code> (و معمولاً <code>Exception</code>) ارث‌بری کرده‌اند. وقتی تو <code>except ValueError</code> می‌نویسی، پایتون از طریق مفهوم چندریختی (Polymorphism) و ارث‌بری چک می‌کند که آیا خطای پرتاب شده، از جنس <code>ValueError</code> یا فرزندان آن هست یا نه.</p>
+<p>اگر روزی خواستی در پایتون Stack Trace را بدون کرش کردن برنامه ببینی یا لاگ کنی، می‌توانی از ماژول <code>traceback</code> استفاده کنی:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> traceback
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ZeroDivisionError</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;خطا اتفاق افتاد. این هم ردپای آن بدون کرش کردن برنامه:&#34;</span>)
+</span></span><span style="display:flex;"><span>    traceback<span style="color:#f92672">.</span>print_exc() <span style="color:#75715e"># چاپ استک تریس در کنسول</span>
+</span></span></code></pre></div><h3 id="خلاصه">خلاصه<a hidden class="anchor" aria-hidden="true" href="#خلاصه">#</a></h3>
+<ul>
+<li><strong>Error/Exception:</strong> شیئی که نشان‌دهنده یک مشکل یا تغییر مسیر ناگهانی است (جدا کردن مسیر دیتای خوشحال از مسیر غمگین!).</li>
+<li><strong>Raise:</strong> ساختن این شیء و پرتاب کردن آن به موتور زبان برنامه‌نویسی (متوقف کردن روند عادی).</li>
+<li><strong>Stack Trace:</strong> مسیری که توابع طی کرده‌اند تا به نقطه بروز خطا رسیده‌اند. (نقشه گنج برای پیدا کردن باگ).</li>
+<li><strong>پایتون:</strong> عاشق Exceptionهاست و از آن‌ها حتی برای کنترل جریان (مثل حلقه‌ها) استفاده می‌کند.</li>
+</ul>
+<p>امیدوارم این سفر تاریخی و مفهومی برات جذاب بوده باشه! اگر درباره هر بخشی از این مکانیزم (مثل نحوه نوشتن Custom Exceptions یا فرق Exception با BaseException) سوالی داشتی، حتما بپرس.</p>
+
+</div>
+
+<div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  عمیق‌ترم کن
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>عالی! کمربندها رو ببند چون قرار است از سطح سینتکس و مفاهیم اولیه عبور کنیم و بریم زیر کاپوت پایتون (CPython) و بعد هم به معماری نرم‌افزار نگاهی بیندازیم. این دقیقا همون تفاوت بین یک برنامه‌نویس معمولی و یک مهندس نرم‌افزار است.</p>
+<p>این سفر رو در ۵ لایه عمیق‌ می‌شیم:</p>
+<hr>
+<h3 id="لایه-اول-زیر-کاپوت-cpython-اکسپشنها-در-سطح-c-چگونه-کار-میکنند">لایه اول: زیر کاپوت CPython (اکسپشن‌ها در سطح C چگونه کار می‌کنند؟)<a hidden class="anchor" aria-hidden="true" href="#لایه-اول-زیر-کاپوت-cpython-اکسپشنها-در-سطح-c-چگونه-کار-میکنند">#</a></h3>
+<p>وقتی در پایتون یک Exception رخ می‌دهد، واقعاً در موتور پایتون (که با زبان C نوشته شده) چه اتفاقی می‌افتد؟</p>
+<p>در پایتون، اجرای کدها بر اساس مفهومی به نام <strong>Frame Object</strong> (قاب) انجام می‌شود. هر بار که تابعی صدا زده می‌شود، یک فریم جدید ساخته می‌شود که متغیرهای محلی و خط فعلی کد (Instruction Pointer) را نگه می‌دارد.
+همچنین مفهومی داریم به نام <strong>Thread State</strong> (وضعیت ترد).</p>
+<p>وقتی تو می‌نویسی <code>raise ValueError</code>:</p>
+<ol>
+<li>پایتون یک شیء از کلاس <code>ValueError</code> در حافظه می‌سازد.</li>
+<li>در سطح زبان C، پایتون ۳ تا متغیر در Thread State فعلی تنظیم می‌کند:
+<ul>
+<li><code>exc_type</code> (نوع خطا: ValueError)</li>
+<li><code>exc_value</code> (پیام خطا)</li>
+<li><code>exc_traceback</code> (ردپای خطا)</li>
+</ul>
+</li>
+<li>سپس موتور پایتون اجرای کدهای عادی (Bytecode) را <strong>متوقف</strong> می‌کند و شروع می‌کند به گشتن در فریم فعلی. می‌پرسد: &ldquo;آیا در این فریم جدولی برای هندل کردن (try/except) داریم؟&rdquo;</li>
+<li>اگر نداشت، این فریم را از بین می‌برد (Pop می‌کند) و به فریم قبلی برمی‌گردد. در هر بازگشت، یک خط به شیء <code>traceback</code> اضافه می‌کند.</li>
+</ol>
+<p><em>(نکته خفن: در پایتون‌های قبل از 3.11، بلوک <code>try</code> هزینه (Overhead) داشت. یعنی پایتون هر بار به <code>try</code> می‌رسید، باید اطلاعاتی را ذخیره می‌کرد تا اگر خطا شد بداند چه کند. اما از پایتون 3.11 به بعد مفهومی به نام <strong>Zero-cost Exceptions</strong> معرفی شد. یعنی <code>try</code> دیگر هیچ هزینه‌ای در زمان اجرا ندارد! پایتون یک جدول نامرئی در پس‌زمینه می‌سازد و فقط اگر خطا رخ داد به آن جدول نگاه می‌کند).</em></p>
+<hr>
+<h3 id="لایه-دوم-تلهی-baseexception-چرا-except-خالی-گناه-کبیره-است">لایه دوم: تله‌ی <code>BaseException</code> (چرا except: خالی گناه کبیره است؟)<a hidden class="anchor" aria-hidden="true" href="#لایه-دوم-تلهی-baseexception-چرا-except-خالی-گناه-کبیره-است">#</a></h3>
+<p>به عنوان یک جونیور شاید وسوسه شوی بنویسی:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>    do_something()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span> <span style="color:#75715e"># یا فقط پرینت کردن</span>
+</span></span></code></pre></div><p>این کار در معماری سیستم فاجعه است. چرا؟ باید درخت وراثت (Inheritance Tree) خطاها در پایتون را بشناسی:</p>
+<p>در رأس همه خطاها <code>BaseException</code> قرار دارد. دو شاخه مهم از این رأس منشعب می‌شود:</p>
+<ol>
+<li><strong><code>Exception</code></strong>: تمام خطاهای منطقی برنامه (مثل <code>ValueError</code>, <code>KeyError</code>, <code>IndexError</code>) فرزندِ این کلاس هستند.</li>
+<li><strong>خطاهای سیستمی</strong>: مثل <code>SystemExit</code> (وقتی می‌گویی <code>sys.exit()</code>) و <code>KeyboardInterrupt</code> (وقتی کاربر <code>Ctrl+C</code> می‌زند تا برنامه را ببندد). اینها فرزند <code>BaseException</code> هستند، نه <code>Exception</code>.</li>
+</ol>
+<p>وقتی تو <code>except:</code> (یا <code>except BaseException:</code>) می‌نویسی، داری خطای <code>Ctrl+C</code> را هم شکار می‌کنی! یعنی کاربر هرچقدر دکمه خروج را می‌زند، برنامه تو بسته نمی‌شود!
+<strong>قانون سنیورها:</strong> همیشه خطاهای خاص را بگیر. اگر مجبور شدی کلی بگیری، حتما بنویس <code>except Exception as e:</code> تا اجازه بدهی خطاهای سیستمی از تور تو رد شوند و برنامه بتواند با آرامش خاموش شود.</p>
+<hr>
+<h3 id="لایه-سوم-زنجیره-خطاها-exception-chaining---شرلوک-هلمز-درون">لایه سوم: زنجیره خطاها (Exception Chaining) - شرلوک هلمز درون!<a hidden class="anchor" aria-hidden="true" href="#لایه-سوم-زنجیره-خطاها-exception-chaining---شرلوک-هلمز-درون">#</a></h3>
+<p>فرض کن یک معماری چند لایه داری. لایه دیتابیس خطا می‌دهد (<code>ConnectionError</code>). تو در لایه بیزینس می‌خواهی این خطا را بگیری و به کاربر یک خطای معنادارتر (<code>UserRegistrationError</code>) نشان دهی.</p>
+<p>اگر این کار را اشتباه انجام دهی، ردپای اصلی (دیتابیس) گم می‌شود و ساعت‌ها درگیر دیباگ می‌شوی.
+پایتون مفهومی دارد به نام <strong>زنجیره خطاها</strong> (<code>raise ... from ...</code>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">register_user</span>(user_data):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        save_to_database(user_data)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> DatabaseConnectionError <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># اینجا ما خطای اصلی را به خطای جدید زنجیر می‌کنیم</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> UserRegistrationError(<span style="color:#e6db74">&#34;ثبت نام کاربر با مشکل مواجه شد&#34;</span>) <span style="color:#f92672">from</span> e
+</span></span></code></pre></div><p><strong>زیر کاپوت چه شد؟</strong>
+پایتون یک Attribute به نام <code>__cause__</code> در خطای <code>UserRegistrationError</code> می‌سازد و شیء خطای دیتابیس را داخل آن می‌گذارد. وقتی Stack Trace چاپ می‌شود، می‌نویسد:
+<em>&ldquo;The above exception was the direct cause of the following exception&hellip;&rdquo;</em>
+این یعنی تو هم خطای لایه بیزینس را داری، هم خطای ریشه‌ایِ دیتابیس را!</p>
+<p><em>(یک متغیر دیگر هم داریم به نام <code>__context__</code> که وقتی رخ می‌دهد که در حال هندل کردن یک خطا در بلوک except هستی و ناگهان همانجا یک خطای جدید رخ می‌دهد! پایتون هر دو را نگه می‌دارد).</em></p>
+<hr>
+<h3 id="لایه-چهارم-معماری-exceptionها-در-یک-پروژه-واقعی-domain-exceptions">لایه چهارم: معماری Exceptionها در یک پروژه واقعی (Domain Exceptions)<a hidden class="anchor" aria-hidden="true" href="#لایه-چهارم-معماری-exceptionها-در-یک-پروژه-واقعی-domain-exceptions">#</a></h3>
+<p>در پروژه‌های بزرگ (Enterprise)، ما از خطاهای پیش‌فرض پایتون برای لاجیک بیزینس استفاده نمی‌کنیم. ما <strong>سلسله مراتب خطاهای خودمان (Custom Exception Hierarchy)</strong> را می‌سازیم.</p>
+<p>فرض کن داری یک فروشگاه می‌نویسی. معماری درست این است:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ShopBaseError</span>(<span style="color:#a6e22e">Exception</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;تمام خطاهای اپلیکیشن ما از این کلاس ارث می‌برند&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PaymentError</span>(ShopBaseError):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InsufficientFundsError</span>(PaymentError):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, user_id, amount_needed):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>user_id <span style="color:#f92672">=</span> user_id
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>message <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;موجودی کاربر </span><span style="color:#e6db74">{</span>user_id<span style="color:#e6db74">}</span><span style="color:#e6db74"> برای مبلغ </span><span style="color:#e6db74">{</span>amount_needed<span style="color:#e6db74">}</span><span style="color:#e6db74"> کافی نیست&#34;</span>
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(self<span style="color:#f92672">.</span>message)
+</span></span></code></pre></div><p><strong>مزیت این کار در معماری چیست؟</strong>
+در بالاترین لایه‌ی برنامه‌ات (مثلا در فریم‌ورک FastAPI یا Django که درخواست‌های HTTP را جواب می‌دهد)، تو یک Global Exception Handler می‌نویسی.
+آنجا فقط می‌گویی: &ldquo;اگر خطایی از جنس <code>ShopBaseError</code> پرتاب شد، کد وضعیت HTTP را بگذار <code>400 Bad Request</code> و پیغامش را به کاربر نشان بده. اما اگر خطایی از جنس <code>Exception</code> (خطاهای هندل نشده مثل باگ‌های کدی) بود، کد را بگذار <code>500 Internal Server Error</code> و پیغام را به کاربر نشان نده (چون ممکن است اطلاعات امنیتی دیتابیس لو برود)، بلکه در Sentry یا لاگ فایل ذخیره کن.&rdquo;</p>
+<p>این یعنی تفکیک کاملِ <strong>&ldquo;خطاهای بیزینسی&rdquo;</strong> از <strong>&ldquo;باگ‌های سیستمی&rdquo;</strong>.</p>
+<hr>
+<h3 id="لایه-پنجم-لبهی-تکنولوژی-exception-groups-در-پایتون-311-و-کدهای-asynchronous">لایه پنجم: لبه‌ی تکنولوژی (Exception Groups در پایتون 3.11 و کدهای Asynchronous)<a hidden class="anchor" aria-hidden="true" href="#لایه-پنجم-لبهی-تکنولوژی-exception-groups-در-پایتون-311-و-کدهای-asynchronous">#</a></h3>
+<p>وقتی وارد دنیای Async (برنامه‌نویسی همزمانی با <code>asyncio</code>) می‌شوی، یک چالش بزرگ پیش می‌آید.
+فرض کن ۵ تا درخواست شبکه (Task) را همزمان اجرا کرده‌ای. ۳ تا از آن‌ها موفق می‌شوند و ۲ تای آن‌ها با خطاهای <em>مختلف</em> (یکی تایم‌اوت، یکی قطعی اینترنت) Fail می‌شوند.</p>
+<p>در حالت عادی تو فقط می‌توانی یک Exception را Raise کنی. پس تکلیف آن یکی خطای دیگر چه می‌شود؟
+پایتون 3.11 ساختار بسیار جذابی به نام <strong><code>ExceptionGroup</code></strong> و سینتکس جدید <strong><code>except*</code></strong> (ستاره‌دار) را معرفی کرد.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># فرض کن این تابع چندین کار همزمان می‌کند و چند خطا برمی‌گرداند</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> ExceptionGroup(<span style="color:#e6db74">&#34;چندین خطا رخ داد&#34;</span>, [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;ورودی اشتباه&#34;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">TypeError</span>(<span style="color:#e6db74">&#34;نوع داده غلط&#34;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;یک ورودی اشتباه دیگر&#34;</span>)
+</span></span><span style="display:flex;"><span>    ])
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">ValueError</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;من فقط تمام ValueError ها را از داخل گروه بیرون می‌کشم و هندل می‌کنم: </span><span style="color:#e6db74">{</span>e<span style="color:#f92672">.</span>exceptions<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">TypeError</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;من تایپ‌ارورها را هندل می‌کنم&#34;</span>)
+</span></span></code></pre></div><p>این ویژگی معماری سیستم‌های توزیع‌شده و همزمان (Concurrent) در پایتون را کاملا متحول کرده است.</p>
+<h3 id="جمعبندی-سطح-سنیور">جمع‌بندی سطح سنیور:<a hidden class="anchor" aria-hidden="true" href="#جمعبندی-سطح-سنیور">#</a></h3>
+<ul>
+<li>اکسپشن‌ها ساختارهای داده‌ای (C Structs) در فریم‌های حافظه هستند.</li>
+<li>همیشه بین <code>BaseException</code> و <code>Exception</code> تفاوت قائل شو.</li>
+<li>با <code>raise ... from</code> لاگ‌های سیستم را برای روزهای بحرانی تمیز نگه دار.</li>
+<li>در پروژه‌های بزرگ، درختی از خطاهای مخصوص بیزینس (Domain) خودت بساز تا کنترل API در دستت باشد.</li>
+<li>نگران پرفورمنس <code>try/except</code> در پایتون‌های جدید نباش (Zero-cost).</li>
+</ul>
+<p>حالا با این دیدگاه، وقتی به کد سورس لایبرری‌های معروفی مثل Requests یا Django نگاه کنی، دقیقا می‌فهمی چرا اینقدر تمیز Exceptionها را دسته‌بندی کرده‌اند. با کدام بخش از این مفاهیم دوست داری در پروژه‌هایت بازی کنی؟</p>
+
+</div>
+
+<div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  وسیع‌ترم کن
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>بسیار عالی! وقتی می‌گویی «وسیع‌ترم کن»، یعنی از دنیای یک زبان برنامه‌نویسی (پایتون) و یک پردازشگر (CPU) خارج می‌شویم و از نمای هلیکوپتری (Bird&rsquo;s-eye view) به کل دنیای مهندسی نرم‌افزار، معماری سیستم‌های توزیع‌شده، پارادایم‌های مختلف و رویکرد دیگر زبان‌ها نگاه می‌کنیم.</p>
+<p>اینجا جایی است که ذهن یک مهندس طراح (Architect) شکل می‌گیرد. در این وسعت، به مدیریت خطا در ۴ بُعد جدید نگاه می‌کنیم:</p>
+<hr>
+<h3 id="بعد-اول-جنگ-پارادایمها-آیا-exceptionها-واقعا-خوب-هستند">بُعد اول: جنگ پارادایم‌ها (آیا Exceptionها واقعاً خوب هستند؟)<a hidden class="anchor" aria-hidden="true" href="#بعد-اول-جنگ-پارادایمها-آیا-exceptionها-واقعا-خوب-هستند">#</a></h3>
+<p>در پایتون، جاوا و C#، ما عاشق Exceptionها هستیم. اما اگر سرت را بچرخانی و به زبان‌های مدرن‌تر (مثل Go و Rust) یا زبان‌های تابعی (Functional) نگاه کنی، می‌بینی که آن‌ها Exception را <strong>طرد کرده‌اند!</strong> چرا؟</p>
+<p>مهندسان در این زبان‌ها معتقدند Exceptionها شبیه دستورات نفرین‌شده‌ی <code>GOTO</code> در گذشته هستند. وقتی تو تابعی را صدا می‌زنی و آن تابع یک Exception پرتاب می‌کند، جریان برنامه به طور نامرئی به یک جای دیگر (بلوک <code>except</code>) می‌پرد. این باعث می‌شود خواندن و پیش‌بینی جریان کد سخت شود.</p>
+<ul>
+<li>
+<p><strong>رویکرد زبان Go (بازگشت صریح):</strong>
+در گو چیزی به اسم <code>try/catch</code> نداریم. توابع همیشه دو مقدار برمی‌گردانند: نتیجه و ارور.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">DoSomething</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// برنامه‌نویس مجبور است همینجا خطا را هندل کند</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>این کار کد را طولانی می‌کند، اما به شدت خوانا و قابل پیش‌بینی است. هیچ پرش مخفیانه‌ای در کار نیست.</p>
+</li>
+<li>
+<p><strong>رویکرد زبان Rust (مفهوم Monads و Result Type):</strong>
+راست از برنامه‌نویسی تابعی الهام گرفته است. در این زبان خروجی یک تابع، یک جعبه (Enum) به نام <code>Result</code> است. این جعبه یا حاوی داده موفق (<code>Ok</code>) است یا حاوی خطا (<code>Err</code>). کامپایلر به تو اجازه نمی‌دهد داده را استفاده کنی مگر اینکه اول جعبه را باز کنی و حالت خطا را چک کنی! این یعنی خطاهای زمان اجرا (Runtime) تقریباً به صفر می‌رسند.</p>
+</li>
+</ul>
+<p><strong>دیدگاه وسیع:</strong> به عنوان مهندس نرم‌افزار، باید بدانی که مدیریت خطا بر اساس Exception تنها یکی از راه‌هاست (Exception-based Control Flow) و راه دیگر، مدیریت خطا به عنوان یک داده‌ی معمولی است (Error as a Value).</p>
+<hr>
+<h3 id="بعد-دوم-مرزهای-شبکه-مدیریت-خطا-در-میکروسرویسها">بُعد دوم: مرزهای شبکه (مدیریت خطا در میکروسرویس‌ها)<a hidden class="anchor" aria-hidden="true" href="#بعد-دوم-مرزهای-شبکه-مدیریت-خطا-در-میکروسرویسها">#</a></h3>
+<p>تا الان فرض می‌کردیم کل برنامه در یک سیستم اجرا می‌شود. حالا فرض کن تو یک سیستم توزیع‌شده (Microservices) داری.
+سرویس A (نوشته شده با پایتون) از طریق شبکه (HTTP/REST) سرویس B (نوشته شده با Node.js) را صدا می‌زند.</p>
+<p>اگر سرویس B کرش کند، نمی‌تواند Stack Trace جاوا اسکریپت را به عنوان Exception برای پایتون پرتاب کند! در شبکه، Exceptionها معنی ندارند. اینجا <strong>پروتکل‌ها</strong> جایگزین می‌شوند.</p>
+<ol>
+<li><strong>کدهای وضعیت (HTTP Status Codes):</strong> خطاها باید به یک زبان مشترک جهانی ترجمه شوند.
+<ul>
+<li><code>4xx</code> (مثل 400 یا 404): یعنی سرویس A (کلاینت) دیتای غلطی فرستاده.</li>
+<li><code>5xx</code> (مثل 500 یا 503): یعنی سرویس A کارش درست بوده، سرویس B درونی به مشکل خورده.</li>
+</ul>
+</li>
+<li><strong>الگوی Retry (تلاش مجدد):</strong> وقتی از شبکه استفاده می‌کنی، برخی خطاها گذرا (Transient) هستند (مثل افت لحظه‌ای اینترنت). در این معماری، ما به جای کرش کردن، از سیستم‌های هوشمند برای تلاش مجدد استفاده می‌کنیم (مثلاً ۳ بار با تاخیر نمایی - Exponential Backoff دوباره تلاش کن).</li>
+<li><strong>الگوی Circuit Breaker (قطع‌کننده مدار):</strong> اگر سرویس B کلاً خاموش شده باشد، درخواست دادن مداومِ سرویس A فقط باعث ترافیک شبکه می‌شود. اینجا الگوی قطع‌کننده مدار وارد می‌شود. اگر خطاها از حد گذشت، مدار قطع می‌شود و A دیگر به B درخواست نمی‌دهد (سریعاً به کاربر خطا برمی‌گرداند) تا زمانی که B دوباره سر پا شود.</li>
+</ol>
+<hr>
+<h3 id="بعد-سوم-رؤیتپذیری-observability-در-پروداکشن">بُعد سوم: رؤیت‌پذیری (Observability) در پروداکشن<a hidden class="anchor" aria-hidden="true" href="#بعد-سوم-رؤیتپذیری-observability-در-پروداکشن">#</a></h3>
+<p>وقتی کد را روی سیستم خودت اجرا می‌کنی، Stack Trace روی کنسول چاپ می‌شود و تو می‌خوانی. وقتی این کد روی ۱۰۰ سرور ابری برای میلیون‌ها کاربر در حال اجراست و خطایی رخ می‌دهد، چه کسی آن را می‌بیند؟ 아무کس! (هیچ‌کس).</p>
+<p>در دنیای مهندسی نرم‌افزار، هندل کردن خطا به معنی لاپوشانی آن نیست. باید سیستم کور ما، بینا شود:</p>
+<ol>
+<li><strong>Error Tracking (مثل Sentry):</strong> وقتی Exception هندل‌نشده‌ای رخ می‌دهد، سیستم به جای چاپ در کنسول، تمام اطلاعات (محیط، یوزر، استک تریس) را پکیج می‌کند و به ابزاری مثل Sentry می‌فرستد. تیم توسعه‌دهنده نوتیفیکیشن می‌گیرد که &ldquo;کد شما در خط ۵۴ برای ۳۰۰ کاربر کرش کرد&rdquo;.</li>
+<li><strong>Correlation ID (شناسه ردیابی):</strong> فرض کن درخواستی از کاربر می‌آید و از ۴ میکروسرویس عبور می‌کند و در چهارمی خطا می‌دهد. چطور بفهمیم این خطا مربوط به کدام درخواست اولیه بوده؟ در معماری مدرن، در لحظه ورود کاربر، یک ID یکتا (UUID) تولید می‌شود و در هِدِر (Header) تمام درخواست‌ها پاس داده می‌شود. اگر خطایی رخ دهد، این ID در لاگ‌ها ثبت می‌شود و توقیقا می‌توانی مسیر حرکت کاربر را در کل شبکه ردیابی کنی.</li>
+</ol>
+<hr>
+<h3 id="بعد-چهارم-فلسفه-let-it-crash-بگذار-بمیرد">بُعد چهارم: فلسفه &ldquo;Let it Crash&rdquo; (بگذار بمیرد!)<a hidden class="anchor" aria-hidden="true" href="#بعد-چهارم-فلسفه-let-it-crash-بگذار-بمیرد">#</a></h3>
+<p>در نهایت، بیاییم یکی از عجیب‌ترین و در عین حال قدرتمندترین پارادایم‌های مهندسی نرم‌افزار را بررسی کنیم که توسط زبان <strong>Erlang</strong> (که واتس‌اپ با آن نوشته شده) معرفی شد.</p>
+<p>در پایتون یا جاوا، ما به شدت سعی می‌کنیم کد را Defensive (تدافعی) بنویسیم. دور همه‌چیز <code>try/except</code> می‌گذاریم تا برنامه کرش نکند.
+فلسفه Erlang می‌گوید: <strong>این کار احمقانه است! کد را پر از منطقِ هندلینگ نکن. بگذار برنامه کرش کند!</strong></p>
+<p>چرا؟ چون در سیستم‌های Actor Model، برنامه‌ها از هزاران پروسس بسیار سبک تشکیل شده‌اند. بالای سر این پروسس‌ها یک <strong>Supervisor (ناظر)</strong> وجود دارد. رویکرد این است: وقتی یک پروسس به وضعیت نامعلومی می‌رسد (خطا رخ می‌دهد)، امن‌ترین کار این است که آن را بکشیم و یک پروسس تمیز و جدید از نو استارت بزنیم (دقیقا شبیه ایده: &ldquo;کامپیوتر هنگ کرده؟ خاموش روشنش کن درست میشه&rdquo;).
+این معماری به واتس‌اپ اجازه می‌دهد آپ‌تایم ۹۹.۹۹۹٪ داشته باشد!</p>
+<hr>
+<h3 id="جمعبندی-وسعت-نقشه-راه-تو">جمع‌بندی وسعت: نقشه راه تو<a hidden class="anchor" aria-hidden="true" href="#جمعبندی-وسعت-نقشه-راه-تو">#</a></h3>
+<p>حالا تو به عنوان یک مهندس، ابزارهای ذهنی بسیار وسیعی داری:</p>
+<ol>
+<li><strong>در سطح لاینِ کد:</strong> می‌دانی چطور از <code>try/except</code> و <code>raise</code> در پایتون استفاده کنی.</li>
+<li><strong>در سطح ماژول/کلاس:</strong> می‌دانی چطور درخت خطاهای بیزینسی (Domain Exceptions) خودت را بسازی.</li>
+<li><strong>در سطح برنامه (Application):</strong> می‌دانی که باید یک Global Exception Handler داشته باشی تا خطاهای سیستم به بیرون درز نکند و به ابزارهایی مثل Sentry برود.</li>
+<li><strong>در سطح شبکه (Network):</strong> می‌دانی که Exceptionها نمی‌توانند پرواز کنند! باید به HTTP Status Codes و پروتکل‌ها تبدیل شوند.</li>
+<li><strong>در سطح ذهنیت (Mindset):</strong> می‌دانی که Exceptionها تنها راه موجود نیستند و زبان‌های دیگر مثل Go و Rust با رویکرد <em>Error as a Value</em> دنیای متفاوتی ساخته‌اند.</li>
+</ol>
+<p>این وسعتِ دید، تو را از کسی که فقط کد پایتون می‌نویسد، به کسی تبدیل می‌کند که می‌تواند سیستم‌های بزرگ، مقاوم و چندزبانه طراحی کند.
+نظرت درباره این تصویر بزرگ چیست؟ کدام بخشش برایت هیجان‌انگیزتر بود؟</p>
+
+</div>
+
+<div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  من یادمه که logger.exception یک ماجرایی با اکسپشن داشت که بدیهی نبود. میشه برام توضیح بدی؟
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>حافظه‌ات فوق‌العاده است! دقیقا دست گذاشتی روی یکی از مهم‌ترین و ظریف‌ترین نکاتی (Gotchas) که خیلی از برنامه‌نویس‌ها حتی در سطح میدل (Mid-level) هم با آن درگیر می‌شوند.</p>
+<p>ماجرای <code>logger.exception</code> دقیقا از این جا شروع می‌شود که رفتارش با بقیه متدهای لاگر (مثل <code>info</code>، <code>debug</code> یا <code>error</code>) <strong>بدیهی و یکسان نیست.</strong></p>
+<p>بیا این راز را در سه پرده باز کنیم:</p>
+<h3 id="پرده-اول-تفاوت-جادویی-با-loggererror">پرده اول: تفاوت جادویی با <code>logger.error</code><a hidden class="anchor" aria-hidden="true" href="#پرده-اول-تفاوت-جادویی-با-loggererror">#</a></h3>
+<p>فرض کن در بلوک <code>except</code> گیر افتاده‌ای و می‌خواهی لاگ بیندازی. معمولا یک جونیور اینطور می‌نویسد:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> logging
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ZeroDivisionError</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># روش اول (معمولی)</span>
+</span></span><span style="display:flex;"><span>    logging<span style="color:#f92672">.</span>error(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;خطایی رخ داد: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><p><strong>خروجی روش اول:</strong>
+<code>ERROR:root:خطایی رخ داد: division by zero</code></p>
+<p>خب، این لاگ برای تو به عنوان دیباگر هیچ ارزشی ندارد! چون نمی‌دانی این تقسیم بر صفر در خط ۵ رخ داده یا خط ۵۰۰! Stack Trace (ردپا) کجاست؟</p>
+<p>حالا برنامه‌نویسِ کمی پخته‌تر می‌آید سراغ <code>logger.exception</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ZeroDivisionError</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># روش دوم (جادویی)</span>
+</span></span><span style="display:flex;"><span>    logging<span style="color:#f92672">.</span>exception(<span style="color:#e6db74">&#34;یک خطای محاسباتی وحشتناک رخ داد!&#34;</span>)
+</span></span></code></pre></div><p><strong>خروجی روش دوم:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ERROR:root:یک خطای محاسباتی وحشتناک رخ داد!
+</span></span><span style="display:flex;"><span>Traceback (most recent call last):
+</span></span><span style="display:flex;"><span>  File &#34;main.py&#34;, line 2, in &lt;module&gt;
+</span></span><span style="display:flex;"><span>    1 / 0
+</span></span><span style="display:flex;"><span>ZeroDivisionError: division by zero
+</span></span></code></pre></div><p><strong>نکته‌ی غیر بدیهی اول:</strong> متد <code>logger.exception</code> به طور اتوماتیک و بدون اینکه تو ازش بخواهی، کل Stack Trace را به انتهای پیام تو می‌چسباند! در واقع، <code>logger.exception</code> یک سطح (Level) لاگ‌گیری جدید نیست، بلکه دقیقاً همان <code>logger.error</code> است که یک دکمه‌ی مخفیِ &ldquo;ضمیمه کردن ردپا&rdquo; در آن روشن شده است.</p>
+<hr>
+<h3 id="پرده-دوم-جادو-چطور-کار-میکند-زیر-کاپوت">پرده دوم: جادو چطور کار می‌کند؟ (زیر کاپوت)<a hidden class="anchor" aria-hidden="true" href="#پرده-دوم-جادو-چطور-کار-میکند-زیر-کاپوت">#</a></h3>
+<p>ممکن است بپرسی: <em>&ldquo;من که متغیر <code>e</code> (اکسپشن) را به <code>logger.exception</code> پاس ندادم! او از کجا فهمید چه خطایی رخ داده که استک تریس آن را چاپ کرد؟&rdquo;</em></p>
+<p>اینجاست که به عمیق‌ترین جای پایتون می‌رسیم. وقتی یک Exception پرتاب می‌شود (Raise می‌گردد)، پایتون آن را در هوا رها نمی‌کند. پایتون اطلاعات آن خطا (نوع خطا، مقدارش، و ردپایش) را در یک متغیر سراسری (در سطح Thread) ذخیره می‌کند. تو می‌توانی با تابع <code>sys.exc_info()</code> به آن دسترسی داشته باشی.</p>
+<p>وقتی تو <code>logger.exception</code> را صدا می‌زنی، او در پس‌زمینه به جای اینکه منتظر ورودی تو بماند، می‌رود سراغ <code>sys.exc_info()</code>، خطای در حال پردازش را برمی‌دارد، استک تریس آن را استخراج می‌کند و چاپ می‌کند.</p>
+<hr>
+<h3 id="پرده-سوم-تلهها-و-سوتیهای-رایج-چرا-بدیهی-نیست">پرده سوم: تله‌ها و سوتی‌های رایج (چرا بدیهی نیست؟)<a hidden class="anchor" aria-hidden="true" href="#پرده-سوم-تلهها-و-سوتیهای-رایج-چرا-بدیهی-نیست">#</a></h3>
+<p>حالا که فهمیدیم چطور کار می‌کند، بیا ببینیم چه سوتی‌هایی سر همین بدیهی نبودن رخ می‌دهد:</p>
+<h4 id="سوتی-شماره-۱-استفاده-در-جای-اشتباه-خارج-از-except">سوتی شماره ۱: استفاده در جای اشتباه (خارج از Except)<a hidden class="anchor" aria-hidden="true" href="#سوتی-شماره-۱-استفاده-در-جای-اشتباه-خارج-از-except">#</a></h4>
+<p>خیلی‌ها فکر می‌کنند <code>logger.exception</code> یعنی &ldquo;لاگ‌های خیلی مهم&rdquo;. پس می‌آیند در حالت عادی برنامه می‌نویسند:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_age</span>(age):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> age <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        logging<span style="color:#f92672">.</span>exception(<span style="color:#e6db74">&#34;سن کاربر منفی است!&#34;</span>) <span style="color:#75715e"># فاجعه اینجاست!</span>
+</span></span></code></pre></div><p>اگر این را خارج از بلوک <code>except</code> اجرا کنی چه می‌شود؟ از آنجا که پایتون خطایی در <code>sys.exc_info()</code> پیدا نمی‌کند، این خروجی گیج‌کننده را چاپ می‌کند:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ERROR:root:سن کاربر منفی است!
+</span></span><span style="display:flex;"><span>NoneType: None
+</span></span></code></pre></div><p><strong>قانون طلایی:</strong> از <code>logger.exception</code> <strong>فقط و فقط</strong> در داخل بلوک <code>except</code> (یا توابعی که مستقیماً از داخل except صدا زده می‌شوند) استفاده کن.</p>
+<h4 id="سوتی-شماره-۲-پاس-دادن-خود-خطا-به-عنوان-پیام">سوتی شماره ۲: پاس دادن خود خطا به عنوان پیام<a hidden class="anchor" aria-hidden="true" href="#سوتی-شماره-۲-پاس-دادن-خود-خطا-به-عنوان-پیام">#</a></h4>
+<p>خیلی‌ها اینطور می‌نویسند:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>    logging<span style="color:#f92672">.</span>exception(e) <span style="color:#75715e"># اشتباه معماری!</span>
+</span></span></code></pre></div><p>چرا اشتباه است؟ چون <code>logger.exception</code> خودش استک تریسِ <code>e</code> را استخراج می‌کند. پیامی که تو به متد می‌دهی باید <strong>Context (بافتار)</strong> باشد.
+شکل درست:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>    logging<span style="color:#f92672">.</span>exception(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;خطا در هنگام پردازش کاربر شماره </span><span style="color:#e6db74">{</span>user_id<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><p>اینطوری هم می‌فهمی در حال پردازش کدام کاربر بودی (Context)، هم استک تریس را داری.</p>
+<h4 id="سوتی-شماره-۳-اگر-بخواهیم-استک-تریس-را-به-عنوان-warning-لاگ-کنیم-چه">سوتی شماره ۳: اگر بخواهیم استک تریس را به عنوان Warning لاگ کنیم چه؟<a hidden class="anchor" aria-hidden="true" href="#سوتی-شماره-۳-اگر-بخواهیم-استک-تریس-را-به-عنوان-warning-لاگ-کنیم-چه">#</a></h4>
+<p>فرض کن خطایی رخ داده ولی کشنده نیست، می‌خواهی آن را در سطح <code>WARNING</code> لاگ کنی اما استک تریس را هم می‌خواهی. ما چیزی به اسم <code>logger.warning_exception</code> نداریم!
+اینجا باید از پارامتر پنهان <code>exc_info=True</code> استفاده کنی:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>    connect_to_redis()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ConnectionError</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ما خطا را هندل می‌کنیم، ولی استک تریس را به عنوان هشدار ذخیره می‌کنیم</span>
+</span></span><span style="display:flex;"><span>    logging<span style="color:#f92672">.</span>warning(<span style="color:#e6db74">&#34;ردیس قطع است، از کشِ مموری استفاده می‌کنیم&#34;</span>, exc_info<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><p>در واقع، <code>logger.exception(&quot;msg&quot;)</code> چیزی نیست جز یک <strong>Syntactic Sugar</strong> (خلاصه‌نویسی) برای <code>logger.error(&quot;msg&quot;, exc_info=True)</code>.</p>
+<h3 id="خلاصه-داستان">خلاصه داستان<a hidden class="anchor" aria-hidden="true" href="#خلاصه-داستان">#</a></h3>
+<p>دلیلی که یادت مانده بود این موضوع ماجرا دارد، این است که <code>logger.exception</code> بر خلاف اسمش یک Log Level نیست، بلکه یک <strong>رفتار (Behavior)</strong> است که به شدت به وضعیت اجرای برنامه (بودن در بلوک except) وابسته (Stateful) است. درک این تفاوت، باعث می‌شود لاگ‌هایت در محیط پروداکشن به جای یک مشت متن بی‌ارزش، تبدیل به نقشه‌های دقیق برای دیباگ کردن شوند.</p>
+
+</div>
+
+<div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  فرق logger.error و logger.exception و logger.warning و logger.info با هم در چیست؟ آیا اینها اررور به بالا raise می‌کنند؟
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>بذار اول از همه جواب سوال دومت را با یک <strong>«نـــه!»</strong> قاطعانه و بزرگ بدهم، چون این یکی از مهم‌ترین مرزهایی است که باید در ذهنت شفاف شود.</p>
+<h3 id="آیا-متدهای-logger-چیزی-را-raise-میکنند">آیا متدهای logger چیزی را Raise می‌کنند؟<a hidden class="anchor" aria-hidden="true" href="#آیا-متدهای-logger-چیزی-را-raise-میکنند">#</a></h3>
+<p><strong>خیر. به هیچ وجه.</strong>
+هیچ‌کدام از متدهای ماژول <code>logging</code> (حتی <code>logger.exception</code> یا <code>logger.error</code>) هیچ خطایی را به بالا پرتاب (Raise) نمی‌کنند.
+آن‌ها <strong>هیچ تاثیری روی جریان کنترل (Control Flow) برنامه ندارند.</strong> وقتی پایتون به یک دستور <code>logger</code> می‌رسد، فقط یک متن را در یک فایل می‌نویسد (یا در کنسول چاپ می‌کند) و بلافاصله می‌رود سراغ خطِ بعدیِ کد.</p>
+<p><strong>یک تمثیل معماری:</strong></p>
+<ul>
+<li><strong><code>raise</code> (Exception):</strong> مثل کشیدنِ <strong>آژیر خطر آتش‌سوزی</strong> است. وقتی آژیر کشیده می‌شود، همه باید کارشان را ول کنند و از ساختمان بیرون بروند (توقف اجرای عادی برنامه).</li>
+<li><strong><code>logger</code>:</strong> مثل <strong>دوربین مداربسته</strong> است. دوربین فقط وقایع را ضبط می‌کند. اگر جلوی دوربین یک آتش‌سوزی رخ دهد، دوربین آژیر نمی‌کشد، فقط در نوار خودش می‌نویسد: &ldquo;ساعت ۵ اینجا آتش گرفت&rdquo;. زندگی در ساختمان همچنان ادامه پیدا می‌کند (مگر اینکه جای دیگری آژیر کشیده شود).</li>
+</ul>
+<p>اگر می‌خواهی هم خطا را لاگ کنی و هم برنامه را متوقف کنی (یا خطا را به لایه بالاتر پاس بدهی)، باید هر دو کار را خودت انجام دهی:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ZeroDivisionError</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>    logger<span style="color:#f92672">.</span>error(<span style="color:#e6db74">&#34;تقسیم بر صفر رخ داد!&#34;</span>) <span style="color:#75715e"># فقط در دفترچه یادداشت می‌نویسد</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#75715e"># حالا آژیر را می‌کشد تا برنامه متوقف شود (یا لایه بالاتر بفهمد)</span>
+</span></span></code></pre></div><hr>
+<h3 id="فرق-بین-log-levelها-info-warning-error-exception">فرق بین Log Levelها (info, warning, error, exception)<a hidden class="anchor" aria-hidden="true" href="#فرق-بین-log-levelها-info-warning-error-exception">#</a></h3>
+<p>حالا که فهمیدیم لاگرها فقط یادداشت‌بردار هستند، سوال این است: چرا این همه متد مختلف داریم؟
+پاسخ یک کلمه است: <strong>فیلتر کردن (Filtering) در محیط پروداکشن.</strong></p>
+<p>وقتی برنامه‌ی تو روی سرور اجرا می‌شود، در روز ممکن است ۱۰ میلیون خط لاگ تولید کند. تو به عنوان مهندس، نمی‌توانی ۱۰ میلیون خط را بخوانی! تو ابزارهایی داری که می‌گویند: <em>&ldquo;الان ساعت ۳ نصفه‌شب است، فقط لاگ‌های خطرناک را به من پیامک کن.&rdquo;</em></p>
+<p>اینجاست که سطوح اهمیت (Log Levels) وارد می‌شوند. بیا با یک مثال <strong>پرواز هواپیما</strong> تفاوتشان را ببینیم:</p>
+<h4 id="۱-loggerinfo-اطلاعات-عادی">۱. <code>logger.info</code> (اطلاعات عادی)<a hidden class="anchor" aria-hidden="true" href="#۱-loggerinfo-اطلاعات-عادی">#</a></h4>
+<ul>
+<li><strong>کاربرد:</strong> ثبت روالِ طبیعی و موفقیت‌آمیزِ بیزینس.</li>
+<li><strong>مثال هواپیما:</strong> <em>&ldquo;موتورها روشن شدند. در حال تیک‌آف هستیم.&rdquo;</em></li>
+<li><strong>مثال برنامه‌نویسی:</strong> <em>&ldquo;کاربر x لاگین کرد.&quot;</em>، <em>&ldquo;پرداخت با موفقیت انجام شد.&rdquo;</em></li>
+<li><strong>در پروداکشن:</strong> این لاگ‌ها برای تحلیل رفتار کاربر یا عیب‌یابی مسیرهای عادی ذخیره می‌شوند، اما هیچکس نصفه‌شب برای اینها بیدار نمی‌شود.</li>
+</ul>
+<h4 id="۲-loggerwarning-هشدار">۲. <code>logger.warning</code> (هشدار)<a hidden class="anchor" aria-hidden="true" href="#۲-loggerwarning-هشدار">#</a></h4>
+<ul>
+<li><strong>کاربرد:</strong> یک اتفاق غیرعادی افتاده، اما سیستم توانسته خودش را نجات دهد یا مشکل حیاتی نیست. برنامه کرش نکرده است.</li>
+<li><strong>مثال هواپیما:</strong> <em>&ldquo;بنزین هواپیما به ۲۰٪ رسیده است.&rdquo;</em> (خطرناک است، اما هواپیما هنوز دارد پرواز می‌کند).</li>
+<li><strong>مثال برنامه‌نویسی:</strong> <em>&ldquo;دیتابیس اصلی جواب نداد، به دیتابیس پشتیبان (Backup) وصل شدیم.&rdquo;</em> یا <em>&ldquo;کاربر ۳ بار رمز را اشتباه زد.&rdquo;</em></li>
+<li><strong>در پروداکشن:</strong> صبح روز بعد که مهندس‌ها به سر کار می‌آیند، این لیست را چک می‌کنند تا قبل از تبدیل شدن به یک فاجعه، اوضاع را بررسی کنند.</li>
+</ul>
+<h4 id="۳-loggererror-خطا">۳. <code>logger.error</code> (خطا)<a hidden class="anchor" aria-hidden="true" href="#۳-loggererror-خطا">#</a></h4>
+<ul>
+<li><strong>کاربرد:</strong> یک عملیاتِ خاص شکست خورده است، اما کل سیستم هنوز زنده است.</li>
+<li><strong>مثال هواپیما:</strong> <em>&ldquo;موتور سمت راست از کار افتاد!&rdquo;</em> (این یک خطای جدی برای آن موتور است، اما هواپیما با موتور چپ هنوز در حال پرواز است).</li>
+<li><strong>مثال برنامه‌نویسی:</strong> <em>&ldquo;نتوانستیم ایمیل تایید را برای کاربر x بفرستیم.&rdquo;</em> (ثبت‌نام کاربر لغو شد، اما بقیه کاربران سایت می‌توانند به کارشان ادامه دهند).</li>
+<li><strong>در پروداکشن:</strong> اینها معمولا به سیستم‌های مانیتورینگ وصل هستند و اگر تعدادشان از حدی بیشتر شود، تیم پشتیبانی آلارم می‌گیرد.</li>
+</ul>
+<h4 id="۴-loggerexception-خطا--نقشه-گنج">۴. <code>logger.exception</code> (خطا + نقشه گنج)<a hidden class="anchor" aria-hidden="true" href="#۴-loggerexception-خطا--نقشه-گنج">#</a></h4>
+<ul>
+<li><strong>کاربرد:</strong> دقیقا همان <code>logger.error</code> است، هیچ فرق سطحِ اهمیتی با آن ندارد (هر دو سطح ERROR دارند). تنها فرقش این است که به طور اتوماتیک <strong>Stack Trace (ردپای کد)</strong> را هم ضمیمه‌ی پیام می‌کند.</li>
+<li><strong>مثال هواپیما:</strong> <em>&ldquo;موتور سمت راست از کار افتاد! + [ضمیمه: نقشه مهندسی موتور که نشان می‌دهد پیچ شماره ۵ در لوله سوخت پاره شده است]&rdquo;</em></li>
+<li><strong>مثال برنامه‌نویسی:</strong> فقط در بلوک <code>except</code> استفاده می‌شود تا نشان دهد دقیقاً در کدام خطِ کدام فایل برنامه ترکیده است.</li>
+</ul>
+<hr>
+<h3 id="یک-نگاه-معماری-چگونه-اینها-با-هم-کار-میکنند">یک نگاه معماری (چگونه اینها با هم کار می‌کنند؟)<a hidden class="anchor" aria-hidden="true" href="#یک-نگاه-معماری-چگونه-اینها-با-هم-کار-میکنند">#</a></h3>
+<p>یکی از جادویی‌ترین ویژگی‌های ماژول <code>logging</code>، تنظیم <strong>سطح آستانه (Threshold Level)</strong> است.</p>
+<p>ترتیب سطوح اینگونه است:
+<code>DEBUG</code> &lt; <code>INFO</code> &lt; <code>WARNING</code> &lt; <code>ERROR</code> / <code>EXCEPTION</code> &lt; <code>CRITICAL</code></p>
+<p>وقتی برنامه‌ات را تنظیم می‌کنی، به لاگر می‌گویی: <strong>&ldquo;سطحِ گوش دادنِ تو روی WARNING است.&rdquo;</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> logging
+</span></span><span style="display:flex;"><span>logging<span style="color:#f92672">.</span>basicConfig(level<span style="color:#f92672">=</span>logging<span style="color:#f92672">.</span>WARNING)
+</span></span></code></pre></div><p>اتفاقی که می‌افتد این است:
+اگر کد تو بگوید <code>logger.info(&quot;سلام&quot;)</code>، ماژول لاگینگ آن را <strong>کاملاً نادیده می‌گیرد</strong> (چون INFO از WARNING پایین‌تر است). این یعنی کد تو در محیط پروداکشن به شدت سریع اجرا می‌شود و هارد دیسک سرور با پیام‌های عادی پر نمی‌شود.
+اما اگر کد بگوید <code>logger.error(&quot;کمک&quot;)</code>، چون ERROR بالاتر از WARNING است، آن را می‌نویسد.</p>
+<p><strong>روش حرفه‌ای‌ها (سنیورها):</strong>
+ما معمولا لاگر را طوری کانفیگ می‌کنیم که:</p>
+<ol>
+<li><strong>همه چیز (از INFO به بالا)</strong> را در یک فایل متنی (log file) بنویسد تا بعداً اگر خواستیم بررسی کنیم.</li>
+<li><strong>فقط ERROR و EXCEPTION ها</strong> را به نرم‌افزار Sentry بفرستد یا در یک کانال تلگرام/اسلک برای تیم برنامه‌نویسی پیام کند.</li>
+</ol>
+<p><strong>جمع‌بندی نهایی برای تو:</strong>
+متدهای <code>logger</code> کاری به اجرای برنامه ندارند و <code>raise</code> نمی‌کنند. آن‌ها فقط میکروفون‌هایی با حساسیت‌های مختلف هستند. تو با <code>info</code>، <code>warning</code> و <code>error</code> به سیستم مانیتورینگ می‌گویی که این پیام چقدر حیاتی است تا سیستم تصمیم بگیرد نصفه‌شب تو را از خواب بیدار کند یا بگذارد برای فردا صبح!</p>
+
+</div>
+
+<div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  آیا می‌توان logger.exception و raise را با هم به کار برد؟
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>بله، <strong>صد در صد!</strong> اتفاقاً ترکیب این دو، یکی از الگوهای رایج در برنامه‌نویسی است که به آن <strong>&ldquo;Catch, Log, and Re-raise&rdquo; (بگیر، لاگ کن و دوباره پرتاب کن)</strong> می‌گویند.</p>
+<p>اما اینجا دقیقاً همان نقطه‌ای است که مرز بین یک برنامه‌نویس جونیور و سنیور مشخص می‌شود، چون اگر این کار را <strong>بی‌دقت</strong> انجام دهی، یک فاجعه در سیستم لاگ‌گیری‌ات (به نام &ldquo;Double Logging&rdquo; یا لاگ تکراری) به وجود می‌آوری!</p>
+<p>بیا ببینیم چطور باید این دو را با هم به کار برد و از چه تله‌هایی باید دوری کرد:</p>
+<hr>
+<h3 id="حالت-اول-استفاده-درست-و-اصولی-bare-raise">حالت اول: استفاده درست و اصولی (Bare <code>raise</code>)<a hidden class="anchor" aria-hidden="true" href="#حالت-اول-استفاده-درست-و-اصولی-bare-raise">#</a></h3>
+<p>فرض کن تو در یک تابعی هستی که به دیتابیس وصل می‌شود. خطایی رخ می‌دهد. تو می‌خواهی جزئیات این خطا (استک تریس) ثبت شود، اما <strong>صلاحیت یا توانایی هندل کردن این خطا را در این تابع نداری</strong> (چون تابع تو نمی‌داند به کاربر چه پیامی بدهد). پس باید خطا را به لایه بالاتر پاس بدهی.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> logging
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fetch_user_data</span>(user_id):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># کد خطرناک اتصال به دیتابیس</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> db<span style="color:#f92672">.</span>query(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;SELECT * FROM users WHERE id=</span><span style="color:#e6db74">{</span>user_id<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ConnectionError</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ۱. اول دوربین مداربسته را روشن می‌کنیم و با استک تریس لاگ می‌گیریم</span>
+</span></span><span style="display:flex;"><span>        logging<span style="color:#f92672">.</span>exception(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;دیتابیس در هنگام واکشی کاربر </span><span style="color:#e6db74">{</span>user_id<span style="color:#e6db74">}</span><span style="color:#e6db74"> قطع شد!&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ۲. حالا آژیر خطر را دوباره برای لایه بالاتر می‌کشیم</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span>  
+</span></span></code></pre></div><p><strong>نکته به شدت مهم:</strong> وقتی در بلوک <code>except</code> فقط کلمه <code>raise</code> را (بدون هیچ متغیری جلوی آن) می‌نویسی، پایتون <strong>دقیقاً همان خطای اصلی با همان استک تریس اولیه</strong> را به لایه بالاتر پرتاب می‌کند. این عالی است چون ردپای اصلی گم نمی‌شود.</p>
+<hr>
+<h3 id="حالت-دوم-زنجیر-کردن-خطاها-exception-chaining">حالت دوم: زنجیر کردن خطاها (Exception Chaining)<a hidden class="anchor" aria-hidden="true" href="#حالت-دوم-زنجیر-کردن-خطاها-exception-chaining">#</a></h3>
+<p>گاهی اوقات تو نمی‌خواهی همان خطای قبلی را پرتاب کنی، بلکه می‌خواهی یک خطای جدیدِ بیزینسی بسازی، اما استک تریس قبلی را هم لاگ کنی:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process_payment</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        charge_credit_card()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">TimeoutError</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># لاگ کردن خطای شبکه با استک تریس</span>
+</span></span><span style="display:flex;"><span>        logging<span style="color:#f92672">.</span>exception(<span style="color:#e6db74">&#34;درگاه بانک پاسخی نداد&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># پرتاب یک خطای جدید و زنجیر کردن آن به خطای قبلی</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> PaymentFailedError(<span style="color:#e6db74">&#34;پرداخت شما انجام نشد&#34;</span>) <span style="color:#f92672">from</span> e
+</span></span></code></pre></div><hr>
+<h3 id="-فاجعهی-معماری-تلهی-double-logging-چرا-باید-مراقب-باشیم">🚨 فاجعه‌ی معماری: تله‌ی &ldquo;Double Logging&rdquo; (چرا باید مراقب باشیم؟)<a hidden class="anchor" aria-hidden="true" href="#-فاجعهی-معماری-تلهی-double-logging-چرا-باید-مراقب-باشیم">#</a></h3>
+<p>حالا که فهمیدیم می‌شود این دو را با هم ترکیب کرد، بیا یک قانون طلایی در مهندسی نرم‌افزار را یاد بگیریم:
+<strong>&ldquo;خطا را یا هندل کن (و لاگ بگیر)، یا به بالا پرتاب (Raise) کن. انجام دادنِ هر دو در تمام لایه‌ها، احمقانه است!&rdquo;</strong></p>
+<p>فرض کن یک معماری سه لایه داری: <code>Controller</code> -&gt; <code>Service</code> -&gt; <code>Database</code>.
+اگر یک جونیور در هر سه لایه ترکیب <code>logger.exception</code> + <code>raise</code> را بنویسد چه می‌شود؟</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># لایه ۳</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">db_layer</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>: <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span>:
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>exception(<span style="color:#e6db74">&#34;خطای دیتابیس&#34;</span>) <span style="color:#75715e"># لاگ ۱</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># لایه ۲</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">service_layer</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>: db_layer()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span>:
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>exception(<span style="color:#e6db74">&#34;خطای سرویس&#34;</span>) <span style="color:#75715e"># لاگ ۲ (تکراری)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># لایه ۱</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">controller_layer</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>: service_layer()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span>:
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>exception(<span style="color:#e6db74">&#34;خطای کنترلر&#34;</span>) <span style="color:#75715e"># لاگ ۳ (تکراری)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Error 500&#34;</span>
+</span></span></code></pre></div><p><strong>نتیجه در پروداکشن:</strong> برای <strong>یک عدد خطای ساده</strong> (تقسیم بر صفر)، سیستم تو <strong>۳ بار</strong> استک تریسِ کامل را در فایل لاگ می‌نویسد! اگر ۱۰۰۰ کاربر این خطا را بخورند، فایل لاگ تو با ۳۰۰۰ استک تریس طولانی منفجر می‌شود و پیدا کردن خطای اصلی در این زباله‌دانی غیرممکن می‌شود.</p>
+<h3 id="راه-حل-سنیورها-چیست">راه حل سنیورها چیست؟<a hidden class="anchor" aria-hidden="true" href="#راه-حل-سنیورها-چیست">#</a></h3>
+<p>در معماری مدرن، ما معمولاً در لایه‌های پایین (مثل دیتابیس یا سرویس) لاگ <strong>نمی‌گیریم</strong>. ما فقط خطاها را با <code>raise</code> به بالا پاس می‌دهیم (و اگر نیاز بود با <code>raise ... from</code> کانتکست به آن‌ها اضافه می‌کنیم).</p>
+<p>ما <strong>فقط و فقط یک جا</strong> از <code>logger.exception</code> استفاده می‌کنیم: <strong>در بالاترین لایه‌ی برنامه (Global Exception Handler).</strong></p>
+<p>یک استثنای مهم: تنها زمانی در لایه‌های پایین ترکیب <code>logger.exception</code> و <code>raise</code> را استفاده می‌کنیم که بخواهیم یک اطلاعاتِ مَحلّیِ (Local Context) بسیار مهم را لاگ کنیم که اگر به لایه بالاتر برود، آن اطلاعات از دست می‌رود. (مثلاً متغیری در آن تابع وجود دارد که لایه بالاتر به آن دسترسی ندارد).</p>
+<h3 id="جمعبندی">جمع‌بندی:<a hidden class="anchor" aria-hidden="true" href="#جمعبندی">#</a></h3>
+<p>آیا می‌توانند با هم بیایند؟ <strong>بله.</strong>
+کجا کاربرد دارد؟ <strong>وقتی می‌خواهی خطا را ثبت کنی، اما مسئولیت مدیریت جریان برنامه (Control Flow) بر عهده لایه‌ی دیگری است.</strong>
+هشدار: <strong>مراقب آبشار لاگ‌ها (Double Logging) باش و ترجیحاً لاگ‌گیری از استک تریس را به بالاترین لایه‌ی برنامه بسپار.</strong></p>
+
+</div>
+
+<div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  فرق raise عادی با raise &hellip; from &hellip; چیه؟
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>این یکی از زیباترین و معماری‌محورترین سوالاتی است که می‌توانی در پایتون بپرسی! تفاوت این دو فقط در ظاهر و سینتکس نیست، بلکه در <strong>«قصد و نیت تو به عنوان معمار نرم‌افزار» (Intent)</strong> است.</p>
+<p>برای درک این تفاوت، باید به پیامی که پایتون در لاگ‌ها (Traceback) چاپ می‌کند دقت کنیم. بیا با یک سناریوی واقعی این دو را مقایسه کنیم.</p>
+<p>فرض کن ما یک لایه دیتابیس داریم و یک لایه بیزینس. دیتابیس خطای <code>ConnectionError</code> می‌دهد، و ما می‌خواهیم آن را به یک خطای بیزینسی <code>UserRegistrationError</code> تبدیل کنیم.</p>
+<hr>
+<h3 id="سناریوی-اول-استفاده-از-raise-عادی-بدون-from">سناریوی اول: استفاده از <code>raise</code> عادی (بدون from)<a hidden class="anchor" aria-hidden="true" href="#سناریوی-اول-استفاده-از-raise-عادی-بدون-from">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserRegistrationError</span>(<span style="color:#a6e22e">Exception</span>): <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">register_user</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># شبیه‌سازی قطع شدن دیتابیس</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ConnectionError</span>(<span style="color:#e6db74">&#34;دیتابیس در دسترس نیست&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ConnectionError</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># یک خطای جدید پرتاب می‌کنیم</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> UserRegistrationError(<span style="color:#e6db74">&#34;ثبت‌نام کاربر انجام نشد&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>register_user()
+</span></span></code></pre></div><p>وقتی این کد را اجرا می‌کنی، پایتون در خروجی (Traceback) این عبارتِ بسیار مهم را چاپ می‌کند:</p>
+<blockquote>
+<p><strong>During handling of the above exception, another exception occurred:</strong>
+<em>(ترجمه: در حینِ مدیریت کردن خطای بالا، یک خطای دیگر رخ داد!)</em></p>
+</blockquote>
+<p><strong>از دید معماری چه اتفاقی افتاد؟</strong>
+پایتون فکر می‌کند تو در بلوک <code>except</code> سوتی داده‌ای! پایتون می‌گوید: &ldquo;این برنامه‌نویس داشت سعی می‌کرد خطای دیتابیس را هندل کند، اما وسط هندل کردن، خودش باعث شد یک خطای جدید (UserRegistrationError) به وجود بیاید!&rdquo;
+در اینجا ارتباط بین دو خطا یک <strong>ارتباط تصادفی (Accidental)</strong> به نظر می‌رسد.</p>
+<hr>
+<h3 id="سناریوی-دوم-استفاده-از-raise--from--زنجیره-صریح">سناریوی دوم: استفاده از <code>raise ... from ...</code> (زنجیره صریح)<a hidden class="anchor" aria-hidden="true" href="#سناریوی-دوم-استفاده-از-raise--from--زنجیره-صریح">#</a></h3>
+<p>حالا بیا دقیقاً همان کد را با <code>from</code> بنویسیم:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserRegistrationError</span>(<span style="color:#a6e22e">Exception</span>): <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">register_user</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ConnectionError</span>(<span style="color:#e6db74">&#34;دیتابیس در دسترس نیست&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ConnectionError</span> <span style="color:#66d9ef">as</span> original_error:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># خطای جدید را به خطای اصلی زنجیر می‌کنیم</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> UserRegistrationError(<span style="color:#e6db74">&#34;ثبت‌نام کاربر انجام نشد&#34;</span>) <span style="color:#f92672">from</span> original_error
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>register_user()
+</span></span></code></pre></div><p>این بار پایتون در خروجی این عبارت را چاپ می‌کند:</p>
+<blockquote>
+<p><strong>The above exception was the direct cause of the following exception:</strong>
+<em>(ترجمه: خطای بالا، علتِ مستقیمِ بروزِ خطای زیر است:)</em></p>
+</blockquote>
+<p><strong>از دید معماری چه اتفاقی افتاد؟</strong>
+تو به عنوان برنامه‌نویس به پایتون (و به مهندس دیباگ‌کننده) گفتی: &ldquo;من دقیقاً می‌دانم چه کار می‌کنم. من خطای دیتابیس را دیدم و <strong>عمداً (Deliberately)</strong> آن را ترجمه کردم به خطای ثبت‌نام.&rdquo;
+اینجا ارتباط بین دو خطا یک <strong>ارتباط عِلّی و معلولی (Causality)</strong> است. به این الگو در مهندسی نرم‌افزار <strong>Exception Translation (ترجمه استثنا)</strong> می‌گویند.</p>
+<hr>
+<h3 id="زیر-کاپوت-deep-dive-چه-میگذرد">زیر کاپوت (Deep Dive) چه می‌گذرد؟<a hidden class="anchor" aria-hidden="true" href="#زیر-کاپوت-deep-dive-چه-میگذرد">#</a></h3>
+<p>وقتی یک Exception در پایتون رخ می‌دهد، اشیاء خطا (Error Objects) دارای متغیرهای پنهانی (Attributes) هستند:</p>
+<ol>
+<li><strong>متغیر <code>__context__</code> (بافتار پنهان):</strong>
+وقتی از <code>raise</code> عادی استفاده می‌کنی، پایتون به طور اتوماتیک خطای اول را در متغیر <code>__context__</code>ِ خطای دوم ذخیره می‌کند. این کار را می‌کند تا اگر واقعاً در بلوک <code>except</code> باگ داشتی، ردپای خطای اول گم نشود.</li>
+<li><strong>متغیر <code>__cause__</code> (علت صریح):</strong>
+وقتی از <code>raise ... from ...</code> استفاده می‌کنی، پایتون خطای اول را در متغیر <code>__cause__</code>ِ خطای دوم ذخیره می‌کند. وقتی پایتون می‌خواهد استک تریس را چاپ کند، اول نگاه می‌کند ببیند آیا <code>__cause__</code> مقدار دارد؟ اگر داشت، می‌نویسد &ldquo;این علت مستقیم بود&rdquo;.</li>
+</ol>
+<hr>
+<h3 id="یک-ترفند-فوقحرفهای-raise--from-none-حذف-کردن-ردپا">یک ترفند فوق‌حرفه‌ای: <code>raise ... from None</code> (حذف کردن ردپا!)<a hidden class="anchor" aria-hidden="true" href="#یک-ترفند-فوقحرفهای-raise--from-none-حذف-کردن-ردپا">#</a></h3>
+<p>یکی از مهم‌ترین کاربردهای <code>from</code> زمانی است که بخواهی <strong>ردپای خطای قبلی را کاملاً پاک کنی.</strong>
+چرا باید بخواهیم استک تریس را پاک کنیم؟ <strong>به دلایل امنیتی!</strong></p>
+<p>فرض کن داری یک API می‌نویسی (مثلا با FastAPI). کاربر یک ورودی اشتباه می‌دهد و دیتابیس خطای <code>psycopg2.IntegrityError</code> (خطای دیتابیس پستگرس) می‌دهد.
+اگر این خطا به همراه استک تریس به کاربر (یا فرانت‌اند) برسد، اطلاعات ساختار جداول دیتابیسِ تو لو می‌رود!</p>
+<p>برای جلوگیری از این کار از <code>from None</code> استفاده می‌کنیم:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_user_from_db</span>(user_id):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># کد اتصال به دیتابیس</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> psycopg2<span style="color:#f92672">.</span>IntegrityError(<span style="color:#e6db74">&#34;ستون id در جدول users وجود ندارد&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> psycopg2<span style="color:#f92672">.</span>IntegrityError:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># با from None خطای اصلی به طور کامل قیچی می‌شود و فقط خطای ما به بالا می‌رود</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> HTTPException(status_code<span style="color:#f92672">=</span><span style="color:#ae81ff">400</span>, detail<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;کاربر یافت نشد&#34;</span>) <span style="color:#f92672">from</span> None
+</span></span></code></pre></div><p>با این کار، خطای وحشتناکِ دیتابیس در همان نقطه خفه می‌شود و لایه بالاتر (و کاربر) فقط خطای تمیزِ <code>HTTPException</code> را می‌بیند.</p>
+<h3 id="خلاصه-طلایی">خلاصه طلایی:<a hidden class="anchor" aria-hidden="true" href="#خلاصه-طلایی">#</a></h3>
+<ul>
+<li><strong><code>raise NewError</code></strong>: &ldquo;وسط هندل کردن خطا، یک مشکل جدید پیش اومد.&rdquo; (معمولاً نشان‌دهنده کد کثیف یا باگ است).</li>
+<li><strong><code>raise NewError from old_error</code></strong>: &ldquo;من خطای اول رو گرفتم و عمداً ترجمه‌اش کردم به خطای دوم.&rdquo; (روش اصولیِ معماری لایه‌ای).</li>
+<li><strong><code>raise NewError from None</code></strong>: &ldquo;خطای اول رو ول کن، نباید کسی بفهمه چی شده. فقط خطای جدید رو به بالا بفرست.&rdquo; (برای امنیت و ایزوله کردن لایه‌ها).</li>
+</ul>
+
+</div>
+
+<div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  سنتری چیه دقیقا؟
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>عالی شد که این سوال را پرسیدی! چون در بحث‌های قبلی مدام گفتیم «خطا را به Sentry بفرست»، حالا وقتش است که ببینیم این ابزار جادویی چیست و چرا دنیای مهندسی نرم‌افزار را زیر و رو کرد.</p>
+<p>برای درک Sentry، بیا دوباره سوار ماشین زمان شویم و ببینیم قبل از آن زندگی توسعه‌دهنده‌ها چقدر کابوس‌وار بود.</p>
+<hr>
+<h3 id="پرده-اول-عصر-تاریکی-دیباگ-کردن-pre-sentry">پرده اول: عصر تاریکیِ دیباگ کردن (Pre-Sentry)<a hidden class="anchor" aria-hidden="true" href="#پرده-اول-عصر-تاریکی-دیباگ-کردن-pre-sentry">#</a></h3>
+<p>فرض کن برنامه‌ی تو روی ۱۰ تا سرور مختلف در حال اجراست و روزانه ۱۰۰ هزار کاربر دارد.
+یک کاربر به پشتیبانی زنگ می‌زند و می‌گوید: <em>&ldquo;من وقتی دکمه پرداخت را می‌زنم، صفحه سفید میشه!&rdquo;</em>
+پشتیبانی به تو (مهندس نرم‌افزار) تیکت می‌زند. تو چه کار می‌کنی؟
+باید به سرورها وصل شوی (SSH کنی)، فایل‌های لاگ (متنی)ِ چند گیگابایتی را باز کنی و با دستوراتی مثل <code>grep</code> دنبال کلمه‌ی <code>ERROR</code> یا ID آن کاربر بگردی. اگر شانس بیاوری و لاگِ درستی نوشته باشی (با <code>logger.exception</code>)، شاید Stack Trace را پیدا کنی. اما معمولاً می‌فهمی که متغیرهای آن لحظه را لاگ نگرفته‌ای و اصلاً نمی‌دانی چرا خطا رخ داده!
+گاهی هم ۱۰۰ هزار بار یک خطای تکراری در لاگ نوشته شده و هارد سرور را پر کرده است (همان Double Logging که حرفش را زدیم).</p>
+<h3 id="پرده-دوم-تولد-sentry-جعبه-سیاه-هواپیما">پرده دوم: تولد Sentry (جعبه سیاه هواپیما)<a hidden class="anchor" aria-hidden="true" href="#پرده-دوم-تولد-sentry-جعبه-سیاه-هواپیما">#</a></h3>
+<p>سنتری (Sentry) یک پلتفرم <strong>رصد خطا و مانیتورینگ عملکرد (Error Tracking &amp; Performance Monitoring)</strong> است.
+Sentry مثل <strong>جعبه سیاه هواپیما</strong> عمل می‌کند. وقتی برنامه کرش می‌کند یا خطایی (Exception) رخ می‌دهد که کسی آن را هندل نکرده، Sentry در کسری از ثانیه تمام اطلاعات حیاتیِ آن لحظه را جمع می‌کند، بسته‌بندی می‌کند و به یک داشبوردِ تحت وب (که مانیتورِ تیم توسعه است) می‌فرستد.</p>
+<h4 id="زیر-کاپوت-پایتون-sentry-چطور-کار-میکند">زیر کاپوت پایتون: Sentry چطور کار می‌کند؟<a hidden class="anchor" aria-hidden="true" href="#زیر-کاپوت-پایتون-sentry-چطور-کار-میکند">#</a></h4>
+<p>چطور Sentry می‌فهمد خطایی رخ داده؟ آیا باید تک‌تک توابع را تغییر دهیم؟ <strong>نه!</strong>
+تو فقط در بالاترین فایل برنامه‌ات (مثلا <code>main.py</code> یا <code>settings.py</code>) کتابخانه Sentry را مقداردهی اولیه (Init) می‌کنی:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> sentry_sdk
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sentry_sdk<span style="color:#f92672">.</span>init(
+</span></span><span style="display:flex;"><span>    dsn<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://examplePublicKey@o0.ingest.sentry.io/0&#34;</span>,
+</span></span><span style="display:flex;"><span>    traces_sample_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p><strong>جادوی معماری:</strong> در پایتون متغیری به نام <code>sys.excepthook</code> وجود دارد. این متغیر، تابعی است که پایتون درست در لحظه‌ی <strong>قبل از مرگِ برنامه</strong> (وقتی یک Exceptionِ هندل‌نشده به بالاترین سطح می‌رسد) صدا می‌زند تا خطا را در کنسول چاپ کند.
+Sentry می‌آید و بی‌سروصدا این تابع را با کدِ خودش جایگزین (Override) می‌کند!
+بنابراین هر وقت برنامه در حال کرش کردن است، Sentry بیدار می‌شود و می‌گوید: &ldquo;صبر کن! قبل از مردن، بگذار من از صحنه‌ی جرم عکس بگیرم!&rdquo;</p>
+<hr>
+<h3 id="چرا-sentry-یک-ابزار-معمولی-نیست-امکانات-قاتل---killer-features">چرا Sentry یک ابزار معمولی نیست؟ (امکانات قاتل - Killer Features)<a hidden class="anchor" aria-hidden="true" href="#چرا-sentry-یک-ابزار-معمولی-نیست-امکانات-قاتل---killer-features">#</a></h3>
+<p>اگر Sentry فقط استک‌تریس‌ها را در یک محیط گرافیکی نشان می‌داد، خیلی جذاب نبود. قدرت Sentry در چیزهای دیگری است:</p>
+<h4 id="۱-جمعآوری-متغیرهای-محلی-local-variables-state---مهمترین-ویژگی">۱. جمع‌آوری متغیرهای محلی (Local Variables State) - <em>مهم‌ترین ویژگی</em><a hidden class="anchor" aria-hidden="true" href="#۱-جمعآوری-متغیرهای-محلی-local-variables-state---مهمترین-ویژگی">#</a></h4>
+<p>در لاگِ متنی، تو فقط می‌بینی: <code>IndexError: list index out of range</code>.
+اما در داشبورد Sentry، وقتی روی آن خطای خاص کلیک می‌کنی، <strong>دقیقاً به تو نشان می‌دهد که در آن لحظه، متغیرهای محلی چه مقداری داشتند!</strong>
+مثلاً نشان می‌دهد: <code>user_id = 452</code> و <code>my_list = []</code>. تو بدون اینکه نیاز باشد برنامه را دوباره با داده‌های تستی اجرا کنی، باگ را همان لحظه کشف می‌کنی! Sentry این کار را با خواندن Frame های حافظه در لحظه کرش انجام می‌دهد.</p>
+<h4 id="۲-گروهبندی-هوشمند-smart-grouping">۲. گروه‌بندی هوشمند (Smart Grouping)<a hidden class="anchor" aria-hidden="true" href="#۲-گروهبندی-هوشمند-smart-grouping">#</a></h4>
+<p>اگر یک باگ باعث شود ۱ میلیون کاربر خطای مشابهی بخورند، Sentry یک میلیون ایمیل به تو نمی‌زند (که باعث شود ایمیل‌ها را اسپم کنی). Sentry با الگوریتم‌های اثرانگشت (Fingerprinting) می‌فهمد که این‌ها همگی <strong>یک باگِ واحد</strong> هستند.
+به تو یک آلارم می‌دهد: <em>&ldquo;یک خطای جدید رخ داده که تا الان ۵۰۰ هزار بار برای ۲۰ هزار کاربر مختلف تکرار شده است.&rdquo;</em></p>
+<h4 id="۳-خردهنانها-breadcrumbs">۳. خرده‌نان‌ها (Breadcrumbs)<a hidden class="anchor" aria-hidden="true" href="#۳-خردهنانها-breadcrumbs">#</a></h4>
+<p>یادت هست در داستان هانسل و گرتل برای پیدا کردن مسیر، روی زمین خرده‌نان می‌ریختند؟ Sentry هم همین کار را می‌کند.
+وقتی خطایی رخ می‌دهد، Sentry لیستی از اتفاقاتی که در ۳۰ ثانیه قبل از خطا افتاده را ضمیمه می‌کند. مثلاً:</p>
+<ol>
+<li>کاربر لاگین کرد (خرده نان)</li>
+<li>کاربر دکمه &ldquo;خرید&rdquo; را زد (خرده نان - درخواست HTTP)</li>
+<li>یک کوئری به دیتابیس زده شد (خرده نان - Database query)</li>
+<li><strong>بوم! برنامه کرش کرد.</strong> (Exception)
+تو با دیدن این مسیر دقیقا می‌فهمی کاربر چه مسیری را طی کرده تا به باگ رسیده است.</li>
+</ol>
+<h4 id="۴-اتصال-به-git-و-suspect-commits-مجرم-کیست">۴. اتصال به Git و Suspect Commits (مجرم کیست؟)<a hidden class="anchor" aria-hidden="true" href="#۴-اتصال-به-git-و-suspect-commits-مجرم-کیست">#</a></h4>
+<p>تو می‌توانی Sentry را به گیت‌هاب یا گیت‌لب متصل کنی. وقتی خطایی رخ می‌دهد، Sentry استک‌تریس را می‌خواند، می‌بیند خطا در خط ۵۰ فایل <code>payment.py</code> رخ داده. بعد در Git بررسی می‌کند که آخرین بار چه کسی این خط را تغییر داده است.
+سپس در داشبورد Sentry می‌نویسد: <strong>&ldquo;احتمالاً این باگ تقصیر کامیتِ شماره <code>a1b2c3d</code> است که علی آقا ۲ ساعت پیش پوش کرده!&rdquo;</strong> (به این ویژگی Suspect Commits می‌گویند).</p>
+<hr>
+<h3 id="رویکرد-sentry-در-معماری-چه-زمانی-لاگ-چه-زمانی-sentry">رویکرد Sentry در معماری (چه زمانی لاگ، چه زمانی Sentry؟)<a hidden class="anchor" aria-hidden="true" href="#رویکرد-sentry-در-معماری-چه-زمانی-لاگ-چه-زمانی-sentry">#</a></h3>
+<p>حالا به عنوان یک مهندس نرم‌افزار باید بدانی جایگاه Sentry در کنار <code>logging</code> چیست. این دو رقیب هم نیستند، مکمل هم‌اند:</p>
+<ul>
+<li><strong>لاگ‌ها (Logging/ELK Stack/Grafana Loki):</strong> برای <strong>رخدادهای عادی و هشدارها (Info, Warning)</strong> استفاده می‌شوند. مثل اینکه &ldquo;کاربر فلان فایل را دانلود کرد&rdquo; یا &ldquo;عملیات طول کشید&rdquo;. لاگ‌ها برای مانیتورینگِ رفتار کلی سیستم هستند.</li>
+<li><strong>سنتری (Sentry):</strong> <strong>فقط و فقط برای Exception ها و کرش‌ها (Errors).</strong> جایی که روال عادی برنامه پاره شده است. ما به Sentry می‌گوییم &ldquo;سیستمِ ردیابیِ باگ‌های پروداکشن&rdquo;.</li>
+</ul>
+<p><strong>یک الگوی حرفه‌ای (Catch and Capture):</strong>
+همانطور که قبلاً گفتیم، گاهی تو در یک <code>try/except</code> خطا را کامل هندل می‌کنی تا برنامه نمیرد، اما دلت می‌خواهد مهندسان از وجود این باگ مطلع شوند (بدون اینکه لاگ‌های متنی را شلوغ کنی). اینجا می‌توانی خطا را دستی به Sentry بفرستی:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> sentry_sdk
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calculate_discount</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># کدی که ممکن است باگ داشته باشد</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ZeroDivisionError</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># برنامه نمیمیرد، اما خطا با تمام جزئیات برای تیم فنی ارسال می‌شود</span>
+</span></span><span style="display:flex;"><span>        sentry_sdk<span style="color:#f92672">.</span>capture_exception(e)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># یک مقدار پیش‌فرض برمی‌گردانیم تا کاربر متوجه نشود</span>
+</span></span></code></pre></div><h3 id="خلاصه">خلاصه<a hidden class="anchor" aria-hidden="true" href="#خلاصه">#</a></h3>
+<p>Sentry باعث شد برنامه‌نویس‌ها از حالت <strong>واکنشی (Reactive)</strong> (منتظر ماندن تا کاربر زنگ بزند و فحش بدهد) به حالت <strong>پیش‌گیرانه (Proactive)</strong> تبدیل شوند.
+در شرکت‌های مدرن، قبل از اینکه کاربر حتی متوجه شود صفحه لود نشده، Sentry خطا را گرفته، در کانال Slack شرکت آلارم داده، باگ به جیرا (Jira) متصل شده و برنامه‌نویس در حال دیباگ کردن آن با استفاده از متغیرهای محلیِ ضبط شده است!</p>
+
+</div>
+
+<div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  من برای این که خود stack trace رو باهاش آشنا بشم و ببینمش آیا راهی وجود داره در پایتون؟
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>عالی! بهترین راه برای درک عمیق هر مفهومی در مهندسی نرم‌افزار، کثیف کردن دست‌ها با کد و بازی کردن با آن است.</p>
+<p>در پایتون به Stack Trace اصطلاحاً <strong>Traceback</strong> گفته می‌شود (ردیابی به عقب). پایتون ابزارهای بسیار قدرتمندی در کتابخانه‌ی استانداردش دارد که به تو اجازه می‌دهد با این Traceback ها بازی کنی.</p>
+<p>بیا در ۴ مرحله و با کد، استک تریس را کالبدشکافی کنیم. می‌توانی این کدها را همین الان در یک فایل پایتون (مثلاً <code>test_stack.py</code>) کپی و اجرا کنی:</p>
+<hr>
+<h3 id="سطح-۱-ایجاد-یک-تصادف-عمدی-حالت-طبیعی">سطح ۱: ایجاد یک تصادف عمدی (حالت طبیعی)<a hidden class="anchor" aria-hidden="true" href="#سطح-۱-ایجاد-یک-تصادف-عمدی-حالت-طبیعی">#</a></h3>
+<p>اولین راه برای دیدن استک تریس این است که چند تابع تو در تو بنویسیم و در عمیق‌ترین تابع، یک بمب منفجر کنیم!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">function_A</span>():
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;وارد تابع A شدیم&#34;</span>)
+</span></span><span style="display:flex;"><span>    function_B()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">function_B</span>():
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;وارد تابع B شدیم&#34;</span>)
+</span></span><span style="display:flex;"><span>    function_C()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">function_C</span>():
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;وارد تابع C شدیم - الان بمب منفجر میشه!&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">0</span>  <span style="color:#75715e"># خطای تقسیم بر صفر</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># اجرای برنامه</span>
+</span></span><span style="display:flex;"><span>function_A()
+</span></span></code></pre></div><p><strong>خروجی در کنسول:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>وارد تابع A شدیم
+</span></span><span style="display:flex;"><span>وارد تابع B شدیم
+</span></span><span style="display:flex;"><span>وارد تابع C شدیم - الان بمب منفجر میشه!
+</span></span><span style="display:flex;"><span>Traceback (most recent call last):
+</span></span><span style="display:flex;"><span>  File &#34;test_stack.py&#34;, line 14, in &lt;module&gt;
+</span></span><span style="display:flex;"><span>    function_A()
+</span></span><span style="display:flex;"><span>  File &#34;test_stack.py&#34;, line 3, in function_A
+</span></span><span style="display:flex;"><span>    function_B()
+</span></span><span style="display:flex;"><span>  File &#34;test_stack.py&#34;, line 7, in function_B
+</span></span><span style="display:flex;"><span>    function_C()
+</span></span><span style="display:flex;"><span>  File &#34;test_stack.py&#34;, line 11, in function_C
+</span></span><span style="display:flex;"><span>    1 / 0
+</span></span><span style="display:flex;"><span>ZeroDivisionError: division by zero
+</span></span></code></pre></div><p><strong>چطور آن را بخوانیم؟</strong>
+پایتون خودش راهنمایی کرده: <code>most recent call last</code> (آخرین تماس در انتها قرار دارد).
+یعنی برای خواندن استک تریس پایتون، باید <strong>از پایین به بالا</strong> بخوانی:</p>
+<ol>
+<li><strong>خط آخر:</strong> نوع خطا و پیامش را می‌گوید (<code>ZeroDivisionError</code>).</li>
+<li><strong>دو خطِ قبل از آن:</strong> می‌گوید این خطا دقیقاً در خط ۱۱ (عملیات <code>1 / 0</code>) داخل تابع <code>function_C</code> رخ داده.</li>
+<li><strong>دو خطِ قبل از آن:</strong> می‌گوید چه کسی <code>function_C</code> را صدا زده؟ تابع <code>function_B</code> در خط ۷.</li>
+<li><strong>دو خطِ قبل از آن:</strong> می‌گوید چه کسی <code>function_B</code> را صدا زده؟ و همینطور تا فایلی که برنامه از آن شروع شده است.</li>
+</ol>
+<hr>
+<h3 id="سطح-۲-دیدن-استک-تریس-بدون-کشتن-برنامه-traceback-ماژول">سطح ۲: دیدن استک تریس بدون کُشتنِ برنامه! (<code>traceback</code> ماژول)<a hidden class="anchor" aria-hidden="true" href="#سطح-۲-دیدن-استک-تریس-بدون-کشتن-برنامه-traceback-ماژول">#</a></h3>
+<p>در سطح ۱ برنامه ما کرش کرد و مُرد. اگر بخواهیم خطا را هندل کنیم ولی استک تریس را هم روی صفحه چاپ کنیم تا با آن آشنا شویم چه؟
+اینجا ماژول قدرتمند <code>traceback</code> وارد می‌شود:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> traceback
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">risky_function</span>():
+</span></span><span style="display:flex;"><span>    my_list <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> my_list[<span style="color:#ae81ff">10</span>] <span style="color:#75715e"># خطای Index Out of Range</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        risky_function()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">IndexError</span>:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;--- ما خطا رو گرفتیم! برنامه نمیمیره. اما استک تریس این شکلیه: ---&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># این تابع استک تریس رو در همون لحظه پرینت می‌کنه</span>
+</span></span><span style="display:flex;"><span>        traceback<span style="color:#f92672">.</span>print_exc() 
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;--- برنامه با موفقیت ادامه پیدا می‌کنه ---&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>main()
+</span></span></code></pre></div><p>با اجرای این کد، دقیقاً همان استک تریس سطح ۱ چاپ می‌شود، اما برنامه بعد از آن به کار خود ادامه می‌دهد.</p>
+<hr>
+<h3 id="سطح-۳-ذخیره-کردن-استک-تریس-در-یک-متغیر-تبدیل-به-string">سطح ۳: ذخیره کردن استک تریس در یک متغیر (تبدیل به String)<a hidden class="anchor" aria-hidden="true" href="#سطح-۳-ذخیره-کردن-استک-تریس-در-یک-متغیر-تبدیل-به-string">#</a></h3>
+<p>گاهی اوقات تو نمی‌خواهی استک تریس در کنسول چاپ شود، بلکه می‌خواهی آن را در یک متغیر متنی ذخیره کنی تا بعداً مثلاً در دیتابیس ذخیره کنی یا با ایمیل بفرستی.
+برای این کار از <code>traceback.format_exc()</code> استفاده می‌کنیم:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> traceback
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">divide</span>(a, b):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> a <span style="color:#f92672">/</span> b
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># اینجا استک تریس به عنوان یک استرینگ در متغیر ذخیره می‌شه</span>
+</span></span><span style="display:flex;"><span>        error_string <span style="color:#f92672">=</span> traceback<span style="color:#f92672">.</span>format_exc()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;من استک تریس رو توی یک متغیر ذخیره کردم. طول این متن برابر است با:&#34;</span>, len(error_string), <span style="color:#e6db74">&#34;کاراکتر!&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># حالا می‌تونی error_string رو هر کاری دلت خواست بکنی</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># مثلاً: save_to_database(error_string)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>divide(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>)
+</span></span></code></pre></div><hr>
+<h3 id="سطح-۴-ترفند-نینجا-دیدن-استک-تریس-وقتی-هیچ-خطایی-رخ-نداده">سطح ۴: ترفند نینجا! (دیدن استک تریس وقتی هیچ خطایی رخ نداده)<a hidden class="anchor" aria-hidden="true" href="#سطح-۴-ترفند-نینجا-دیدن-استک-تریس-وقتی-هیچ-خطایی-رخ-نداده">#</a></h3>
+<p>این یکی از جالب‌ترین ترفندهای دیباگ کردن برای مهندسان است.
+فرض کن وارد یک پروژه‌ی بسیار بزرگ و کثیف شده‌ای. یک تابع به نام <code>update_user_balance()</code> وجود دارد که نمی‌دانی چه کسی و از کجای برنامه آن را صدا می‌زند!
+تو می‌توانی <strong>بدون اینکه خطایی رخ بدهد</strong>، استک تریسِ آن لحظه را چاپ کنی تا بفهمی از چه مسیری به این تابع رسیده‌ای:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> traceback
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hidden_function</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># هیچ خطایی اینجا نیست!</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;من دارم اجرا میشم، ولی کی منو صدا زد؟؟&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># این دستور میگه: به من نشون بده از چه مسیری رسیدیم به اینجا!</span>
+</span></span><span style="display:flex;"><span>    traceback<span style="color:#f92672">.</span>print_stack()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">layer_1</span>():
+</span></span><span style="display:flex;"><span>    hidden_function()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">layer_2</span>():
+</span></span><span style="display:flex;"><span>    layer_1()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># اجرا</span>
+</span></span><span style="display:flex;"><span>layer_2()
+</span></span></code></pre></div><p>وقتی این کد را اجرا می‌کنی، پایتون مسیری که توابع طی کرده‌اند تا به <code>hidden_function</code> برسند را چاپ می‌کند، بدون اینکه اکسپشنی در کار باشد. این برای دیباگ کردن کدهای پیچیده (مثل فریم‌ورک‌های جانگو یا جنگو) که توابع به طور غیرمستقیم صدا زده می‌شوند، یک معجزه است.</p>
+<h3 id="پیشنهاد-برای-تمرین">پیشنهاد برای تمرین:<a hidden class="anchor" aria-hidden="true" href="#پیشنهاد-برای-تمرین">#</a></h3>
+<p>یک فایل پایتون باز کن، کدهای <strong>سطح ۳ و ۴</strong> را کپی کن و با آن‌ها بازی کن. سعی کن توابع بیشتری به هم زنجیر کنی تا ببینی استک تریس چقدر طولانی می‌شود. این کار باعث می‌شود دیگر هرگز از دیدن متن‌های قرمز طولانیِ خطا در کنسول نترسی و بدانی که آن‌ها فقط یک نقشه‌ی راهنمای ساده هستند!</p>
+
+</div>
+
+<div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  خب به صورت خلاصه و پارگراف وار بنویس که من چه چیزهایی رو باید یادگرفته باشم و بلد باشم به عنوان یک مهندس نرم افزار از کل مباحثی که بحث کردیم
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>به عنوان یک مهندس نرم‌افزار، از دل تمام مباحث عمیقی که با هم بررسی کردیم، این پاراگراف‌های کلیدی را باید به عنوان <strong>نقشه راه و اصول ذهنی (Mindset)</strong> خودت به خاطر بسپاری:</p>
+<p><strong>۱. فلسفه و معماری مدیریت خطا (Paradigms &amp; Architecture)</strong>
+شما باید درک کرده باشید که Exception تنها راه مدیریت خطا نیست و زبان‌های مختلف رویکردهای متفاوتی (مثل Error as a Value در Go و Rust) دارند. همچنین باید بدانید که Exceptionها نمی‌توانند از مرز شبکه‌ها (مثل میکروسرویس‌ها) عبور کنند؛ بنابراین در معماری سیستم‌های توزیع‌شده، باید آن‌ها را به پروتکل‌های استاندارد (مثل HTTP Status Codes) و الگوهای مقاوم‌پذیری (مثل Retry و Circuit Breaker) تبدیل کنید.</p>
+<p><strong>۲. سلسله مراتب و زنجیره‌سازی در پایتون (Python Exception Mechanics)</strong>
+شما باید بدانید که هرگز نباید از <code>except:</code> خالی استفاده کنید، زیرا خطاهای سیستمی (فرزندان <code>BaseException</code> مثل <code>Ctrl+C</code>) را خفه می‌کند؛ همیشه باید از <code>except Exception</code> استفاده کنید. همچنین باید تفاوت <code>raise</code> عادی (که نشان‌دهنده یک خطای تصادفی در حین هندل کردن است) با <code>raise ... from ...</code> (که نشان‌دهنده ترجمه آگاهانه یک خطا به خطای دیگر در لایه‌های معماری است) و <code>raise ... from None</code> (برای مخفی کردن لاگ‌های امنیتی دیتابیس از چشم کاربر) را به خوبی به کار ببرید.</p>
+<p><strong>۳. استراتژی لاگ‌گیری و جلوگیری از زباله‌دانی لاگ (Logging Strategy)</strong>
+شما باید تفاوت ماهوی لاگرها با <code>raise</code> را درک کرده باشید: لاگرها برنامه را متوقف نمی‌کنند، فقط وقایع را ثبت می‌کنند. باید به خاطر بسپارید که <code>logger.exception</code> دقیقاً کار <code>logger.error</code> را می‌کند اما استک تریس را هم ضمیمه می‌کند و <strong>فقط</strong> باید داخل بلوک <code>except</code> استفاده شود. از همه مهم‌تر، قانون طلایی معماری را بلد باشید: برای جلوگیری از &ldquo;Double Logging&rdquo; (لاگ‌های تکراری)، خطا را در لایه‌های پایین فقط <code>raise</code> کنید و عملیات لاگ گرفتن از استک تریس را به بالاترین لایه (Global Handler) بسپارید.</p>
+<p><strong>۴. کالبدشکافی و تسلط بر استک تریس (Traceback Mastery)</strong>
+شما باید یاد گرفته باشید که از متن‌های طولانی و قرمز رنگِ خطاها نترسید و بدانید که آن‌ها صرفاً مسیر اجرای توابع (از پایین به بالا در پایتون) هستند. باید بلد باشید با استفاده از ماژول <code>traceback</code> پایتون، بدون کُشتن برنامه از استک تریس‌ها خروجی متنی بگیرید (<code>format_exc</code>) و یا حتی برای دیباگ کردنِ جریان‌های پیچیده‌ی کد، مسیر رسیدن به یک تابعِ سالم را چاپ کنید (<code>print_stack</code>).</p>
+<p><strong>۵. رؤیت‌پذیری و دیباگ در پروداکشن (Observability &amp; Sentry)</strong>
+شما باید مرز بین ابزارهای لاگینگ و ابزارهای رصد خطا را بشناسید. باید بدانید که فایل‌های لاگ برای ثبت &ldquo;رفتار عادی و هشدارهای بیزینسی&rdquo; هستند، در حالی که ابزارهایی مثل Sentry نقش &ldquo;جعبه سیاه هواپیما&rdquo; را برای کرش‌ها و Exceptionهای پیش‌بینی‌نشده بازی می‌کنند. مهم‌ترین ارزش ابزارهایی مثل Sentry، جمع‌آوری مقادیر متغیرهای محلی (Local Variables) در لحظه‌ی مرگ برنامه است که شما را از بازسازی دستیِ باگ بی‌نیاز می‌کند.</p>
+<p><strong>خلاصه نهایی:</strong>
+اگر این ۵ پاراگراف را در طراحی سیستم‌ها و نوشتن کدهایت لحاظ کنی، تو دیگر یک کدنویس جونیور نیستی؛ بلکه مهندسی هستی که می‌داند در لایه‌های زیرینِ زبان چه می‌گذرد، کدهایش در محیط پروداکشن به راحتی دیباگ می‌شوند و سیستم‌هایش در برابر خطاهای پیش‌بینی‌نشدۀ شبکه مقاوم هستند.</p>
+
+</div>
+
+<div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  در grpc چطور باید اکسپشن ها رو هندل کنیم؟ من یک مهندس نرم افزار جونیور هستم و چیز زیادی از grpc نمی‌دانم
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>به دنیای ارتباطات سریع و میکروسرویس‌ها خوش آمدی! از آنجایی که قبلاً با هم معماری استثناها و مرزهای شبکه (در قالب HTTP و REST) را بررسی کردیم، یادگیری gRPC برایت مثل وصل کردن قطعات یک پازل خواهد بود.</p>
+<p>ابتدا خیلی کوتاه gRPC را از دیدگاه یک معمار ببینیم و بعد برویم سراغ هندل کردن خطاها در آن.</p>
+<h3 id="grpc-چیست-خیلی-خلاصه">gRPC چیست؟ (خیلی خلاصه)<a hidden class="anchor" aria-hidden="true" href="#grpc-چیست-خیلی-خلاصه">#</a></h3>
+<p>در معماری REST، تو برای صحبت با یک سرویس دیگر یک درخواست HTTP می‌فرستی (مثلاً <code>GET /users/1</code>).
+اما gRPC (که توسط گوگل ساخته شده) می‌گوید: <strong>&ldquo;بیا طوری برنامه‌نویسی کنیم که انگار سرویسِ مقصد، یک تابعِ معمولی روی کامپیوتر خودمان است!&rdquo;</strong> (به این مفهوم RPC یا Remote Procedure Call می‌گویند). تو در کلاینت فقط می‌نویسی <code>stub.GetUser(id=1)</code> و gRPC خودش در پس‌زمینه دیتا را به کدهای باینری (Protobuf) تبدیل می‌کند، با سرعت نور از طریق HTTP/2 می‌فرستد به سرور و جواب را برمی‌گرداند.</p>
+<hr>
+<h3 id="قانون-اول-معماری-در-grpc-اکسپشنها-پرواز-نمیکنند">قانون اول معماری در gRPC: اکسپشن‌ها پرواز نمی‌کنند!<a hidden class="anchor" aria-hidden="true" href="#قانون-اول-معماری-در-grpc-اکسپشنها-پرواز-نمیکنند">#</a></h3>
+<p>همانطور که قبلاً یاد گرفتیم، اگر سرورِ تو (که با پایتون نوشته شده) خطای <code>ValueError</code> بدهد، نمی‌تواند آن شیء پایتونی را از طریق کابل شبکه برای کلاینت (که شاید با Go یا Java نوشته شده) پرتاب کند.</p>
+<p>بنابراین، gRPC هم مثل REST نیاز به یک <strong>زبان مشترک جهانی برای خطاها</strong> دارد.
+در REST ما کدهای وضعیت (مثل 404 یا 500) داشتیم. در gRPC ما <strong>16 کد وضعیتِ استانداردِ gRPC (gRPC Status Codes)</strong> داریم.</p>
+<p>چند تا از معروف‌ترین‌هایشان این‌ها هستند:</p>
+<ul>
+<li><code>OK</code> (0): موفقیت.</li>
+<li><code>INVALID_ARGUMENT</code> (3): معادل 400 در REST (ورودی اشتباه است).</li>
+<li><code>NOT_FOUND</code> (5): معادل 404 (پیدا نشد).</li>
+<li><code>ALREADY_EXISTS</code> (6): معادل 409 (مثلاً کاربری با این ایمیل قبلاً ثبت‌نام کرده).</li>
+<li><code>PERMISSION_DENIED</code> (7): معادل 403 (دسترسی نداری).</li>
+<li><code>INTERNAL</code> (13): معادل 500 (سرور ترکید - خطای هندل‌نشده).</li>
+</ul>
+<hr>
+<h3 id="چطور-در-پایتون-هندل-کنیم-کدنویسی-سرور-و-کلاینت">چطور در پایتون هندل کنیم؟ (کدنویسی سرور و کلاینت)<a hidden class="anchor" aria-hidden="true" href="#چطور-در-پایتون-هندل-کنیم-کدنویسی-سرور-و-کلاینت">#</a></h3>
+<p>بیا فرض کنیم یک تابع داریم که اطلاعات کاربر را می‌دهد و دو نوع خطا ممکن است رخ دهد: کاربر پیدا نشود، یا دیتابیس قطع شود.</p>
+<h4 id="۱-سمت-سرور-ترجمه-exception-به-grpc-status">۱. سمت سرور (ترجمه Exception به gRPC Status)<a hidden class="anchor" aria-hidden="true" href="#۱-سمت-سرور-ترجمه-exception-به-grpc-status">#</a></h4>
+<p>در سمت سرور، تو یک شیء به نام <code>context</code> داری که کنترل ارتباط دست آن است. وقتی خطای بیزینسی رخ می‌دهد، تو به جای <code>raise</code> کردنِ آن برای کلاینت، از متد <code>context.abort()</code> استفاده می‌کنی تا ارتباط را با یک کد استاندارد قطع کنی:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> grpc
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> concurrent <span style="color:#f92672">import</span> futures
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserServiceServicer</span>(user_pb2_grpc<span style="color:#f92672">.</span>UserServiceServicer):
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">GetUser</span>(self, request, context):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># لایه بیزینس را صدا می‌زنیم</span>
+</span></span><span style="display:flex;"><span>            user <span style="color:#f92672">=</span> fetch_user_from_database(request<span style="color:#f92672">.</span>user_id)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> user_pb2<span style="color:#f92672">.</span>UserResponse(name<span style="color:#f92672">=</span>user<span style="color:#f92672">.</span>name)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> UserNotFoundError <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># ترجمه خطای بیزینسی به خطای شبکه (NOT_FOUND)</span>
+</span></span><span style="display:flex;"><span>            context<span style="color:#f92672">.</span>abort(grpc<span style="color:#f92672">.</span>StatusCode<span style="color:#f92672">.</span>NOT_FOUND, <span style="color:#e6db74">&#34;کاربر مورد نظر پیدا نشد!&#34;</span>)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># اگر خطای ناشناخته‌ای رخ داد (مثلاً قطع دیتابیس)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># اینجا لاگ و استک تریس را برای خودمان ذخیره می‌کنیم</span>
+</span></span><span style="display:flex;"><span>            logger<span style="color:#f92672">.</span>exception(<span style="color:#e6db74">&#34;خطای وحشتناک در سرور&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># به کلاینت فقط می‌گوییم خطای داخلی رخ داده (بدون لو دادن جزئیات)</span>
+</span></span><span style="display:flex;"><span>            context<span style="color:#f92672">.</span>abort(grpc<span style="color:#f92672">.</span>StatusCode<span style="color:#f92672">.</span>INTERNAL, <span style="color:#e6db74">&#34;خطای سرور. لطفا بعدا تلاش کنید.&#34;</span>)
+</span></span></code></pre></div><p><em>نکته معماری:</em> وقتی <code>context.abort()</code> را صدا می‌زنی، gRPC خودش در همان نقطه یک Exceptionِ مخصوصِ خودش پرتاب می‌کند تا ادامه‌ی تابعِ تو اجرا نشود و پیام خطا سریعاً به کلاینت برسد.</p>
+<h4 id="۲-سمت-کلاینت-گرفتن-تور-برای-خطای-شبکه">۲. سمت کلاینت (گرفتن تور برای خطای شبکه)<a hidden class="anchor" aria-hidden="true" href="#۲-سمت-کلاینت-گرفتن-تور-برای-خطای-شبکه">#</a></h4>
+<p>حالا در سرویسِ کلاینت که می‌خواهد این تابع را صدا بزند، تمام خطاهای gRPC در قالب یک Exceptionِ واحد به نام <code>grpc.RpcError</code> شکار می‌شوند. تو آن را می‌گیری و کدش را چک می‌کنی:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> grpc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fetch_user_info</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># وصل شدن به سرور (Stub)</span>
+</span></span><span style="display:flex;"><span>    channel <span style="color:#f92672">=</span> grpc<span style="color:#f92672">.</span>insecure_channel(<span style="color:#e6db74">&#39;localhost:50051&#39;</span>)
+</span></span><span style="display:flex;"><span>    stub <span style="color:#f92672">=</span> user_pb2_grpc<span style="color:#f92672">.</span>UserServiceStub(channel)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># صدا زدن تابع روی سرور</span>
+</span></span><span style="display:flex;"><span>        response <span style="color:#f92672">=</span> stub<span style="color:#f92672">.</span>GetUser(user_pb2<span style="color:#f92672">.</span>UserRequest(user_id<span style="color:#f92672">=</span><span style="color:#ae81ff">99</span>))
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;اطلاعات کاربر:&#34;</span>, response<span style="color:#f92672">.</span>name)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> grpc<span style="color:#f92672">.</span>RpcError <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># اینجا متغیر e هم کد خطا را دارد، هم پیام خطا را</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>code() <span style="color:#f92672">==</span> grpc<span style="color:#f92672">.</span>StatusCode<span style="color:#f92672">.</span>NOT_FOUND:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#34;ای وای! کاربر نبود. پیام سرور این بود:&#34;</span>, e<span style="color:#f92672">.</span>details())
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elif</span> e<span style="color:#f92672">.</span>code() <span style="color:#f92672">==</span> grpc<span style="color:#f92672">.</span>StatusCode<span style="color:#f92672">.</span>INTERNAL:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#34;سرور مقصد به مشکل خورده، بیایید Circuit Breaker را فعال کنیم!&#34;</span>)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;یک خطای دیگر رخ داد: </span><span style="color:#e6db74">{</span>e<span style="color:#f92672">.</span>code()<span style="color:#e6db74">}</span><span style="color:#e6db74"> - </span><span style="color:#e6db74">{</span>e<span style="color:#f92672">.</span>details()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><hr>
+<h3 id="سطح-سنیور-دو-تکنیک-پیشرفته-در-grpc">سطح سنیور: دو تکنیک پیشرفته در gRPC<a hidden class="anchor" aria-hidden="true" href="#سطح-سنیور-دو-تکنیک-پیشرفته-در-grpc">#</a></h3>
+<p>وقتی به پروژه‌های بزرگ (Enterprise) می‌روی، این روشِ ساده بالا جوابگو نیست. معماران نرم‌افزار از دو ابزار قدرتمندِ دیگر استفاده می‌کنند:</p>
+<h4 id="الف-interceptors-میانگیرها---معادل-middleware">الف) Interceptors (میان‌گیرها - معادل Middleware)<a hidden class="anchor" aria-hidden="true" href="#الف-interceptors-میانگیرها---معادل-middleware">#</a></h4>
+<p>یادت هست گفتیم لاگ گرفتن از خطاها باید در بالاترین لایه (Global Handler) انجام شود تا کدمان کثیف نشود؟
+در gRPC ما قابلیتی به نام <strong>Interceptor</strong> داریم. تو می‌توانی کدی بنویسی که دورِ تمام توابع gRPC تو را احاطه کند.
+به جای اینکه در تک‌تک توابع <code>try/except</code> بنویسی، یک Interceptor می‌نویسی که می‌گوید:
+<em>&ldquo;هر تابعی که اجرا شد، اگر خطای هندل‌نشدۀ پایتونی پرتاب کرد، تو استک‌تریس را بگیر و بفرست به Sentry، و بعد خودکار به کلاینت کد <code>INTERNAL</code> برگردان.&rdquo;</em>
+اینطوری کد توابع (Servicer) تو به شدت تمیز و فقط شامل لاجیک اصلی می‌شود.</p>
+<h4 id="ب-rich-error-model-ارسال-خطاهای-ساختاریافته">ب) Rich Error Model (ارسال خطاهای ساختاریافته)<a hidden class="anchor" aria-hidden="true" href="#ب-rich-error-model-ارسال-خطاهای-ساختاریافته">#</a></h4>
+<p>گاهی کد وضعیت و یک پیام متنی کافی نیست.
+فرض کن کلاینت یک فرم ثبت‌نام با ۱۰ فیلد می‌فرستد. سرور می‌خواهد بگوید فرم اشتباه است (<code>INVALID_ARGUMENT</code>). اما کلاینت باید بداند <strong>کدام فیلدها</strong> اشتباه است (مثلا پسورد کوتاه است و ایمیل فرمت غلط دارد).</p>
+<p>در REST ما یک JSON بزرگ از خطاها برمی‌گردانیم. در gRPC از مفهومی به نام <strong><code>google.rpc.Status</code></strong> استفاده می‌شود که به تو اجازه می‌دهد همراه با خطا، یک آرایه از جزئیات (Metadata) برگردانی. تو می‌توانی یک لیست از فیلدهای خراب را به خطا ضمیمه کنی تا کلاینت دقیقاً بداند کدام فیلدِ UI را قرمز کند!</p>
+<h3 id="خلاصه-نقشه-راه-شما-در-grpc">خلاصه نقشه راه شما در gRPC:<a hidden class="anchor" aria-hidden="true" href="#خلاصه-نقشه-راه-شما-در-grpc">#</a></h3>
+<ol>
+<li><strong>اکسپشن پایتون ≠ خطای gRPC:</strong> اکسپشن‌ها در همان سرور می‌مانند و به کدهای 16گانه‌ی gRPC ترجمه می‌شوند.</li>
+<li><strong>Server:</strong> با <code>context.abort(code, details)</code> خطا را به سمت کلاینت شلیک می‌کنیم.</li>
+<li><strong>Client:</strong> با گرفتن <code>except grpc.RpcError</code> خطا را شکار کرده و بر اساس <code>e.code()</code> تصمیم‌گیری می‌کنیم.</li>
+<li><strong>معماری تمیز:</strong> برای جلوگیری از تکرار <code>try/except</code>، از gRPC Interceptors استفاده می‌کنیم تا خطاها را در یک نقطه‌ی مرکزی مدیریت و به Sentry ارسال کنیم.</li>
+</ol>
+
+</div>
+
+<div class="dialogue-turn dialogue-user">
+  <p class="dialogue-label"><strong>مهدی:</strong></p>
+  برای گام‌های یادگیری بعدی چه چیزهایی را به من پیشنهاد میدهی؟
+</div>
+
+<div class="dialogue-turn dialogue-assistant">
+  <p class="dialogue-label"><strong>جمینای:</strong></p>
+  <p>تو تا اینجای کار یک قدمِ بسیار بزرگ از دنیای «جونیور بودن» (فقط کد نوشتن) به دنیای «مهندسی» (طراحی سیستم) برداشته‌ای. حالا که یاد گرفتی وقتی برنامه‌ات به مشکل می‌خورد چطور آن را مدیریت کنی، وقت آن است که به سراغ مفاهیمی بروی که سیستم‌هایت را <strong>مستحکم‌تر، سریع‌تر و مقیاس‌پذیرتر</strong> می‌کنند.</p>
+<p>برای گام‌های بعدی، من یک «منوی آموزشی» در ۴ سطح برای تو آماده کرده‌ام. بسته به اینکه در پروژه‌ی فعلی‌ات با چه چالشی روبرو هستی، می‌توانی یکی از این درها را باز کنی:</p>
+<hr>
+<h3 id="گام-اول-سطح-کد-و-اطمینان-testing--qa">گام اول: سطح کد و اطمینان (Testing &amp; QA)<a hidden class="anchor" aria-hidden="true" href="#گام-اول-سطح-کد-و-اطمینان-testing--qa">#</a></h3>
+<p>ما یاد گرفتیم که چطور خطاها را هندل کنیم. اما از کجا مطمئن باشیم که هندلرِ ما در زمانِ خرابیِ دیتابیس درست کار می‌کند؟ تو نمی‌توانی در پروداکشن کابلِ دیتابیس را بکشی تا ببینی کدت درست کار می‌کند یا نه!</p>
+<ul>
+<li><strong>مفاهیمی که باید عمیق شوی:</strong>
+<ul>
+<li><strong>تست‌نویسی با <code>pytest</code> در پایتون:</strong> یاد بگیر چطور کدی بنویسی که کدِ تو را تست کند. (به خصوص یادگیری <code>pytest.raises</code> برای تست کردنِ Exception ها).</li>
+<li><strong>مفهوم Mocking (شبیه‌سازی):</strong> چطور به کدِ تستیِ خودت دروغ بگویی! (مثلاً وانمود کنی که سرور gRPC قطع است تا ببینی کلاینت تو واقعاً خطای <code>INTERNAL</code> را درست هندل می‌کند یا نه).</li>
+<li><strong>توسعه مبتنی بر تست (TDD):</strong> نوشتن تست قبل از نوشتن کد.</li>
+</ul>
+</li>
+</ul>
+<h3 id="گام-دوم-سطح-داده-و-بقا-database-transactions--acid">گام دوم: سطح داده و بقا (Database Transactions &amp; ACID)<a hidden class="anchor" aria-hidden="true" href="#گام-دوم-سطح-داده-و-بقا-database-transactions--acid">#</a></h3>
+<p>یادت هست گفتیم وقتی خطایی رخ می‌دهد باید <code>raise</code> کنیم تا عملیات متوقف شود؟ حالا فرض کن برنامه در حال انتقال پول از حساب A به B است. پول از A کم شده، ولی قبل از واریز به B، برق می‌رود یا یک Exception پرتاب می‌شود. چه بلایی سر پول می‌آید؟</p>
+<ul>
+<li><strong>مفاهیمی که باید عمیق شوی:</strong>
+<ul>
+<li><strong>تراکنش‌های دیتابیس (Transactions):</strong> مفاهیم <code>Commit</code> (تایید نهایی) و <code>Rollback</code> (عقب‌گرد). تو باید یاد بگیری چطور Exception ها را به Rollback شدن دیتابیس گره بزنی تا دیتای کثیف در سیستم نماند.</li>
+<li><strong>اصول ACID در دیتابیس‌ها:</strong> اتمی بودن، ثبات، انزوا و ماندگاری. این الفبای کار با داده‌های حساس است.</li>
+</ul>
+</li>
+</ul>
+<h3 id="گام-سوم-سطح-همزمانی-concurrency--asyncio">گام سوم: سطح همزمانی (Concurrency &amp; Asyncio)<a hidden class="anchor" aria-hidden="true" href="#گام-سوم-سطح-همزمانی-concurrency--asyncio">#</a></h3>
+<p>ما درباره Stack Trace (پشته فراخوانی) صحبت کردیم و گفتیم توابع چطور یکی‌یکی همدیگر را صدا می‌زنند. اما اگر بخواهیم ۱۰۰۰ تا کار را <strong>همزمان</strong> انجام دهیم چه؟ دنیای برنامه‌نویسیِ همزمان، قواعدِ استک‌تریس و ارور هندلینگ را کاملاً تغییر می‌دهد!</p>
+<ul>
+<li><strong>مفاهیمی که باید عمیق شوی:</strong>
+<ul>
+<li><strong>تفاوت Thread و Process در پایتون:</strong> پایتون به خاطر چیزی به نام GIL (Global Interpreter Lock) رفتار عجیبی در این زمینه دارد که هر مهندسی باید آن را بداند.</li>
+<li><strong>دنیای <code>asyncio</code>:</strong> مفاهیم Event Loop و کلمات کلیدی <code>async / await</code>.</li>
+<li><em>چالش جذاب:</em> وقتی در یک برنامه Async خطایی رخ می‌دهد، استک تریس کاملاً متفاوت به نظر می‌رسد چون توابع مستقیماً هم را صدا نزده‌اند، بلکه به Event Loop سپرده شده‌اند! درک این موضوع تو را بسیار قدرتمند می‌کند.</li>
+</ul>
+</li>
+</ul>
+<h3 id="گام-چهارم-سطح-معماری-و-طراحی-design-patterns--solid">گام چهارم: سطح معماری و طراحی (Design Patterns &amp; SOLID)<a hidden class="anchor" aria-hidden="true" href="#گام-چهارم-سطح-معماری-و-طراحی-design-patterns--solid">#</a></h3>
+<p>در بحث لاگینگ و gRPC دیدیم که چطور با استفاده از Interceptorها (میان‌گیرها) کدهای تکراریِ <code>try/except</code> را در یک جای مرکزی جمع کردیم. این یعنی «طراحیِ تمیز».</p>
+<ul>
+<li><strong>مفاهیمی که باید عمیق شوی:</strong>
+<ul>
+<li><strong>اصول SOLID:</strong> پنج اصل اساسی که به تو می‌گویند چطور کلاس‌ها و توابعت را بنویسی که اگر فردا خواستی یک ویژگی جدید اضافه کنی، نیاز نباشد کل کد را شخم بزنی.</li>
+<li><strong>الگوهای طراحی (Design Patterns):</strong> الگوهایی مثل Factory، Strategy، Singleton، و Decorator (که در پایتون به شدت با <code>@</code> استفاده می‌شود).</li>
+<li><strong>تزریق وابستگی (Dependency Injection):</strong> چطور بخش‌های مختلف برنامه را مثل قطعات لگو به هم وصل کنیم که به راحتی قابل تعویض باشند (این مفهوم به شدت در فریم‌ورک‌هایی مثل FastAPI استفاده می‌شود).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="پیشنهاد-من-برای-نقطهی-شروع">پیشنهادِ من برای نقطه‌ی شروع:<a hidden class="anchor" aria-hidden="true" href="#پیشنهاد-من-برای-نقطهی-شروع">#</a></h3>
+<p>اگر می‌خواهی مفاهیمی که در این گفتگو یاد گرفتیم در ذهنت تثبیت شود، پیشنهاد من این است که اول به سراغ <strong>گام اول (Testing)</strong> بروی.
+سعی کن یک پروژه کوچک بنویسی (مثلاً یک سیستم لاگین ساده). برایش Custom Exception بساز، خطاهای دیتابیس را به خطاهای بیزینسی ترجمه کن (<code>raise ... from</code>)، لاگر را روی آن‌ها تنظیم کن، و بعد با <strong>pytest</strong> تست‌هایی بنویس که مطمئن شوی وقتی دیتابیس قطع است، دقیقاً همان خطایی پرتاب می‌شود که تو انتظارش را داری.</p>
+<p>دوست داری مسیر بعدی را از کدام یک از این ۴ گام شروع کنی تا با هم مثل همین مباحث، عمیق و مفهومی زیر و رویش کنیم؟</p>
+
+</div>
+
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer><section class="comments giscus" dir="auto">
+  <h2 class="comments-title">نظرات</h2>
+  <script
+    src="https://giscus.app/client.js"
+    data-repo="mmsamiei/out-of-distribution"
+    data-repo-id="R_kgDOQGhj_Q"
+    data-category="General"
+    data-category-id="DIC_kwDOQGhj_c4DAUlJ"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+<noscript>
+  <p>برای گذاشتن نظر، JavaScript را فعال کنید.</p>
+</noscript>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Out of Distribution</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
