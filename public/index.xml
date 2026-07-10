@@ -6,23 +6,41 @@
     <description>Recent content on Out of Distribution</description>
     <generator>Hugo -- 0.151.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jul 2026 19:59:00 +0330</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2026 13:00:00 +0330</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>تایم‌اوت و Deadline در gRPC و پایتون</title>
-      <link>http://localhost:1313/posts/2026/jul/8/2/</link>
-      <pubDate>Wed, 08 Jul 2026 19:59:00 +0330</pubDate>
-      <guid>http://localhost:1313/posts/2026/jul/8/2/</guid>
+      <title>تاریخ مهندسی نرم‌افزار: دهه ۱۹۶۰ (۱۹۶۰ تا ۱۹۶۶)</title>
+      <link>http://localhost:1313/posts/software-history/1960-to-1966/</link>
+      <pubDate>Thu, 09 Jul 2026 13:00:00 +0330</pubDate>
+      <guid>http://localhost:1313/posts/software-history/1960-to-1966/</guid>
       <description>&lt;div class=&#34;dialogue-turn dialogue-user&#34;&gt;
   &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;مهدی:&lt;/strong&gt;&lt;/p&gt;
-  سلام. من یک مهندس نرم افزار جونیور هستم. من نمی‌دانم تایم اوت چطوری هندل میشه.
-من روی پایتون کد می‌زنم و شرکتمون هم grpc هست.
-لطفا پرکتیس‌ها و پترن‌های استفاده از تایم اوت رو بهم یاد بده.
+  &lt;p&gt;من یک می‌خواهم تاریخ مهندسی نرم افزار را با یک دیدگاه جامع مطالعه کنم.&lt;/p&gt;
+&lt;p&gt;مهم‌ترین اتفاقات سال ۱۹۶۰ را شرح بده&lt;/p&gt;
+
 &lt;/div&gt;
 
 &lt;div class=&#34;dialogue-turn dialogue-assistant&#34;&gt;
   &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;جمینای:&lt;/strong&gt;&lt;/p&gt;
-  &lt;p&gt;سلام! به دنیای جذاب (و گاهی چالش‌برانگیز) میکروسرویس‌ها و gRPC خوش آمدی. پرسیدن این سوال نشانه بسیار خوبی است، چون خیلی از برنامه‌نویس‌ها تازه زمانی به فکر Timeout می‌افتند که کل سیستمشان در پروداکشن دچار اختلال (Cascading Failure) شده است!&lt;/p&gt;</description>
+  &lt;p&gt;تصمیم بسیار عالی و جذابی گرفته‌اید. مطالعه تاریخ مهندسی نرم‌افزار با یک دیدگاه جامع به شما کمک می‌کند تا بفهمید چرا امروز از الگوها، زبان‌ها و روش‌های خاصی استفاده می‌کنیم.&lt;/p&gt;
+&lt;p&gt;برای شروع، باید بدانید که در سال &lt;strong&gt;۱۹۶۰&lt;/strong&gt;، اصطلاح «مهندسی نرم‌افزار» (Software Engineering) هنوز اختراع نشده بود (این اصطلاح در سال ۱۹۶۸ در کنفرانس ناتو رسماً مطرح شد). در آن زمان، برنامه‌نویسی بیشتر یک «هنر» یا «مهارت ریاضی» محسوب می‌شد تا یک رشته مهندسی نظام‌مند.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>تاریخ مهندسی نرم‌افزار: از پیش از ۱۹۵۰ تا پایان دهه ۵۰</title>
+      <link>http://localhost:1313/posts/software-history/pre-1950-to-1959/</link>
+      <pubDate>Thu, 09 Jul 2026 12:06:00 +0330</pubDate>
+      <guid>http://localhost:1313/posts/software-history/pre-1950-to-1959/</guid>
+      <description>&lt;div class=&#34;dialogue-turn dialogue-user&#34;&gt;
+  &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;مهدی:&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;من یک مهندس نرم افزار جونیور هستم و می‌خواهم تاریخ مهندسی نرم افزار را با یک دیدگاه جامع مطالعه کنم.&lt;/p&gt;
+&lt;p&gt;مهم‌ترین اتفاقات قبل از سال ۱۹۵۰ را شرح بده&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;div class=&#34;dialogue-turn dialogue-assistant&#34;&gt;
+  &lt;p class=&#34;dialogue-label&#34;&gt;&lt;strong&gt;جمینای:&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;سلام همکار عزیز! ورودت به دنیای مهندسی نرم‌افزار را تبریک می‌گویم. این که تصمیم گرفته‌ای تاریخچه رشته‌ات را عمیق و اصولی مطالعه کنی، نشان‌دهنده ذهنیت یک مهندسِ واقعی (و نه فقط یک کدنویس) است.&lt;/p&gt;
+&lt;p&gt;برای درک مهندسی نرم‌افزار، باید بدانیم که تا قبل از سال ۱۹۵۰، اصلاً چیزی به نام «نرم‌افزار» به معنای امروزی‌اش وجود نداشت! در این دوران، ما شاهد &lt;strong&gt;«عصر پیشاتاریخ نرم‌افزار»&lt;/strong&gt; هستیم؛ دورانی که مفاهیم، منطق و معماریِ محاسبات شکل گرفت تا بعدها نرم‌افزار بتواند روی آن‌ها سوار شود.&lt;/p&gt;</description>
     </item>
     <item>
       <title>از Error و Exception تا معماری نرم‌افزار در پایتون</title>

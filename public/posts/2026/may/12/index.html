@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <title>کلاس sequence در پایتون | Out of Distribution</title>
 <meta name="keywords" content="">
 <meta name="description" content="کلاس Sequence در پایتون: از اجداد تا فرزندان
 مقدمه‌ای که باید بخوانید
 وقتی برای اولین بار پایتون یاد می‌گیرید، سریع با چیزهایی مثل لیست، تاپل و رشته آشنا می‌شوید. این‌ها ابزارهای روزمره‌ی هر برنامه‌نویس پایتونی هستند. اما آیا تا به حال از خودتان پرسیده‌اید که چرا هر سه‌ی این‌ها رفتارهای مشترکی دارند؟ چرا می‌توانید روی هر سه‌ی آن‌ها حلقه بزنید؟ چرا هر سه از اندیس‌گذاری پشتیبانی می‌کنند؟ چرا هر سه تابع len() را قبول می‌کنند؟">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/2026/may/12/">
+<link rel="canonical" href="http://localhost:1313/posts/2026/may/12/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.dc4d5738b9970473e97d6e804f2dc5f949e9c5d0db36def849b21255230e49c8.css" integrity="sha256-3E1XOLmXBHPpfW6ATy3F&#43;UnpxdDbNt74SbISVSMOScg=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/2026/may/12/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/2026/may/12/">
 <noscript>
     <style>
         #theme-toggle,
@@ -76,71 +76,7 @@
     --dialogue-assistant-bg: color-mix(in srgb, var(--entry) 85%, var(--dialogue-assistant-accent));
   }
 </style>
-<meta property="og:url" content="https://example.org/posts/2026/may/12/">
-  <meta property="og:site_name" content="Out of Distribution">
-  <meta property="og:title" content="کلاس sequence در پایتون">
-  <meta property="og:description" content="کلاس Sequence در پایتون: از اجداد تا فرزندان مقدمه‌ای که باید بخوانید وقتی برای اولین بار پایتون یاد می‌گیرید، سریع با چیزهایی مثل لیست، تاپل و رشته آشنا می‌شوید. این‌ها ابزارهای روزمره‌ی هر برنامه‌نویس پایتونی هستند. اما آیا تا به حال از خودتان پرسیده‌اید که چرا هر سه‌ی این‌ها رفتارهای مشترکی دارند؟ چرا می‌توانید روی هر سه‌ی آن‌ها حلقه بزنید؟ چرا هر سه از اندیس‌گذاری پشتیبانی می‌کنند؟ چرا هر سه تابع len() را قبول می‌کنند؟">
-  <meta property="og:locale" content="en-us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2026-05-12T11:50:06+03:30">
-    <meta property="article:modified_time" content="2026-05-12T11:50:06+03:30">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="کلاس sequence در پایتون">
-<meta name="twitter:description" content="کلاس Sequence در پایتون: از اجداد تا فرزندان
-مقدمه‌ای که باید بخوانید
-وقتی برای اولین بار پایتون یاد می‌گیرید، سریع با چیزهایی مثل لیست، تاپل و رشته آشنا می‌شوید. این‌ها ابزارهای روزمره‌ی هر برنامه‌نویس پایتونی هستند. اما آیا تا به حال از خودتان پرسیده‌اید که چرا هر سه‌ی این‌ها رفتارهای مشترکی دارند؟ چرا می‌توانید روی هر سه‌ی آن‌ها حلقه بزنید؟ چرا هر سه از اندیس‌گذاری پشتیبانی می‌کنند؟ چرا هر سه تابع len() را قبول می‌کنند؟">
 
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://example.org/posts/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "کلاس sequence در پایتون",
-      "item": "https://example.org/posts/2026/may/12/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "کلاس sequence در پایتون",
-  "name": "کلاس sequence در پایتون",
-  "description": "کلاس Sequence در پایتون: از اجداد تا فرزندان مقدمه‌ای که باید بخوانید وقتی برای اولین بار پایتون یاد می‌گیرید، سریع با چیزهایی مثل لیست، تاپل و رشته آشنا می‌شوید. این‌ها ابزارهای روزمره‌ی هر برنامه‌نویس پایتونی هستند. اما آیا تا به حال از خودتان پرسیده‌اید که چرا هر سه‌ی این‌ها رفتارهای مشترکی دارند؟ چرا می‌توانید روی هر سه‌ی آن‌ها حلقه بزنید؟ چرا هر سه از اندیس‌گذاری پشتیبانی می‌کنند؟ چرا هر سه تابع len() را قبول می‌کنند؟\n",
-  "keywords": [
-    
-  ],
-  "articleBody": "کلاس Sequence در پایتون: از اجداد تا فرزندان مقدمه‌ای که باید بخوانید وقتی برای اولین بار پایتون یاد می‌گیرید، سریع با چیزهایی مثل لیست، تاپل و رشته آشنا می‌شوید. این‌ها ابزارهای روزمره‌ی هر برنامه‌نویس پایتونی هستند. اما آیا تا به حال از خودتان پرسیده‌اید که چرا هر سه‌ی این‌ها رفتارهای مشترکی دارند؟ چرا می‌توانید روی هر سه‌ی آن‌ها حلقه بزنید؟ چرا هر سه از اندیس‌گذاری پشتیبانی می‌کنند؟ چرا هر سه تابع len() را قبول می‌کنند؟\nجواب در یک مفهوم نهفته است: پروتکل Sequence.\nپایتون یک زبان با سیستم تایپ پویا (dynamic typing) است، اما این به معنای بی‌نظمی نیست. در دل پایتون، یک سیستم دقیق و زیبا طراحی شده که رفتار انواع داده را از طریق پروتکل‌ها و کلاس‌های پایه‌ی انتزاعی (Abstract Base Classes یا ABCs) مشخص می‌کند. کلاس Sequence یکی از مهم‌ترین این کلاس‌های پایه است.\nدر این مقاله، یک سفر کامل خواهیم داشت:\nاز اجداد Sequence شروع می‌کنیم (کلاس‌هایی مثل Iterable، Container و Sized) خود Sequence را زیر ذره‌بین می‌گذاریم تمام فرزندان آن (مثل list، tuple، str، range و …) را بررسی می‌کنیم یاد می‌گیریم چطور Sequence سفارشی بسازیم و در نهایت با MutableSequence و تفاوت‌هایش آشنا می‌شویم بخش اول: قبل از Sequence — اجداد و ریشه‌ها ۱.۱ — ماژول collections.abc چیست؟ همه‌ی ماجرا در ماژول collections.abc اتفاق می‌افتد. این ماژول مجموعه‌ای از کلاس‌های پایه‌ی انتزاعی (Abstract Base Classes) را در اختیار ما می‌گذارد که رفتار انواع داده‌ای مختلف را تعریف می‌کنند.\nقبل از پایتون ۳.۳، این کلاس‌ها مستقیماً در collections بودند. از پایتون ۳.۳ به بعد، به collections.abc منتقل شدند و از پایتون ۳.۱۰ به بعد، استفاده از collections.MutableSequence (بدون .abc) دیگر کار نمی‌کند.\n# روش صحیح import from collections.abc import ( Sequence, MutableSequence, Iterable, Iterator, Reversible, Container, Sized, Collection, ) ۱.۲ — درخت کامل وراثت برای اینکه بفهمیم Sequence از کجا آمده، باید کل درخت وراثت را ببینیم:\nobject └── Hashable (__hash__) └── Iterable (__iter__) └── Iterator (__next__, __iter__) └── Generator (__next__, send, throw, ...) └── Reversible (__reversed__) └── Collection (__contains__, __iter__, __len__) [ترکیب سه تا] ├── Sized (__len__) ├── Container (__contains__) └── Iterable (__iter__) └── Sequence (__getitem__, __len__) └── MutableSequence (__setitem__, __delitem__, insert) └── ByteString (deprecated در ۳.۱۲) این نمودار نشان می‌دهد که Sequence در واقع ترکیب و تکامل چندین مفهوم ساده‌تر است.\n۱.۳ — جد اول: Iterable اولین و مهم‌ترین جد Sequence کلاس Iterable است.\nتعریف: هر شیئی که می‌توانیم روی آن حلقه بزنیم، یک Iterable است.\nمتد انتزاعی: __iter__\nfrom collections.abc import Iterable class MyRange: def __init__(self, n): self.n = n def __iter__(self): current = 0 while current \u003c self.n: yield current current += 1 r = MyRange(5) print(isinstance(r, Iterable)) # True — چون __iter__ داره for x in r: print(x) # 0, 1, 2, 3, 4 نکته‌ی مهم: پایتون یک مکانیزم fallback هم دارد. اگر شیئی __iter__ نداشته باشد اما __getitem__ داشته باشد، پایتون سعی می‌کند با ایندکس‌های ۰، ۱، ۲، … روی آن iterate کند تا به IndexError برسد. این یک legacy behavior است:\nclass OldStyle: def __getitem__(self, index): if index \u003e= 5: raise IndexError return index * 2 obj = OldStyle() # این کار می‌کند، حتی بدون __iter__: for x in obj: print(x) # 0, 2, 4, 6, 8 # اما isinstance چک می‌کند که آیا __iter__ وجود داره: print(isinstance(obj, Iterable)) # False! ۱.۴ — جد دوم: Sized تعریف: هر شیئی که می‌توان طول آن را با len() بدست آورد.\nمتد انتزاعی: __len__\nfrom collections.abc import Sized class MyCollection: def __init__(self, data): self.data = data def __len__(self): return len(self.data) mc = MyCollection([1, 2, 3, 4, 5]) print(len(mc)) # 5 print(isinstance(mc, Sized)) # True نکته‌ی ظریف: __len__ باید یک عدد صحیح غیرمنفی برگرداند. اگر منفی برگردانید، پایتون ValueError می‌دهد:\nclass BadSized: def __len__(self): return -1 # اشتباه! bs = BadSized() try: len(bs) except ValueError as e: print(e) # __len__() should return \u003e= 0 ۱.۵ — جد سوم: Container تعریف: هر شیئی که می‌توان با in بررسی عضویت کرد.\nمتد انتزاعی: __contains__\nfrom collections.abc import Container class EvenNumbers: def __contains__(self, item): return isinstance(item, int) and item % 2 == 0 evens = EvenNumbers() print(2 in evens) # True print(3 in evens) # False print(100 in evens) # True print(isinstance(evens, Container)) # True ۱.۶ — جد چهارم: Collection Collection ترکیب سه جد بالاست: Sized + Iterable + Container.\nاین یعنی هر Collection:\nطول دارد (__len__) قابل iterate است (__iter__) از عملگر in پشتیبانی می‌کند (__contains__) from collections.abc import Collection class NumberSet(Collection): def __init__(self, *args): self._data = set(args) def __contains__(self, item): return item in self._data def __iter__(self): return iter(self._data) def __len__(self): return len(self._data) ns = NumberSet(1, 2, 3, 4, 5) print(len(ns)) # 5 print(3 in ns) # True print(list(ns)) # [1, 2, 3, 4, 5] (ترتیب ممکن است فرق کند) ۱.۷ — جد پنجم: Reversible تعریف: شیئی که می‌توان با reversed() آن را معکوس کرد.\nمتد انتزاعی: __reversed__\nfrom collections.abc import Reversible class CountDown(Reversible): def __init__(self, start): self.start = start def __iter__(self): for i in range(self.start + 1): yield i def __reversed__(self): for i in range(self.start, -1, -1): yield i cd = CountDown(5) print(list(cd)) # [0, 1, 2, 3, 4, 5] print(list(reversed(cd))) # [5, 4, 3, 2, 1, 0] بخش دوم: خود Sequence — قلب ماجرا ۲.۱ — Sequence چیست؟ Sequence یک Collection مرتب و با دسترسی به اندیس است. این تعریف کوتاه اما پر از معناست:\nمرتب: عناصر ترتیب دارند و ترتیب اهمیت دارد با دسترسی به اندیس: می‌توان با obj[0]، obj[1]، … به هر عنصر دسترسی داشت طول مشخص: می‌توان طول آن را با len() بدست آورد ۲.۲ — متدهای انتزاعی (Abstract Methods) برای پیاده‌سازی یک Sequence، باید دقیقاً دو متد را پیاده‌سازی کنید:\nمتد توضیح __getitem__(self, index) دسترسی به عنصر با اندیس یا slice __len__(self) تعداد عناصر همین دو متد کافی است! بقیه متدها به صورت خودکار از این دو مشتق می‌شوند.\n۲.۳ — متدهای Mixin (رایگان!) وقتی از Sequence ارث می‌برید و آن دو متد را پیاده‌سازی می‌کنید، به صورت رایگان این متدها هم به کلاستان اضافه می‌شوند:\nمتد توضیح نحوه‌ی مشتق‌شدن __contains__ عملگر in با iterate کردن و مقایسه __iter__ حلقه for با اندیس از ۰ تا len-1 __reversed__ تابع reversed() با اندیس از len-1 تا ۰ index پیدا کردن اندیس عنصر با iterate کردن count شمردن تعداد تکرار با iterate کردن بیایید این را در عمل ببینیم:\nfrom collections.abc import Sequence class FibSequence(Sequence): \"\"\"دنباله فیبوناچی به صورت Sequence\"\"\" def __init__(self, length): self._length = length self._cache = {} def _fib(self, n): if n in self._cache: return self._cache[n] if n \u003c= 1: return n result = self._fib(n-1) + self._fib(n-2) self._cache[n] = result return result def __getitem__(self, index): if isinstance(index, slice): # پشتیبانی از slice indices = range(*index.indices(self._length)) return [self._fib(i) for i in indices] if index \u003c 0: index += self._length if not 0 \u003c= index \u003c self._length: raise IndexError(\"index out of range\") return self._fib(index) def __len__(self): return self._length # ایجاد و استفاده fib = FibSequence(10) # __getitem__ (که خودمان نوشتیم) print(fib[0]) # 0 print(fib[1]) # 1 print(fib[7]) # 13 print(fib[-1]) # 34 # __len__ (که خودمان نوشتیم) print(len(fib)) # 10 # __iter__ (رایگان از Sequence!) print(list(fib)) # [0, 1, 1, 2, 3, 5, 8, 13, 21, 34] # __contains__ (رایگان از Sequence!) print(8 in fib) # True print(9 in fib) # False # __reversed__ (رایگان از Sequence!) print(list(reversed(fib))) # [34, 21, 13, 8, 5, 3, 2, 1, 1, 0] # index (رایگان از Sequence!) print(fib.index(13)) # 7 # count (رایگان از Sequence!) print(fib.count(1)) # 2 (چون هم fib[1]=1 و هم fib[2]=1) # slice (که ما هندل کردیم) print(fib[2:6]) # [1, 2, 3, 5] # isinstance چک from collections.abc import Sequence as SeqABC print(isinstance(fib, SeqABC)) # True ۲.۴ — پیاده‌سازی داخلی متدهای Mixin بیایید ببینیم پایتون چطور این متدها را “رایگان” می‌دهد. کد ساده‌شده‌ی CPython:\n# این کد ساده‌سازی‌شده‌ی پیاده‌سازی داخلی است class SequenceBase: # این دو را باید خودتان پیاده‌سازی کنید: def __getitem__(self, index): raise NotImplementedError def __len__(self): raise NotImplementedError # اینها رایگان هستند: def __contains__(self, value): # یک به یک عناصر را بررسی می‌کند for v in self: if v is value or v == value: return True return False def __iter__(self): # از اندیس ۰ شروع می‌کند تا IndexError بگیرد i = 0 try: while True: v = self[i] yield v i += 1 except IndexError: return def __reversed__(self): # از آخر به اول می‌رود for i in reversed(range(len(self))): yield self[i] def index(self, value, start=0, stop=None): if stop is None: stop = len(self) # نرمال‌سازی if start \u003c 0: start = max(len(self) + start, 0) if stop \u003c 0: stop = max(len(self) + stop, 0) i = start while i \u003c stop: v = self[i] if v is value or v == value: return i i += 1 raise ValueError(f\"{value!r} is not in sequence\") def count(self, value): cnt = 0 for v in self: if v is value or v == value: cnt += 1 return cnt ۲.۵ — Virtual Subclassing (ثبت مجازی) یکی از قدرتمندترین ویژگی‌های ABC در پایتون، Virtual Subclassing است. این یعنی می‌توانید کلاسی را به عنوان زیرکلاس یک ABC ثبت کنید، حتی اگر واقعاً از آن ارث نبرده باشد!\nfrom collections.abc import Sequence class MyCustomList: \"\"\"این کلاس از Sequence ارث نمی‌برد\"\"\" def __init__(self, data): self._data = list(data) def __getitem__(self, index): return self._data[index] def __len__(self): return len(self._data) # ثبت به عنوان Sequence مجازی Sequence.register(MyCustomList) mcl = MyCustomList([1, 2, 3]) print(isinstance(mcl, Sequence)) # True — حتی بدون ارث‌بری واقعی! print(issubclass(MyCustomList, Sequence)) # True اما توجه کنید: در این حالت متدهای Mixin رایگان نیستند! چون ارث‌بری واقعی اتفاق نیفتاده.\n# بدون ارث‌بری واقعی، index و count ندارید: try: mcl.index(2) except AttributeError as e: print(e) # 'MyCustomList' object has no attribute 'index' ۲.۶ — __subclasshook__ — منطق سفارشی برای isinstance هر ABC می‌تواند یک __subclasshook__ داشته باشد که منطق isinstance را سفارشی کند:\nfrom collections.abc import Iterable import inspect # Iterable.__subclasshook__ تقریباً اینطور کار می‌کند: @classmethod def __subclasshook__(cls, C): if cls is Iterable: # بررسی می‌کند که آیا __iter__ در MRO هست if any(\"__iter__\" in B.__dict__ for B in C.__mro__): return True return NotImplemented این است که چرا بدون ثبت مجازی، هر کلاسی که __iter__ داشته باشد، isinstance(obj, Iterable) برایش True می‌دهد.\nبخش سوم: فرزندان Sequence — بررسی کامل ۳.۱ — نقشه‌ی فرزندان قبل از اینکه وارد جزئیات بشیم، ببینیم فرزندان Sequence چه کسانی هستند:\nSequence ├── list (mutable — از MutableSequence هم ارث می‌بره) ├── tuple (immutable) ├── str (immutable — فقط کاراکتر) ├── range (immutable — lazy) ├── bytes (immutable — فقط بایت) ├── bytearray (mutable — از MutableSequence هم ارث می‌بره) ├── memoryview (mutable یا immutable بسته به buffer) └── array.array (mutable — از MutableSequence ارث می‌بره) هر کدام از این‌ها ویژگی‌های خاص خودشان را دارند. بیایید یکی یکی بررسی کنیم.\n۳.۲ — فرزند اول: list list احتمالاً پرکاربردترین Sequence در پایتون است. یک آرایه‌ی پویا (dynamic array) که می‌تواند هر نوع شیئی را نگه دارد.\nساختار داخلی list list در CPython به عنوان یک آرایه‌ی پویا از اشاره‌گرها پیاده‌سازی شده. این یعنی:\nهر عنصر در واقع یک اشاره‌گر (pointer) به یک شیء پایتون است خود اشیاء جای دیگری در حافظه هستند وقتی ظرفیت تمام می‌شود، یک آرایه‌ی بزرگتر ساخته می‌شه و همه چیز کپی می‌شه import sys # ببینیم list چقدر حافظه مصرف می‌کند empty_list = [] print(sys.getsizeof(empty_list)) # 56 bytes (overhead خود list) # با یک عنصر one_element = [1] print(sys.getsizeof(one_element)) # 64 bytes # هر اشاره‌گر 8 بایت است (روی سیستم 64 بیتی) growth factor در list وقتی یک list پر می‌شود، پایتون حافظه‌ی بیشتری اختصاص می‌دهد. این فرمول تقریبی است:\n# بررسی capacity واقعی list import ctypes def get_list_capacity(lst): \"\"\"ظرفیت واقعی list را برمی‌گرداند\"\"\" # ob_alloc در ساختار PyListObject return lst.__sizeof__() // 8 - 1 # تقریبی # ببینیم چطور رشد می‌کند lst = [] prev_size = sys.getsizeof(lst) for i in range(20): lst.append(i) new_size = sys.getsizeof(lst) if new_size != prev_size: print(f\"بعد از {i+1} عنصر: {new_size} bytes\") prev_size = new_size # خروجی تقریبی: # بعد از 1 عنصر: 88 bytes (4 slot) # بعد از 5 عنصر: 120 bytes (8 slot) # بعد از 9 عنصر: 184 bytes (16 slot) # بعد از 17 عنصر: 248 bytes (25 slot) فرمول رشد: new_capacity = (old_capacity * 9 // 8) + 6\nپیچیدگی زمانی عملیات‌های list # O(1) — دسترسی به اندیس lst = [1, 2, 3, 4, 5] x = lst[2] # سریع، همیشه O(1) # O(1) amortized — append به انتها lst.append(6) # معمولاً سریع # O(n) — insert در ابتدا یا وسط lst.insert(0, 0) # همه عناصر باید جابجا شوند! # O(n) — حذف از ابتدا lst.pop(0) # همه عناصر به چپ shift می‌شوند # O(1) — حذف از انتها lst.pop() # سریع # O(n) — جستجو lst.index(3) # باید همه را بررسی کند # O(n log n) — مرتب‌سازی lst.sort() # از Timsort استفاده می‌کند # O(k) — slice گرفتن (k طول slice است) sub = lst[1:4] # یک list جدید می‌سازد تمام متدهای list با مثال lst = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3] # ── متدهای اضافه‌کردن ── # append: یک عنصر به انتها اضافه می‌کند — O(1) amortized lst.append(7) print(lst) # [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 7] # insert: در موقعیت مشخص — O(n) lst.insert(2, 99) print(lst) # [3, 1, 99, 4, 1, 5, 9, 2, 6, 5, 3, 7] # extend: عناصر یک iterable را اضافه می‌کند — O(k) lst.extend([10, 11]) print(lst) # [3, 1, 99, 4, 1, 5, 9, 2, 6, 5, 3, 7, 10, 11] # ── متدهای حذف‌کردن ── # remove: اولین تکرار مقدار را حذف می‌کند — O(n) lst.remove(99) print(lst) # [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 7, 10, 11] # pop: عنصر را حذف و برمی‌گرداند last = lst.pop() # آخرین عنصر — O(1) first = lst.pop(0) # اولین عنصر — O(n) print(last, first) # 11, 3 # clear: همه عناصر را حذف می‌کند — O(n) temp = [1, 2, 3] temp.clear() print(temp) # [] # del با اندیس یا slice lst2 = [1, 2, 3, 4, 5] del lst2[2] print(lst2) # [1, 2, 4, 5] del lst2[1:3] print(lst2) # [1, 5] # ── متدهای جستجو ── lst = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3] # index: اندیس اولین تکرار — O(n) print(lst.index(5)) # 4 print(lst.index(5, 5)) # 8 (جستجو از اندیس 5) print(lst.index(5, 5, 9)) # 8 (جستجو از 5 تا 9) # count: تعداد تکرار — O(n) print(lst.count(1)) # 2 print(lst.count(5)) # 2 print(lst.count(7)) # 0 # ── متدهای ترتیب ── # sort: مرتب‌سازی درجا — O(n log n) — Timsort lst.sort() print(lst) # [1, 1, 2, 3, 3, 4, 5, 5, 6, 9] lst.sort(reverse=True) print(lst) # [9, 6, 5, 5, 4, 3, 3, 2, 1, 1] # مرتب‌سازی با key words = ['banana', 'apple', 'cherry', 'date'] words.sort(key=len) print(words) # ['date', 'apple', 'banana', 'cherry'] words.sort(key=lambda x: x[-1]) # بر اساس آخرین حرف print(words) # ['banana', 'apple', 'date', 'cherry'] # reverse: معکوس کردن درجا — O(n) lst.reverse() print(lst) # [1, 1, 2, 3, 3, 4, 5, 5, 6, 9] # ── کپی ── # copy: کپی سطحی — O(n) original = [[1, 2], [3, 4]] shallow = original.copy() shallow[0].append(99) print(original) # [[1, 2, 99], [3, 4]] — original هم تغییر کرد! # برای کپی عمیق: import copy deep = copy.deepcopy(original) deep[0].append(100) print(original) # [[1, 2, 99], [3, 4]] — تغییر نکرد List Comprehension — قدرت واقعی list # ساخت list با comprehension squares = [x**2 for x in range(10)] print(squares) # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81] # با شرط even_squares = [x**2 for x in range(10) if x % 2 == 0] print(even_squares) # [0, 4, 16, 36, 64] # تودرتو matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] flat = [x for row in matrix for x in row] print(flat) # [1, 2, 3, 4, 5, 6, 7, 8, 9] # با چند شرط result = [x for x in range(100) if x % 2 == 0 if x % 3 == 0] print(result) # [0, 6, 12, 18, ...] # comprehension تودرتو برای transpose transpose = [[row[i] for row in matrix] for i in range(3)] print(transpose) # [[1, 4, 7], [2, 5, 8], [3, 6, 9]] نکات پیشرفته list # ── Unpacking ── a, b, c = [1, 2, 3] first, *rest = [1, 2, 3, 4, 5] *beginning, last = [1, 2, 3, 4, 5] first, *middle, last = [1, 2, 3, 4, 5] print(first, middle, last) # 1 [2, 3, 4] 5 # ── مقایسه list‌ها ── print([1, 2, 3] == [1, 2, 3]) # True print([1, 2, 3] \u003c [1, 2, 4]) # True (مقایسه لغوی) print([1, 2] \u003c [1, 2, 3]) # True (کوتاه‌تر کوچک‌تر است) # ── ضرب list ── zeros = [0] * 5 print(zeros) # [0, 0, 0, 0, 0] # دام مشهور: با شیء mutable! matrix_wrong = [[0] * 3] * 3 # اشتباه! matrix_wrong[0][0] = 1 print(matrix_wrong) # [[1, 0, 0], [1, 0, 0], [1, 0, 0]] — همه تغییر کردند! matrix_correct = [[0] * 3 for _ in range(3)] # درست matrix_correct[0][0] = 1 print(matrix_correct) # [[1, 0, 0], [0, 0, 0], [0, 0, 0]] # ── list به عنوان stack و queue ── # Stack (LIFO) — با list خوب کار می‌کند stack = [] stack.append(1) # push stack.append(2) stack.append(3) print(stack.pop()) # 3 — pop از انتها O(1) # Queue (FIFO) — با list بد است! از deque استفاده کنید from collections import deque queue = deque() queue.append(1) # enqueue queue.append(2) queue.append(3) print(queue.popleft()) # 1 — O(1) ۳.۳ — فرزند دوم: tuple tuple یک Sequence تغییرناپذیر (immutable) است. اما این تغییرناپذیری چیزی بیشتر از یک محدودیت است — یک قرارداد است.\nساختار داخلی tuple import sys # tuple کمتر از list حافظه مصرف می‌کند lst = [1, 2, 3, 4, 5] tpl = (1, 2, 3, 4, 5) print(sys.getsizeof(lst)) # 104 bytes print(sys.getsizeof(tpl)) # 80 bytes — کمتر! چرا کمتر؟ چون tuple نیازی به ظرفیت اضافه ندارد. دقیقاً به اندازه‌ای که لازم دارد ساخته می‌شود.\ntuple interning پایتون برخی tuple‌های خاص را intern می‌کند — یعنی یک نسخه می‌سازد و بارها استفاده می‌کند:\n# tuple خالی همیشه یکی است a = () b = () print(a is b) # True — همان شیء! # tuple یک عنصری ممکن است intern شود x = (1,) y = (1,) print(x is y) # True یا False بسته به implementation # tuple‌های بزرگتر معمولاً intern نمی‌شوند p = (1, 2, 3) q = (1, 2, 3) print(p is q) # احتمالاً False کاربردهای tuple # ── Named Tuple — tuple با اسم ── from collections import namedtuple Point = namedtuple('Point', ['x', 'y']) p = Point(3, 4) print(p.x, p.y) # 3 4 print(p[0], p[1]) # 3 4 — هنوز مثل tuple کار می‌کند print(p) # Point(x=3, y=4) # با مقدار پیشفرض Person = namedtuple('Person', ['name', 'age', 'city'], defaults=['Tehran']) alice = Person('Alice', 30) print(alice.city) # Tehran # ── typing.NamedTuple — نسخه مدرن ── from typing import NamedTuple class Coordinate(NamedTuple): x: float y: float z: float = 0.0 c = Coordinate(1.0, 2.0) print(c) # Coordinate(x=1.0, y=2.0, z=0.0) print(c.z) # 0.0 # ── tuple به عنوان کلید dictionary ── # چون hashable است! locations = { (35.6892, 51.3890): \"Tehran\", (48.8566, 2.3522): \"Paris\", (51.5074, -0.1278): \"London\", } print(locations[(35.6892, 51.3890)]) # Tehran # list نمی‌تواند کلید باشد: try: bad = {[1, 2]: \"value\"} except TypeError as e: print(e) # unhashable type: 'list' # ── tuple unpacking ── coordinates = [(1, 2), (3, 4), (5, 6)] for x, y in coordinates: print(f\"x={x}, y={y}\") # swap با tuple a, b = 1, 2 a, b = b, a print(a, b) # 2 1 # تابع که چند مقدار برمی‌گرداند def min_max(lst): return min(lst), max(lst) # یک tuple برمی‌گرداند minimum, maximum = min_max([3, 1, 4, 1, 5, 9]) print(minimum, maximum) # 1 9 # ── tuple با یک عنصر — دام مشهور! ── not_a_tuple = (42) # این یک عدد است! is_a_tuple = (42,) # این یک tuple است — کاما مهم است! print(type(not_a_tuple)) # ",
-  "wordCount" : "12537",
-  "inLanguage": "en",
-  "datePublished": "2026-05-12T11:50:06+03:30",
-  "dateModified": "2026-05-12T11:50:06+03:30",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://example.org/posts/2026/may/12/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Out of Distribution",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
-    }
-  }
-}
-</script>
 </head>
 
 <body class="" id="top">
@@ -158,7 +94,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="Out of Distribution (Alt + H)">Out of Distribution</a>
+            <a href="http://localhost:1313/" accesskey="h" title="Out of Distribution (Alt + H)">Out of Distribution</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -184,27 +120,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://example.org/posts/" title="Posts">
+                <a href="http://localhost:1313/posts/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://example.org/archives/" title="Archive">
+                <a href="http://localhost:1313/archives/" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://example.org/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://example.org/tags/" title="Tags">
+                <a href="http://localhost:1313/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://example.org/faq/" title="FAQ">
+                <a href="http://localhost:1313/faq/" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -3593,7 +3529,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2026 <a href="https://example.org/">Out of Distribution</a></span> · 
+        <span>&copy; 2026 <a href="http://localhost:1313/">Out of Distribution</a></span> · 
 
     <span>
         Powered by
